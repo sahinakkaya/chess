@@ -1,1 +1,1 @@
-# ChessVShogi
+# chessVshogi
