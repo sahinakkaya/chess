@@ -5,6 +5,7 @@ class Vector2D:
     """
     A vector that represents a direction in 2D space
     """
+
     def __init__(self, x, y):
         self.x = x
         self.y = y
@@ -46,6 +47,9 @@ class Vector2D:
         if isinstance(other, int):
             return Vector2D(self.x * other, self.y * other)
         return NotImplemented
+
+    def __reversed__(self):
+        return self * -1
 
     def __add__(self, other):
         if isinstance(other, tuple) and len(other) == 2:
@@ -99,6 +103,14 @@ class SetOfVectors(set):
                     pairs.add(pair)
             return pairs
         return NotImplemented
+
+    def __mul__(self, other):
+        if isinstance(other, int):
+            return SetOfVectors(*(vector * other for vector in self))
+        return NotImplemented
+
+    def __reversed__(self):
+        return self * -1
 
     def __eq__(self, other):
         if isinstance(other, set):
