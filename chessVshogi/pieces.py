@@ -1,4 +1,4 @@
-from chessVshogi.directions import Direction, SetOfVectors
+from chessVshogi.directions import Direction, SetOfVectors, Vector2D
 
 
 class Piece:
@@ -20,6 +20,20 @@ class Piece:
     @classmethod
     def name(cls):
         return cls.__name__
+
+    def get_possible_moves(self, board_size):
+        """
+        Return possible moves for the piece
+        :param board_size: an integer that is used for checking bounds
+        :return: a set of Vector2D objects that a piece can go
+        """
+        possible_moves = set()
+        for direction in self.MOVEMENT:
+            for i in range(1, self.MOVEMENT_RANGE):
+                move = (direction * i) + Vector2D(self.x, self.y)
+                if (0, 0) <= move <= (board_size, board_size):
+                    possible_moves.add(move)
+        return possible_moves
 
 
 class ChessPiece(Piece):
@@ -88,3 +102,8 @@ if __name__ == '__main__':
         print(piece.name(), end="\n\t")
         print(*piece.MOVEMENT, sep="\n\t", end="\n\t")
         print("Range: ", piece.MOVEMENT_RANGE)
+
+    print("*" * 50)
+    rook = Rook(x=5, y=5)
+    for vector in rook.get_possible_moves(board_size=8):
+        print(vector)

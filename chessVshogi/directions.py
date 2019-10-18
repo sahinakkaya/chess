@@ -2,6 +2,35 @@ import itertools
 from functools import partial
 
 
+def convert_tuple_to_vector(function):
+    def wrapper(first, second):
+        if isinstance(first, tuple) and len(first) == 2:
+            first = Vector2D(*first)
+        if isinstance(second, tuple) and len(second) == 2:
+            second = Vector2D(*second)
+        return function(first, second)
+
+    return wrapper
+
+
+def return_not_implemented_if_not_vector(function):
+    def wrapper(first, second):
+        if not isinstance(second, Vector2D):
+            return NotImplemented
+        return function(first, second)
+
+    return wrapper
+
+
+def handle_non_vector_params(function):
+    @convert_tuple_to_vector
+    @return_not_implemented_if_not_vector
+    def wrapper(first, second):
+        return function(first, second)
+
+    return wrapper
+
+
 class Vector2D:
     """
     A vector that represents a direction in 2D space
@@ -32,9 +61,24 @@ class Vector2D:
     def __repr__(self):
         return f"Vector2D({self.x}, {self.y})"
 
+    @handle_non_vector_params
+    def __lt__(self, other):
+        return self.x < other.x and self.y < other.y
+
+    @handle_non_vector_params
+    def __gt__(self, other):
+        return self.x > other.x and self.y > other.y
+
+    @handle_non_vector_params
+    def __le__(self, other):
+        return self.x <= other.x and self.y <= other.y
+
+    @handle_non_vector_params
+    def __ge__(self, other):
+        return self.x >= other.x and self.y >= other.y
+
+    @convert_tuple_to_vector
     def __eq__(self, other):
-        if isinstance(other, tuple) and len(other) == 2:
-            other = Vector2D(*other)
         if isinstance(other, SetOfVectors):
             return other == SetOfVectors(self)
         if isinstance(other, Vector2D):
@@ -52,12 +96,9 @@ class Vector2D:
     def __reversed__(self):
         return self * -1
 
+    @handle_non_vector_params
     def __add__(self, other):
-        if isinstance(other, tuple) and len(other) == 2:
-            other = Vector2D(*other)
-        if isinstance(other, Vector2D):
-            return Vector2D(self.x + other.x, self.y + other.y)
-        return NotImplemented
+        return Vector2D(self.x + other.x, self.y + other.y)
 
     def flip(self, axes=None, in_place=False):
         """
