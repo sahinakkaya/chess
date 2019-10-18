@@ -1,4 +1,5 @@
 import itertools
+from functools import partial
 
 
 class Vector2D:
@@ -58,6 +59,12 @@ class Vector2D:
             return Vector2D(self.x + other.x, self.y + other.y)
         return NotImplemented
 
+    def flip(self, axes=None, in_place=False):
+        result = SetOfVectors(self).flip(axes, False).pop()
+        if in_place:
+            self.x, self.y = result
+        return result
+
 
 class SetOfVectors(set):
     """
@@ -116,6 +123,39 @@ class SetOfVectors(set):
         if isinstance(other, set):
             other = SetOfVectors(*other)
         return super().__eq__(other)
+
+    @staticmethod
+    def change_sign_of_value_at_index(t: tuple, index: int):
+        return tuple(data
+                     if i != index
+                     else -data
+                     for i, data in enumerate(t))
+
+    def flip(self, axes=None, in_place=False):
+        """
+        Flip all the elements horizontally, vertically or against origin and
+        return them
+
+        :param axes: a parameter that can be "horizontal", "vertical" or None
+        :param in_place: if True the result will be used to update the caller
+        :return: SetOfVectors that is flipped against 'axes'
+        """
+        if in_place:
+            self.update(self.flip(axes))
+            return self
+        if axes is None:
+            return reversed(self)
+        else:
+            if axes in ("horizontal", "h"):
+                index = 0
+            elif axes in ("vertical", "v"):
+                index = 1
+            else:
+                raise ValueError(
+                    "axes value should be 'horizontal' or 'vertical' when set")
+            mapping_func = partial(self.change_sign_of_value_at_index,
+                                   index=index)
+            return SetOfVectors(*map(mapping_func, self))
 
 
 class Direction:
