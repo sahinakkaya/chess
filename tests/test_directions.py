@@ -35,6 +35,10 @@ class DirectionTestCase(unittest.TestCase):
         self.assertEqual(self.queens_dir,
                          self.rooks_dir.union(self.bishops_dir))
 
+    def test_reversed_container(self):
+        self.assertEqual(Direction.RIGHT, reversed(Direction.LEFT))
+        self.assertEqual(Direction.LDIAGONAL, reversed(Direction.LDIAGONAL))
+
 
 if __name__ == '__main__':
     unittest.main()
