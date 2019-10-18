@@ -60,6 +60,13 @@ class Vector2D:
         return NotImplemented
 
     def flip(self, axes=None, in_place=False):
+        """
+        Return an instance of Vector2D that is flipped against 'axes'
+
+        :param axes: a parameter that can be "horizontal", "vertical" or None
+        :param in_place: if True the result will be set to the caller
+        :return: a Vector2D instance that is flipped against 'axes'
+        """
         result = SetOfVectors(self).flip(axes, False).pop()
         if in_place:
             self.x, self.y = result
