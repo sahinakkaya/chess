@@ -1,5 +1,5 @@
 import unittest
-from chessVshogi.directions import Direction
+from chessVshogi.directions import Direction, Vector2D, SetOfVectors
 
 
 class DirectionTestCase(unittest.TestCase):
@@ -26,6 +26,36 @@ class DirectionTestCase(unittest.TestCase):
         self.assertEqual({(-1, 1), (1, 1)},
                          Direction.HORIZONTAL & Direction.FORWARD)
 
+    def test_reversed_container(self):
+        self.assertEqual(Direction.RIGHT, reversed(Direction.LEFT))
+        self.assertEqual(Direction.LDIAGONAL, reversed(Direction.LDIAGONAL))
+
+    def test_flip_horizontal_and_vertical(self):
+        self.assertEqual(Direction.LEFT, Direction.RIGHT.flip("h"))
+        self.assertEqual(Direction.RIGHT, Direction.RIGHT.flip("v"))
+        self.assertEqual(Direction.FORWARD, Direction.FORWARD.flip("h"))
+        self.assertEqual(Direction.BACKWARD, Direction.FORWARD.flip("v"))
+        self.assertEqual(Direction.LDIAGONAL, Direction.RDIAGONAL.flip("h"))
+
+    def test_multiple_flips(self):
+        self.assertEqual(Direction.LEFT, Direction.LEFT.flip().flip())
+        self.assertEqual(Direction.LEFT, Direction.RIGHT.flip("v").flip("h"))
+        self.assertEqual(self.queens_dir, self.queens_dir.flip("v"))
+        self.assertEqual(self.queens_dir, self.queens_dir.flip().flip().flip())
+        self.assertEqual(self.bishops_dir,
+                         self.bishops_dir.flip("v").flip("h"))
+
+    def test_flip_raises_error_when_wrong_parameter_specified(self):
+        self.assertRaises(ValueError, Direction.LDIAGONAL.flip, "a")
+
+    def test_flip_affects_the_caller(self):
+        left = Vector2D(-1, 0)
+        left.flip("h", True)
+        self.assertEqual(Direction.RIGHT, left)
+        knight = SetOfVectors((1, 2), (2, 1))
+        knight.flip("v", True).flip("h", True)
+        self.assertTrue(SetOfVectors((-2, -1), (1, -2)).issubset(knight))
+
     def test_chess_pieces(self):
         self.assertEqual({(-1, 1), (1, -1), (-1, -1), (1, 1)},
                          self.bishops_dir)
@@ -34,10 +64,6 @@ class DirectionTestCase(unittest.TestCase):
         self.assertTrue(self.rooks_dir.issubset(self.queens_dir))
         self.assertEqual(self.queens_dir,
                          self.rooks_dir.union(self.bishops_dir))
-
-    def test_reversed_container(self):
-        self.assertEqual(Direction.RIGHT, reversed(Direction.LEFT))
-        self.assertEqual(Direction.LDIAGONAL, reversed(Direction.LDIAGONAL))
 
 
 if __name__ == '__main__':
