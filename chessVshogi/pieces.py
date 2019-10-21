@@ -126,13 +126,15 @@ class Lance(ShogiPiece):  # can be renamed to "Kyo"
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-    
-class S_Knight(ShogiPiece): # can be renamed to "Kei" or "Forward Knight"
-    MOVEMENT = Vector2D(1,2).flip(axes="h", in_place=True)
+
+
+class S_Knight(ShogiPiece):  # can be renamed to "Kei" or "Forward Knight"
+    MOVEMENT = Vector2D(1, 2).flip(axes="h", in_place=True)
     MOVEMENT_RANGE = 1
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
 
 class S_Pawn(ShogiPiece):  # can be renamed to "Fu"
     MOVEMENT = Direction.FORWARD
@@ -151,7 +153,9 @@ class Silver(ShogiPiece):  # can be renamed to "Gin"
 
 
 class Gold(ShogiPiece):  # can be renamed to "Kin"
-    MOVEMENT = Direction.HORIZONTAL | direction.VERTICAL | (Direction.FORWARD & Direction.LEFT) | (direction.FORWARD & Direction.RIGHT)
+    MOVEMENT = Direction.HORIZONTAL | Direction.VERTICAL | (
+               Direction.FORWARD & Direction.LEFT) | (
+               Direction.FORWARD & Direction.RIGHT)
     MOVEMENT_RANGE = 1
 
     def __init__(self, *args, **kwargs):
@@ -189,6 +193,7 @@ class Promoted_Silver:  # can be renamed to "Narigin"
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+
 # TODO: Need to define special cases where one direction of movement is limited in range
 class Promoted_Rook:  # can be renamed to "Ryu" or "Dragon"
     MOVEMENT = Rook.MOVEMENT
@@ -196,6 +201,7 @@ class Promoted_Rook:  # can be renamed to "Ryu" or "Dragon"
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
 
 class Promoted_Bishop:  # can be renamed to "Uma" or "Horse"
     MOVEMENT = Bishop.MOVEMENT
@@ -206,7 +212,8 @@ class Promoted_Bishop:  # can be renamed to "Uma" or "Horse"
 
 
 if __name__ == '__main__':
-    pieces = [Pawn, Knight, Bishop, Rook, Queen, King, S_Pawn, Lance, S_Knight, Silver, Gold]
+    pieces = [Pawn, Knight, Bishop, Rook, Queen, King,
+              S_Pawn, Lance, S_Knight, Silver, Gold]
     for piece in pieces:
         print(piece.name(), end="\n\t")
         print(*piece.MOVEMENT, sep="\n\t", end="\n\t")
