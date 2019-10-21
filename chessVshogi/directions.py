@@ -1,8 +1,9 @@
 import itertools
-from functools import partial
+from functools import partial, wraps
 
 
 def convert_tuple_to_vector(function):
+    @wraps(function)
     def wrapper(first, second):
         if isinstance(first, tuple) and len(first) == 2:
             first = Vector2D(*first)
@@ -14,6 +15,7 @@ def convert_tuple_to_vector(function):
 
 
 def return_not_implemented_if_not_vector(function):
+    @wraps(function)
     def wrapper(first, second):
         if not isinstance(second, Vector2D):
             return NotImplemented
@@ -25,6 +27,7 @@ def return_not_implemented_if_not_vector(function):
 def handle_non_vector_params(function):
     @convert_tuple_to_vector
     @return_not_implemented_if_not_vector
+    @wraps(function)
     def wrapper(first, second):
         return function(first, second)
 
