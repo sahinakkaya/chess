@@ -65,7 +65,7 @@ class Knight(ChessPiece):
 
 
 class Rook(ChessPiece):
-    MOVEMENT = Direction.HORIZONTAL | Direction.VERTICAL
+    MOVEMENT = Direction.STRAIGHT
     MOVEMENT_RANGE = 8
 
     def __init__(self, *args, **kwargs):
@@ -73,7 +73,7 @@ class Rook(ChessPiece):
 
 
 class Bishop(ChessPiece):
-    MOVEMENT = Direction.LDIAGONAL | Direction.RDIAGONAL
+    MOVEMENT = Direction.DIAGONAL
     MOVEMENT_RANGE = 8
 
     def __init__(self, *args, **kwargs):
@@ -81,7 +81,7 @@ class Bishop(ChessPiece):
 
 
 class Queen(ChessPiece):
-    MOVEMENT = Rook.MOVEMENT | Bishop.MOVEMENT
+    MOVEMENT = Direction.STRAIGHT | Direction.DIAGONAL
     MOVEMENT_RANGE = 8
 
     def __init__(self, *args, **kwargs):
@@ -89,7 +89,7 @@ class Queen(ChessPiece):
 
 
 class King(ChessPiece):
-    MOVEMENT = Queen.MOVEMENT
+    MOVEMENT = Direction.STRAIGHT | Direction.DIAGONAL
     MOVEMENT_RANGE = 1
 
     def __init__(self, *args, **kwargs):
@@ -97,7 +97,7 @@ class King(ChessPiece):
 
 
 class S_King(ShogiPiece):  # can be renamed to "Gyoku"
-    MOVEMENT = King.MOVEMENT
+    MOVEMENT = Direction.STRAIGHT | Direction.DIAGONAL
     MOVEMENT_RANGE = 1
 
     def __init__(self, *args, **kwargs):
@@ -105,7 +105,7 @@ class S_King(ShogiPiece):  # can be renamed to "Gyoku"
 
 
 class S_Rook(ShogiPiece):  # can be renamed to "Hisha"
-    MOVEMENT = Rook.MOVEMENT
+    MOVEMENT = Direction.STRAIGHT
     MOVEMENT_RANGE = 8
 
     def __init__(self, *args, **kwargs):
@@ -113,7 +113,7 @@ class S_Rook(ShogiPiece):  # can be renamed to "Hisha"
 
 
 class S_Bishop(ShogiPiece):  # can be renamed to "Kaku"
-    MOVEMENT = Bishop.MOVEMENT
+    MOVEMENT = Direction.DIAGONAL
     MOVEMENT_RANGE = 8
 
     def __init__(self, *args, **kwargs):
