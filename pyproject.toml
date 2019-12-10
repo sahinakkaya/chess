@@ -11,6 +11,7 @@ repository = "https://github.com/ChessVShogi/chessVshogi"
 
 [tool.poetry.dependencies]
 python = "^3.6"
+PyQt5 = "^5.13"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
