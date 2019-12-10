@@ -8,6 +8,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
@@ -15,17 +16,20 @@ class Ui_Form(object):
         self.horizontalLayout = QtWidgets.QHBoxLayout(Form)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.gridWidget = QtWidgets.QWidget(Form)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred,
+                                           QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.gridWidget.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.gridWidget.sizePolicy().hasHeightForWidth())
         self.gridWidget.setSizePolicy(sizePolicy)
         self.gridWidget.setMinimumSize(QtCore.QSize(400, 400))
         self.gridWidget.setMaximumSize(QtCore.QSize(400, 400))
         self.gridWidget.setStyleSheet("background-color: rgb(127, 127, 127);")
         self.gridWidget.setObjectName("gridWidget")
         self.gridLayout = QtWidgets.QGridLayout(self.gridWidget)
-        self.gridLayout.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
+        self.gridLayout.setSizeConstraint(
+            QtWidgets.QLayout.SetDefaultConstraint)
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
         self.gridLayout.setSpacing(0)
         self.gridLayout.setObjectName("gridLayout")
@@ -44,14 +48,16 @@ class Ui_Form(object):
         self.Tile_25 = QtWidgets.QLabel(self.gridWidget)
         self.Tile_25.setStyleSheet("")
         self.Tile_25.setText("")
-        self.Tile_25.setPixmap(QtGui.QPixmap(":/Chess/resources/chess_48/Chess_pdt48.png"))
+        self.Tile_25.setPixmap(
+            QtGui.QPixmap(":/Chess/resources/chess_48/Chess_pdt48.png"))
         self.Tile_25.setAlignment(QtCore.Qt.AlignCenter)
         self.Tile_25.setObjectName("Tile_25")
         self.gridLayout.addWidget(self.Tile_25, 1, 4, 1, 1)
         self.Tile_17 = QtWidgets.QLabel(self.gridWidget)
         self.Tile_17.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.Tile_17.setText("")
-        self.Tile_17.setPixmap(QtGui.QPixmap(":/Chess/resources/chess_48/Chess_ndt48.png"))
+        self.Tile_17.setPixmap(
+            QtGui.QPixmap(":/Chess/resources/chess_48/Chess_ndt48.png"))
         self.Tile_17.setAlignment(QtCore.Qt.AlignCenter)
         self.Tile_17.setObjectName("Tile_17")
         self.gridLayout.addWidget(self.Tile_17, 0, 6, 1, 1)
@@ -70,35 +76,40 @@ class Ui_Form(object):
         self.Tile_88 = QtWidgets.QLabel(self.gridWidget)
         self.Tile_88.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.Tile_88.setText("")
-        self.Tile_88.setPixmap(QtGui.QPixmap(":/Chess/resources/chess_48/Chess_rlt48.png"))
+        self.Tile_88.setPixmap(
+            QtGui.QPixmap(":/Chess/resources/chess_48/Chess_rlt48.png"))
         self.Tile_88.setAlignment(QtCore.Qt.AlignCenter)
         self.Tile_88.setObjectName("Tile_88")
         self.gridLayout.addWidget(self.Tile_88, 7, 7, 1, 1)
         self.Tile_87 = QtWidgets.QLabel(self.gridWidget)
         self.Tile_87.setStyleSheet("")
         self.Tile_87.setText("")
-        self.Tile_87.setPixmap(QtGui.QPixmap("resources/chess_48/Chess_nlt48.png"))
+        self.Tile_87.setPixmap(
+            QtGui.QPixmap("resources/chess_48/Chess_nlt48.png"))
         self.Tile_87.setAlignment(QtCore.Qt.AlignCenter)
         self.Tile_87.setObjectName("Tile_87")
         self.gridLayout.addWidget(self.Tile_87, 7, 6, 1, 1)
         self.Tile_84 = QtWidgets.QLabel(self.gridWidget)
         self.Tile_84.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.Tile_84.setText("")
-        self.Tile_84.setPixmap(QtGui.QPixmap(":/Chess/resources/chess_48/Chess_qlt48.png"))
+        self.Tile_84.setPixmap(
+            QtGui.QPixmap(":/Chess/resources/chess_48/Chess_qlt48.png"))
         self.Tile_84.setAlignment(QtCore.Qt.AlignCenter)
         self.Tile_84.setObjectName("Tile_84")
         self.gridLayout.addWidget(self.Tile_84, 7, 3, 1, 1)
         self.Tile_16 = QtWidgets.QLabel(self.gridWidget)
         self.Tile_16.setStyleSheet("")
         self.Tile_16.setText("")
-        self.Tile_16.setPixmap(QtGui.QPixmap(":/Chess/resources/chess_48/Chess_bdt48.png"))
+        self.Tile_16.setPixmap(
+            QtGui.QPixmap(":/Chess/resources/chess_48/Chess_bdt48.png"))
         self.Tile_16.setAlignment(QtCore.Qt.AlignCenter)
         self.Tile_16.setObjectName("Tile_16")
         self.gridLayout.addWidget(self.Tile_16, 0, 5, 1, 1)
         self.Tile_81 = QtWidgets.QLabel(self.gridWidget)
         self.Tile_81.setStyleSheet("")
         self.Tile_81.setText("")
-        self.Tile_81.setPixmap(QtGui.QPixmap(":/Chess/resources/chess_48/Chess_rlt48.png"))
+        self.Tile_81.setPixmap(
+            QtGui.QPixmap(":/Chess/resources/chess_48/Chess_rlt48.png"))
         self.Tile_81.setAlignment(QtCore.Qt.AlignCenter)
         self.Tile_81.setObjectName("Tile_81")
         self.gridLayout.addWidget(self.Tile_81, 7, 0, 1, 1)
@@ -106,7 +117,8 @@ class Ui_Form(object):
         self.Tile_11.setAutoFillBackground(False)
         self.Tile_11.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.Tile_11.setText("")
-        self.Tile_11.setPixmap(QtGui.QPixmap(":/Chess/resources/chess_48/Chess_rdt48.png"))
+        self.Tile_11.setPixmap(
+            QtGui.QPixmap(":/Chess/resources/chess_48/Chess_rdt48.png"))
         self.Tile_11.setAlignment(QtCore.Qt.AlignCenter)
         self.Tile_11.setObjectName("Tile_11")
         self.gridLayout.addWidget(self.Tile_11, 0, 0, 1, 1)
@@ -119,21 +131,24 @@ class Ui_Form(object):
         self.Tile_85 = QtWidgets.QLabel(self.gridWidget)
         self.Tile_85.setStyleSheet("")
         self.Tile_85.setText("")
-        self.Tile_85.setPixmap(QtGui.QPixmap(":/Chess/resources/chess_48/Chess_klt48.png"))
+        self.Tile_85.setPixmap(
+            QtGui.QPixmap(":/Chess/resources/chess_48/Chess_klt48.png"))
         self.Tile_85.setAlignment(QtCore.Qt.AlignCenter)
         self.Tile_85.setObjectName("Tile_85")
         self.gridLayout.addWidget(self.Tile_85, 7, 4, 1, 1)
         self.Tile_78 = QtWidgets.QLabel(self.gridWidget)
         self.Tile_78.setStyleSheet("")
         self.Tile_78.setText("")
-        self.Tile_78.setPixmap(QtGui.QPixmap(":/Chess/resources/chess_48/Chess_plt48.png"))
+        self.Tile_78.setPixmap(
+            QtGui.QPixmap(":/Chess/resources/chess_48/Chess_plt48.png"))
         self.Tile_78.setAlignment(QtCore.Qt.AlignCenter)
         self.Tile_78.setObjectName("Tile_78")
         self.gridLayout.addWidget(self.Tile_78, 6, 7, 1, 1)
         self.Tile_82 = QtWidgets.QLabel(self.gridWidget)
         self.Tile_82.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.Tile_82.setText("")
-        self.Tile_82.setPixmap(QtGui.QPixmap("resources/chess_48/Chess_nlt48.png"))
+        self.Tile_82.setPixmap(
+            QtGui.QPixmap("resources/chess_48/Chess_nlt48.png"))
         self.Tile_82.setAlignment(QtCore.Qt.AlignCenter)
         self.Tile_82.setObjectName("Tile_82")
         self.gridLayout.addWidget(self.Tile_82, 7, 1, 1, 1)
@@ -158,14 +173,16 @@ class Ui_Form(object):
         self.Tile_83 = QtWidgets.QLabel(self.gridWidget)
         self.Tile_83.setStyleSheet("")
         self.Tile_83.setText("")
-        self.Tile_83.setPixmap(QtGui.QPixmap(":/Chess/resources/chess_48/Chess_blt48.png"))
+        self.Tile_83.setPixmap(
+            QtGui.QPixmap(":/Chess/resources/chess_48/Chess_blt48.png"))
         self.Tile_83.setAlignment(QtCore.Qt.AlignCenter)
         self.Tile_83.setObjectName("Tile_83")
         self.gridLayout.addWidget(self.Tile_83, 7, 2, 1, 1)
         self.Tile_72 = QtWidgets.QLabel(self.gridWidget)
         self.Tile_72.setStyleSheet("")
         self.Tile_72.setText("")
-        self.Tile_72.setPixmap(QtGui.QPixmap(":/Chess/resources/chess_48/Chess_plt48.png"))
+        self.Tile_72.setPixmap(
+            QtGui.QPixmap(":/Chess/resources/chess_48/Chess_plt48.png"))
         self.Tile_72.setAlignment(QtCore.Qt.AlignCenter)
         self.Tile_72.setObjectName("Tile_72")
         self.gridLayout.addWidget(self.Tile_72, 6, 1, 1, 1)
@@ -178,21 +195,24 @@ class Ui_Form(object):
         self.Tile_86 = QtWidgets.QLabel(self.gridWidget)
         self.Tile_86.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.Tile_86.setText("")
-        self.Tile_86.setPixmap(QtGui.QPixmap(":/Chess/resources/chess_48/Chess_blt48.png"))
+        self.Tile_86.setPixmap(
+            QtGui.QPixmap(":/Chess/resources/chess_48/Chess_blt48.png"))
         self.Tile_86.setAlignment(QtCore.Qt.AlignCenter)
         self.Tile_86.setObjectName("Tile_86")
         self.gridLayout.addWidget(self.Tile_86, 7, 5, 1, 1)
         self.Tile_75 = QtWidgets.QLabel(self.gridWidget)
         self.Tile_75.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.Tile_75.setText("")
-        self.Tile_75.setPixmap(QtGui.QPixmap(":/Chess/resources/chess_48/Chess_plt48.png"))
+        self.Tile_75.setPixmap(
+            QtGui.QPixmap(":/Chess/resources/chess_48/Chess_plt48.png"))
         self.Tile_75.setAlignment(QtCore.Qt.AlignCenter)
         self.Tile_75.setObjectName("Tile_75")
         self.gridLayout.addWidget(self.Tile_75, 6, 4, 1, 1)
         self.Tile_12 = QtWidgets.QLabel(self.gridWidget)
         self.Tile_12.setStyleSheet("")
         self.Tile_12.setText("")
-        self.Tile_12.setPixmap(QtGui.QPixmap(":/Chess/resources/chess_48/Chess_ndt48.png"))
+        self.Tile_12.setPixmap(
+            QtGui.QPixmap(":/Chess/resources/chess_48/Chess_ndt48.png"))
         self.Tile_12.setAlignment(QtCore.Qt.AlignCenter)
         self.Tile_12.setObjectName("Tile_12")
         self.gridLayout.addWidget(self.Tile_12, 0, 1, 1, 1)
@@ -211,7 +231,8 @@ class Ui_Form(object):
         self.Tile_77 = QtWidgets.QLabel(self.gridWidget)
         self.Tile_77.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.Tile_77.setText("")
-        self.Tile_77.setPixmap(QtGui.QPixmap(":/Chess/resources/chess_48/Chess_plt48.png"))
+        self.Tile_77.setPixmap(
+            QtGui.QPixmap(":/Chess/resources/chess_48/Chess_plt48.png"))
         self.Tile_77.setAlignment(QtCore.Qt.AlignCenter)
         self.Tile_77.setObjectName("Tile_77")
         self.gridLayout.addWidget(self.Tile_77, 6, 6, 1, 1)
@@ -230,14 +251,16 @@ class Ui_Form(object):
         self.Tile_28 = QtWidgets.QLabel(self.gridWidget)
         self.Tile_28.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.Tile_28.setText("")
-        self.Tile_28.setPixmap(QtGui.QPixmap(":/Chess/resources/chess_48/Chess_pdt48.png"))
+        self.Tile_28.setPixmap(
+            QtGui.QPixmap(":/Chess/resources/chess_48/Chess_pdt48.png"))
         self.Tile_28.setAlignment(QtCore.Qt.AlignCenter)
         self.Tile_28.setObjectName("Tile_28")
         self.gridLayout.addWidget(self.Tile_28, 1, 7, 1, 1)
         self.Tile_21 = QtWidgets.QLabel(self.gridWidget)
         self.Tile_21.setStyleSheet("")
         self.Tile_21.setText("")
-        self.Tile_21.setPixmap(QtGui.QPixmap(":/Chess/resources/chess_48/Chess_pdt48.png"))
+        self.Tile_21.setPixmap(
+            QtGui.QPixmap(":/Chess/resources/chess_48/Chess_pdt48.png"))
         self.Tile_21.setAlignment(QtCore.Qt.AlignCenter)
         self.Tile_21.setObjectName("Tile_21")
         self.gridLayout.addWidget(self.Tile_21, 1, 0, 1, 1)
@@ -268,7 +291,8 @@ class Ui_Form(object):
         self.Tile_14 = QtWidgets.QLabel(self.gridWidget)
         self.Tile_14.setStyleSheet("")
         self.Tile_14.setText("")
-        self.Tile_14.setPixmap(QtGui.QPixmap(":/Chess/resources/chess_48/Chess_qdt48.png"))
+        self.Tile_14.setPixmap(
+            QtGui.QPixmap(":/Chess/resources/chess_48/Chess_qdt48.png"))
         self.Tile_14.setAlignment(QtCore.Qt.AlignCenter)
         self.Tile_14.setObjectName("Tile_14")
         self.gridLayout.addWidget(self.Tile_14, 0, 3, 1, 1)
@@ -287,7 +311,8 @@ class Ui_Form(object):
         self.Tile_73 = QtWidgets.QLabel(self.gridWidget)
         self.Tile_73.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.Tile_73.setText("")
-        self.Tile_73.setPixmap(QtGui.QPixmap(":/Chess/resources/chess_48/Chess_plt48.png"))
+        self.Tile_73.setPixmap(
+            QtGui.QPixmap(":/Chess/resources/chess_48/Chess_plt48.png"))
         self.Tile_73.setAlignment(QtCore.Qt.AlignCenter)
         self.Tile_73.setObjectName("Tile_73")
         self.gridLayout.addWidget(self.Tile_73, 6, 2, 1, 1)
@@ -312,14 +337,16 @@ class Ui_Form(object):
         self.Tile_24 = QtWidgets.QLabel(self.gridWidget)
         self.Tile_24.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.Tile_24.setText("")
-        self.Tile_24.setPixmap(QtGui.QPixmap(":/Chess/resources/chess_48/Chess_pdt48.png"))
+        self.Tile_24.setPixmap(
+            QtGui.QPixmap(":/Chess/resources/chess_48/Chess_pdt48.png"))
         self.Tile_24.setAlignment(QtCore.Qt.AlignCenter)
         self.Tile_24.setObjectName("Tile_24")
         self.gridLayout.addWidget(self.Tile_24, 1, 3, 1, 1)
         self.Tile_27 = QtWidgets.QLabel(self.gridWidget)
         self.Tile_27.setStyleSheet("")
         self.Tile_27.setText("")
-        self.Tile_27.setPixmap(QtGui.QPixmap(":/Chess/resources/chess_48/Chess_pdt48.png"))
+        self.Tile_27.setPixmap(
+            QtGui.QPixmap(":/Chess/resources/chess_48/Chess_pdt48.png"))
         self.Tile_27.setAlignment(QtCore.Qt.AlignCenter)
         self.Tile_27.setObjectName("Tile_27")
         self.gridLayout.addWidget(self.Tile_27, 1, 6, 1, 1)
@@ -332,7 +359,8 @@ class Ui_Form(object):
         self.Tile_22 = QtWidgets.QLabel(self.gridWidget)
         self.Tile_22.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.Tile_22.setText("")
-        self.Tile_22.setPixmap(QtGui.QPixmap(":/Chess/resources/chess_48/Chess_pdt48.png"))
+        self.Tile_22.setPixmap(
+            QtGui.QPixmap(":/Chess/resources/chess_48/Chess_pdt48.png"))
         self.Tile_22.setAlignment(QtCore.Qt.AlignCenter)
         self.Tile_22.setObjectName("Tile_22")
         self.gridLayout.addWidget(self.Tile_22, 1, 1, 1, 1)
@@ -345,7 +373,8 @@ class Ui_Form(object):
         self.Tile_76 = QtWidgets.QLabel(self.gridWidget)
         self.Tile_76.setStyleSheet("")
         self.Tile_76.setText("")
-        self.Tile_76.setPixmap(QtGui.QPixmap(":/Chess/resources/chess_48/Chess_plt48.png"))
+        self.Tile_76.setPixmap(
+            QtGui.QPixmap(":/Chess/resources/chess_48/Chess_plt48.png"))
         self.Tile_76.setAlignment(QtCore.Qt.AlignCenter)
         self.Tile_76.setObjectName("Tile_76")
         self.gridLayout.addWidget(self.Tile_76, 6, 5, 1, 1)
@@ -364,21 +393,24 @@ class Ui_Form(object):
         self.Tile_71 = QtWidgets.QLabel(self.gridWidget)
         self.Tile_71.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.Tile_71.setText("")
-        self.Tile_71.setPixmap(QtGui.QPixmap(":/Chess/resources/chess_48/Chess_plt48.png"))
+        self.Tile_71.setPixmap(
+            QtGui.QPixmap(":/Chess/resources/chess_48/Chess_plt48.png"))
         self.Tile_71.setAlignment(QtCore.Qt.AlignCenter)
         self.Tile_71.setObjectName("Tile_71")
         self.gridLayout.addWidget(self.Tile_71, 6, 0, 1, 1)
         self.Tile_15 = QtWidgets.QLabel(self.gridWidget)
         self.Tile_15.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.Tile_15.setText("")
-        self.Tile_15.setPixmap(QtGui.QPixmap(":/Chess/resources/chess_48/Chess_kdt48.png"))
+        self.Tile_15.setPixmap(
+            QtGui.QPixmap(":/Chess/resources/chess_48/Chess_kdt48.png"))
         self.Tile_15.setAlignment(QtCore.Qt.AlignCenter)
         self.Tile_15.setObjectName("Tile_15")
         self.gridLayout.addWidget(self.Tile_15, 0, 4, 1, 1)
         self.Tile_23 = QtWidgets.QLabel(self.gridWidget)
         self.Tile_23.setStyleSheet("")
         self.Tile_23.setText("")
-        self.Tile_23.setPixmap(QtGui.QPixmap(":/Chess/resources/chess_48/Chess_pdt48.png"))
+        self.Tile_23.setPixmap(
+            QtGui.QPixmap(":/Chess/resources/chess_48/Chess_pdt48.png"))
         self.Tile_23.setAlignment(QtCore.Qt.AlignCenter)
         self.Tile_23.setObjectName("Tile_23")
         self.gridLayout.addWidget(self.Tile_23, 1, 2, 1, 1)
@@ -391,7 +423,8 @@ class Ui_Form(object):
         self.Tile_13 = QtWidgets.QLabel(self.gridWidget)
         self.Tile_13.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.Tile_13.setText("")
-        self.Tile_13.setPixmap(QtGui.QPixmap(":/Chess/resources/chess_48/Chess_bdt48.png"))
+        self.Tile_13.setPixmap(
+            QtGui.QPixmap(":/Chess/resources/chess_48/Chess_bdt48.png"))
         self.Tile_13.setAlignment(QtCore.Qt.AlignCenter)
         self.Tile_13.setObjectName("Tile_13")
         self.gridLayout.addWidget(self.Tile_13, 0, 2, 1, 1)
@@ -404,7 +437,8 @@ class Ui_Form(object):
         self.Tile_74 = QtWidgets.QLabel(self.gridWidget)
         self.Tile_74.setStyleSheet("")
         self.Tile_74.setText("")
-        self.Tile_74.setPixmap(QtGui.QPixmap(":/Chess/resources/chess_48/Chess_plt48.png"))
+        self.Tile_74.setPixmap(
+            QtGui.QPixmap(":/Chess/resources/chess_48/Chess_plt48.png"))
         self.Tile_74.setAlignment(QtCore.Qt.AlignCenter)
         self.Tile_74.setObjectName("Tile_74")
         self.gridLayout.addWidget(self.Tile_74, 6, 3, 1, 1)
@@ -423,7 +457,8 @@ class Ui_Form(object):
         self.Tile_26 = QtWidgets.QLabel(self.gridWidget)
         self.Tile_26.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.Tile_26.setText("")
-        self.Tile_26.setPixmap(QtGui.QPixmap(":/Chess/resources/chess_48/Chess_pdt48.png"))
+        self.Tile_26.setPixmap(
+            QtGui.QPixmap(":/Chess/resources/chess_48/Chess_pdt48.png"))
         self.Tile_26.setAlignment(QtCore.Qt.AlignCenter)
         self.Tile_26.setObjectName("Tile_26")
         self.gridLayout.addWidget(self.Tile_26, 1, 5, 1, 1)
@@ -442,7 +477,8 @@ class Ui_Form(object):
         self.Tile_18 = QtWidgets.QLabel(self.gridWidget)
         self.Tile_18.setStyleSheet("")
         self.Tile_18.setText("")
-        self.Tile_18.setPixmap(QtGui.QPixmap(":/Chess/resources/chess_48/Chess_rdt48.png"))
+        self.Tile_18.setPixmap(
+            QtGui.QPixmap(":/Chess/resources/chess_48/Chess_rdt48.png"))
         self.Tile_18.setAlignment(QtCore.Qt.AlignCenter)
         self.Tile_18.setObjectName("Tile_18")
         self.gridLayout.addWidget(self.Tile_18, 0, 7, 1, 1)
@@ -457,20 +493,26 @@ class Ui_Form(object):
         self.label_2.setObjectName("label_2")
         self.verticalLayout.addWidget(self.label_2)
         self.timeEdit_2 = QtWidgets.QTimeEdit(self.verticalFrame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum,
+                                           QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.timeEdit_2.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.timeEdit_2.sizePolicy().hasHeightForWidth())
         self.timeEdit_2.setSizePolicy(sizePolicy)
         self.timeEdit_2.setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
         self.timeEdit_2.setObjectName("timeEdit_2")
         self.verticalLayout.addWidget(self.timeEdit_2)
-        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        spacerItem = QtWidgets.QSpacerItem(20, 40,
+                                           QtWidgets.QSizePolicy.Minimum,
+                                           QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout.addItem(spacerItem)
         self.label = QtWidgets.QLabel(self.verticalFrame)
         self.label.setObjectName("label")
         self.verticalLayout.addWidget(self.label)
-        spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        spacerItem1 = QtWidgets.QSpacerItem(20, 40,
+                                            QtWidgets.QSizePolicy.Minimum,
+                                            QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout.addItem(spacerItem1)
         self.label_3 = QtWidgets.QLabel(self.verticalFrame)
         self.label_3.setObjectName("label_3")
@@ -492,4 +534,37 @@ class Ui_Form(object):
         self.label.setText(_translate("Form", "TextLabel"))
         self.label_3.setText(_translate("Form", "TextLabel"))
 
+
 import rsrc_rc
+
+
+class Window(QtWidgets.QWidget, Ui_Form):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+        self.show()
+        self.tiles = []
+        for i in range(11, 89):
+            try:
+                tile = getattr(self, "Tile_{}".format(i))
+                self.tiles.append(tile)
+                tile.installEventFilter(self)
+            except AttributeError:
+                pass
+
+    def eventFilter(self, source, event):
+        if event.type() == QtCore.QEvent.MouseButtonPress and source in self.tiles:
+            self.clicked_tile = source
+            print(self.clicked_tile.objectName())
+            # print(self.clicked_tile.pixmap())
+            # print(QtGui.QPixmap().)
+            # label = QtWidgets.QLabel(self)
+            # label.pixmap()
+        return super(Window, self).eventFilter(source, event)
+
+
+import sys
+
+app = QtWidgets.QApplication([])
+w = Window()
+sys.exit(app.exec_())
