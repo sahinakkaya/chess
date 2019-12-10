@@ -13,7 +13,7 @@ if [ "$#" -ne 1 ]; then
   for f in *.qrc
   do
     resource_file=$(basename -- "$f")
-    python_file="${resource_file%.*}.py"
+    python_file="${resource_file%.*}_rc.py"
     pyrcc5 ${resource_file} -o ${python_file}
     ((c+=1))
   done
