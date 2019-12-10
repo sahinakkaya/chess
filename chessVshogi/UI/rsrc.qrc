@@ -1,7 +1,6 @@
 <RCC>
   <qresource prefix="BG">
     <file>resources/Wooden_noborder.jpg</file>
-    <file>resources/Wooden_tile.jpg</file>
   </qresource>
   <qresource prefix="Chess">
     <file>resources/chess_48/Chess_bdt48.png</file>
