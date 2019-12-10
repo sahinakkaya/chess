@@ -1,0 +1,52 @@
+<RCC>
+  <qresource prefix="BG">
+    <file>resources/Wooden_noborder.jpg</file>
+    <file>resources/Wooden_tile.jpg</file>
+  </qresource>
+  <qresource prefix="Chess">
+    <file>resources/chess_48/Chess_bdt48.png</file>
+    <file>resources/chess_48/Chess_blt48.png</file>
+    <file>resources/chess_48/Chess_kdt48.png</file>
+    <file>resources/chess_48/Chess_klt48.png</file>
+    <file>resources/chess_48/Chess_ndt48.png</file>
+    <file>resources/chess_48/Chess_nlt48.png</file>
+    <file>resources/chess_48/Chess_pdt48.png</file>
+    <file>resources/chess_48/Chess_plt48.png</file>
+    <file>resources/chess_48/Chess_qdt48.png</file>
+    <file>resources/chess_48/Chess_qlt48.png</file>
+    <file>resources/chess_48/Chess_rdt48.png</file>
+    <file>resources/chess_48/Chess_rlt48.png</file>
+  </qresource>
+  <qresource prefix="Ichiji">
+    <file>resources/Ichiji/Gfu.png</file>
+    <file>resources/Ichiji/Ggin.png</file>
+    <file>resources/Ichiji/Ggyoku.png</file>
+    <file>resources/Ichiji/Ghi.png</file>
+    <file>resources/Ichiji/Gkaku.png</file>
+    <file>resources/Ichiji/Gkei.png</file>
+    <file>resources/Ichiji/Gkin.png</file>
+    <file>resources/Ichiji/Gkyo.png</file>
+    <file>resources/Ichiji/Gngin.png</file>
+    <file>resources/Ichiji/Gnkei.png</file>
+    <file>resources/Ichiji/Gnkyo.png</file>
+    <file>resources/Ichiji/Gou.png</file>
+    <file>resources/Ichiji/Gryu.png</file>
+    <file>resources/Ichiji/Gto.png</file>
+    <file>resources/Ichiji/Guma.png</file>
+    <file>resources/Ichiji/Sfu.png</file>
+    <file>resources/Ichiji/Sgin.png</file>
+    <file>resources/Ichiji/Sgyoku.png</file>
+    <file>resources/Ichiji/Shi.png</file>
+    <file>resources/Ichiji/Skaku.png</file>
+    <file>resources/Ichiji/Skei.png</file>
+    <file>resources/Ichiji/Skin.png</file>
+    <file>resources/Ichiji/Skyo.png</file>
+    <file>resources/Ichiji/Sngin.png</file>
+    <file>resources/Ichiji/Snkei.png</file>
+    <file>resources/Ichiji/Snkyo.png</file>
+    <file>resources/Ichiji/Sou.png</file>
+    <file>resources/Ichiji/Sryu.png</file>
+    <file>resources/Ichiji/Sto.png</file>
+    <file>resources/Ichiji/Suma.png</file>
+  </qresource>
+</RCC>
