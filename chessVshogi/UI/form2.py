@@ -2,13 +2,11 @@
 
 # Form implementation generated from reading ui file 'form2.ui'
 #
-# Created by: PyQt5 UI code generator 5.13.2
+# Created by: PyQt5 UI code generator 5.9.2
 #
 # WARNING! All changes made in this file will be lost!
 
-
 from PyQt5 import QtCore, QtGui, QtWidgets
-
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -202,3 +200,4 @@ class Ui_Form(object):
         self.pushButton.setText(_translate("Form", "Start Playing"))
         self.pushButton_2.setText(_translate("Form", "Advanced..."))
         self.pushButton_3.setText(_translate("Form", "Timer Controls"))
+

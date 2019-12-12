@@ -2,13 +2,11 @@
 
 # Form implementation generated from reading ui file 'ingame_shogi.ui'
 #
-# Created by: PyQt5 UI code generator 5.13.2
+# Created by: PyQt5 UI code generator 5.9.2
 #
 # WARNING! All changes made in this file will be lost!
 
-
 from PyQt5 import QtCore, QtGui, QtWidgets
-
 
 class Ui_Ingame_screen(object):
     def setupUi(self, Ingame_screen):
@@ -624,4 +622,5 @@ class Ui_Ingame_screen(object):
         self.label_2.setText(_translate("Ingame_screen", "TextLabel"))
         self.label.setText(_translate("Ingame_screen", "TextLabel"))
         self.label_3.setText(_translate("Ingame_screen", "TextLabel"))
-from . import rsrc_rc
+
+import rsrc_rc

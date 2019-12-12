@@ -2,13 +2,11 @@
 
 # Form implementation generated from reading ui file 'gamemode_menu.ui'
 #
-# Created by: PyQt5 UI code generator 5.13.2
+# Created by: PyQt5 UI code generator 5.9.2
 #
 # WARNING! All changes made in this file will be lost!
 
-
 from PyQt5 import QtCore, QtGui, QtWidgets
-
 
 class Ui_Gamemode_Menu(object):
     def setupUi(self, Gamemode_Menu):
@@ -72,3 +70,4 @@ class Ui_Gamemode_Menu(object):
         self.pushButton_hybrid.setText(_translate("Gamemode_Menu", "Hybrid"))
         self.pushButton_custom.setText(_translate("Gamemode_Menu", "Custom"))
         self.pushButton_versus.setText(_translate("Gamemode_Menu", "Versus"))
+
