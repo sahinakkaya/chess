@@ -82,6 +82,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="2" column="7">
@@ -92,11 +95,11 @@
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Gfu.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BP</string>
         </property>
        </widget>
       </item>
@@ -111,14 +114,14 @@
         <property name="textFormat">
          <enum>Qt::PlainText</enum>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Sfu.png</pixmap>
-        </property>
         <property name="scaledContents">
          <bool>false</bool>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WP</string>
         </property>
        </widget>
       </item>
@@ -133,6 +136,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="0" column="8">
@@ -143,11 +149,11 @@
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Gkyo.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BL</string>
         </property>
        </widget>
       </item>
@@ -162,6 +168,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="0" column="4">
@@ -172,11 +181,11 @@
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Gou.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BK</string>
         </property>
        </widget>
       </item>
@@ -188,11 +197,11 @@
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Gfu.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BP</string>
         </property>
        </widget>
       </item>
@@ -207,6 +216,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="7" column="5">
@@ -219,6 +231,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string/>
         </property>
        </widget>
       </item>
@@ -233,6 +248,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="7" column="2">
@@ -245,6 +263,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string/>
         </property>
        </widget>
       </item>
@@ -259,14 +280,14 @@
         <property name="textFormat">
          <enum>Qt::PlainText</enum>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Sfu.png</pixmap>
-        </property>
         <property name="scaledContents">
          <bool>false</bool>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WP</string>
         </property>
        </widget>
       </item>
@@ -281,6 +302,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="2" column="0">
@@ -291,11 +315,11 @@
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Gfu.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BP</string>
         </property>
        </widget>
       </item>
@@ -310,14 +334,14 @@
         <property name="textFormat">
          <enum>Qt::PlainText</enum>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Sfu.png</pixmap>
-        </property>
         <property name="scaledContents">
          <bool>false</bool>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WP</string>
         </property>
        </widget>
       </item>
@@ -332,6 +356,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="7" column="1">
@@ -342,11 +369,11 @@
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap>resources/Ichiji/Skaku.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WB</string>
         </property>
        </widget>
       </item>
@@ -361,6 +388,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="7" column="0">
@@ -374,6 +404,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="0" column="5">
@@ -384,11 +417,11 @@
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Gkin.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BG</string>
         </property>
        </widget>
       </item>
@@ -403,11 +436,11 @@
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Gkyo.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BL</string>
         </property>
        </widget>
       </item>
@@ -422,6 +455,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="5" column="6">
@@ -434,6 +470,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string/>
         </property>
        </widget>
       </item>
@@ -448,14 +487,14 @@
         <property name="textFormat">
          <enum>Qt::PlainText</enum>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Sfu.png</pixmap>
-        </property>
         <property name="scaledContents">
          <bool>false</bool>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WP</string>
         </property>
        </widget>
       </item>
@@ -470,6 +509,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="1" column="7">
@@ -480,11 +522,11 @@
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Gkaku.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BB</string>
         </property>
        </widget>
       </item>
@@ -499,6 +541,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="3" column="3">
@@ -511,6 +556,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string/>
         </property>
        </widget>
       </item>
@@ -525,6 +573,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="0" column="1">
@@ -535,11 +586,11 @@
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Gkei.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BN</string>
         </property>
        </widget>
       </item>
@@ -554,14 +605,14 @@
         <property name="textFormat">
          <enum>Qt::PlainText</enum>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Sfu.png</pixmap>
-        </property>
         <property name="scaledContents">
          <bool>false</bool>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WP</string>
         </property>
        </widget>
       </item>
@@ -576,6 +627,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="6" column="3">
@@ -589,14 +643,14 @@
         <property name="textFormat">
          <enum>Qt::PlainText</enum>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Sfu.png</pixmap>
-        </property>
         <property name="scaledContents">
          <bool>false</bool>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WP</string>
         </property>
        </widget>
       </item>
@@ -608,11 +662,11 @@
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Ggin.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BS</string>
         </property>
        </widget>
       </item>
@@ -627,6 +681,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="4" column="5">
@@ -639,6 +696,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string/>
         </property>
        </widget>
       </item>
@@ -653,6 +713,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="2" column="6">
@@ -663,11 +726,11 @@
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Gfu.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BP</string>
         </property>
        </widget>
       </item>
@@ -682,14 +745,14 @@
         <property name="textFormat">
          <enum>Qt::PlainText</enum>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Sfu.png</pixmap>
-        </property>
         <property name="scaledContents">
          <bool>false</bool>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WP</string>
         </property>
        </widget>
       </item>
@@ -704,6 +767,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="3" column="1">
@@ -717,6 +783,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="0" column="7">
@@ -727,11 +796,11 @@
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Gkei.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BN</string>
         </property>
        </widget>
       </item>
@@ -743,11 +812,11 @@
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Gfu.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BP</string>
         </property>
        </widget>
       </item>
@@ -762,6 +831,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="4" column="4">
@@ -775,6 +847,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="0" column="3">
@@ -785,11 +860,11 @@
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Gkin.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BG</string>
         </property>
        </widget>
       </item>
@@ -804,6 +879,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="5" column="3">
@@ -816,6 +894,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string/>
         </property>
        </widget>
       </item>
@@ -830,6 +911,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="6" column="2">
@@ -843,14 +927,14 @@
         <property name="textFormat">
          <enum>Qt::PlainText</enum>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Sfu.png</pixmap>
-        </property>
         <property name="scaledContents">
          <bool>false</bool>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WP</string>
         </property>
        </widget>
       </item>
@@ -865,6 +949,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="5" column="8">
@@ -877,6 +964,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string/>
         </property>
        </widget>
       </item>
@@ -891,6 +981,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="2" column="8">
@@ -901,11 +994,11 @@
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Gfu.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BP</string>
         </property>
        </widget>
       </item>
@@ -920,6 +1013,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="1" column="3">
@@ -932,6 +1028,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string/>
         </property>
        </widget>
       </item>
@@ -946,6 +1045,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="2" column="2">
@@ -956,11 +1058,11 @@
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Gfu.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BP</string>
         </property>
        </widget>
       </item>
@@ -972,11 +1074,11 @@
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Gfu.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BP</string>
         </property>
        </widget>
       </item>
@@ -991,6 +1093,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="1" column="1">
@@ -1001,11 +1106,11 @@
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Ghi.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BR</string>
         </property>
        </widget>
       </item>
@@ -1020,14 +1125,14 @@
         <property name="textFormat">
          <enum>Qt::PlainText</enum>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Sfu.png</pixmap>
-        </property>
         <property name="scaledContents">
          <bool>false</bool>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WP</string>
         </property>
        </widget>
       </item>
@@ -1042,6 +1147,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="0" column="6">
@@ -1052,11 +1160,11 @@
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Ggin.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BS</string>
         </property>
        </widget>
       </item>
@@ -1071,6 +1179,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="2" column="1">
@@ -1081,11 +1192,11 @@
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Gfu.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BP</string>
         </property>
        </widget>
       </item>
@@ -1100,6 +1211,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="7" column="7">
@@ -1110,11 +1224,11 @@
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap>resources/Ichiji/Shi.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WR</string>
         </property>
        </widget>
       </item>
@@ -1129,6 +1243,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="8" column="1">
@@ -1139,11 +1256,11 @@
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Skei.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WN</string>
         </property>
        </widget>
       </item>
@@ -1155,11 +1272,11 @@
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Skin.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WG</string>
         </property>
        </widget>
       </item>
@@ -1171,11 +1288,11 @@
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap>resources/Ichiji/Skyo.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WL</string>
         </property>
        </widget>
       </item>
@@ -1187,11 +1304,11 @@
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Skin.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WG</string>
         </property>
        </widget>
       </item>
@@ -1203,11 +1320,11 @@
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap>resources/Ichiji/Sgyoku.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WK</string>
         </property>
        </widget>
       </item>
@@ -1219,11 +1336,11 @@
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Sgin.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WS</string>
         </property>
        </widget>
       </item>
@@ -1235,11 +1352,11 @@
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Skei.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WN</string>
         </property>
        </widget>
       </item>
@@ -1251,11 +1368,11 @@
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap>resources/Ichiji/Skyo.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WL</string>
         </property>
        </widget>
       </item>
@@ -1267,11 +1384,11 @@
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Sgin.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WS</string>
         </property>
        </widget>
       </item>
@@ -1286,6 +1403,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="3" column="7">
@@ -1298,6 +1418,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string/>
         </property>
        </widget>
       </item>
