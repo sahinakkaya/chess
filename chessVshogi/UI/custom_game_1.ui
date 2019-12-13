@@ -38,7 +38,7 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_3">
     <item>
-     <widget class="QGroupBox" name="groupBox">
+     <widget class="QGroupBox" name="Board_GBox">
       <property name="font">
        <font>
         <pointsize>12</pointsize>
@@ -55,7 +55,7 @@
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
-        <widget class="QRadioButton" name="radioButton">
+        <widget class="QRadioButton" name="Board_8x8">
          <property name="text">
           <string>Chess [ 8x8 ]</string>
          </property>
@@ -65,7 +65,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QRadioButton" name="radioButton_2">
+        <widget class="QRadioButton" name="Board_9x9">
          <property name="text">
           <string>Shogi [ 9x9 ]</string>
          </property>
@@ -245,7 +245,7 @@ Double initial move</string>
     <property name="flat">
      <bool>false</bool>
     </property>
-    <widget class="QGroupBox" name="groupBox_3">
+    <widget class="QGroupBox" name="SL_GBox">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -268,7 +268,7 @@ Double initial move</string>
      <property name="flat">
       <bool>false</bool>
      </property>
-     <widget class="QRadioButton" name="radioButton_5">
+     <widget class="QRadioButton" name="SL_Default">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -284,7 +284,7 @@ Double initial move</string>
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radioButton_6">
+     <widget class="QRadioButton" name="SL_Mirror">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -297,7 +297,7 @@ Double initial move</string>
        <string>Mirror</string>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radioButton_12">
+     <widget class="QRadioButton" name="SL_Outpost">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -311,7 +311,10 @@ Double initial move</string>
       </property>
      </widget>
     </widget>
-    <widget class="QGroupBox" name="groupBox_2">
+    <widget class="QGroupBox" name="CL_GBox">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>100</x>
@@ -334,7 +337,7 @@ Double initial move</string>
      <property name="flat">
       <bool>false</bool>
      </property>
-     <widget class="QRadioButton" name="radioButton_3">
+     <widget class="QRadioButton" name="CL_Default">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -350,7 +353,7 @@ Double initial move</string>
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radioButton_4">
+     <widget class="QRadioButton" name="CL_QDown">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -363,7 +366,7 @@ Double initial move</string>
        <string>Queen Down</string>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radioButton_11">
+     <widget class="QRadioButton" name="CL_RKnight">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -436,7 +439,7 @@ Double initial move</string>
     <string>Advanced Options</string>
    </property>
   </widget>
-  <widget class="QGroupBox" name="groupBox_10">
+  <widget class="QGroupBox" name="Timer_GBox">
    <property name="geometry">
     <rect>
      <x>200</x>
@@ -593,5 +596,102 @@ Double initial move</string>
   </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>Board_8x8</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>CL_GBox</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>104</x>
+     <y>129</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>365</x>
+     <y>240</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Board_8x8</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>CL_Default</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>104</x>
+     <y>129</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>370</x>
+     <y>219</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Board_9x9</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>SL_Default</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>104</x>
+     <y>158</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>250</x>
+     <y>219</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Board_9x9</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>SL_GBox</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>104</x>
+     <y>158</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>250</x>
+     <y>240</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Board_8x8</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>SL_GBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>104</x>
+     <y>129</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>250</x>
+     <y>240</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Board_9x9</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>CL_GBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>104</x>
+     <y>158</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>365</x>
+     <y>240</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
