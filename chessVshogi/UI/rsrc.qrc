@@ -48,4 +48,36 @@
     <file>resources/Ichiji/Sto.png</file>
     <file>resources/Ichiji/Suma.png</file>
   </qresource>
+  <qresource prefix="Hidetchi">
+    <file>resources/hidetchi/Gfu.png</file>
+    <file>resources/hidetchi/Ggin.png</file>
+    <file>resources/hidetchi/Ggyoku.png</file>
+    <file>resources/hidetchi/Ghi.png</file>
+    <file>resources/hidetchi/Gkaku.png</file>
+    <file>resources/hidetchi/Gkei.png</file>
+    <file>resources/hidetchi/Gkin.png</file>
+    <file>resources/hidetchi/Gkyo.png</file>
+    <file>resources/hidetchi/Gngin.png</file>
+    <file>resources/hidetchi/Gnkei.png</file>
+    <file>resources/hidetchi/Gnkyo.png</file>
+    <file>resources/hidetchi/Gou.png</file>
+    <file>resources/hidetchi/Gryu.png</file>
+    <file>resources/hidetchi/Gto.png</file>
+    <file>resources/hidetchi/Guma.png</file>
+    <file>resources/hidetchi/Sfu.png</file>
+    <file>resources/hidetchi/Sgin.png</file>
+    <file>resources/hidetchi/Sgyoku.png</file>
+    <file>resources/hidetchi/Shi.png</file>
+    <file>resources/hidetchi/Skaku.png</file>
+    <file>resources/hidetchi/Skei.png</file>
+    <file>resources/hidetchi/Skin.png</file>
+    <file>resources/hidetchi/Skyo.png</file>
+    <file>resources/hidetchi/Sngin.png</file>
+    <file>resources/hidetchi/Snkei.png</file>
+    <file>resources/hidetchi/Snkyo.png</file>
+    <file>resources/hidetchi/Sou.png</file>
+    <file>resources/hidetchi/Sryu.png</file>
+    <file>resources/hidetchi/Sto.png</file>
+    <file>resources/hidetchi/Suma.png</file>
+  </qresource>
 </RCC>
