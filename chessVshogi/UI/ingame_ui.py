@@ -1,11 +1,3 @@
-tester = False
-if tester:
-    from ingame_chess import *
-    ui_item = Ui_IngameChess
-else:
-    from ingame_shogi import *
-    ui_item = Ui_IngameShogi
-
 Piece_Resource_Corresp = {
     "C_WP":":/Chess/resources/chess_48/Chess_plt48.png",
     "C_WR":":/Chess/resources/chess_48/Chess_rlt48.png",
@@ -37,35 +29,8 @@ Piece_Resource_Corresp = {
     "S_WR":":/Ichiji/resources/Ichiji/Shi.png",
 }
 
-class Window(QtWidgets.QWidget, ui_item):
-    def __init__(self):
-        super().__init__()
-        self.setupUi(self)
-        self.show()
-        self.tiles = []
-        for i in range(11, 100):
-            try:
-                tile = getattr(self, "Tile_{}".format(i))
-                self.tiles.append(tile)
-                tile.installEventFilter(self)
-                if tile.property("Piece") != '':
-                    tile.setPixmap(QtGui.QPixmap(Piece_Resource_Corresp[tile.property("Piece")]))
-            except AttributeError:
-                pass
-
-    def eventFilter(self, source, event):
-        if event.type() == QtCore.QEvent.MouseButtonPress and source in self.tiles:
-            if event.button() == 1:
-                self.clicked_tile = source
-                print("Coordinates:", self.clicked_tile.objectName()[-2], self.clicked_tile.objectName()[-1])
-                if source.pixmap() is not None:
-                    print("You are trying to move a piece!")
-                    print("It is coded as:", source.property("Piece"))
-        return super(Window, self).eventFilter(source, event)
-
-
-import sys
-
-app = QtWidgets.QApplication([])
-w = Window()
-sys.exit(app.exec_())
+# import sys
+# 
+# app = QtWidgets.QApplication([])
+# w = Window()
+# sys.exit(app.exec_())

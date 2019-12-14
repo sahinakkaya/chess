@@ -530,4 +530,4 @@ class Ui_IngameChess(object):
         self.label_2.setText(_translate("IngameChess", "Black Time"))
         self.labelTurn.setText(_translate("IngameChess", "Turn: White"))
         self.label_3.setText(_translate("IngameChess", "White Time"))
-import rsrc_rc
+from . import rsrc_rc

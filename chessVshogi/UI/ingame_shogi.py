@@ -665,4 +665,4 @@ class Ui_IngameShogi(object):
         self.label_2.setText(_translate("IngameShogi", "TextLabel"))
         self.label.setText(_translate("IngameShogi", "TextLabel"))
         self.label_3.setText(_translate("IngameShogi", "TextLabel"))
-import rsrc_rc
+from . import rsrc_rc
