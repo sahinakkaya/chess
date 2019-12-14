@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Ingame_screen</class>
- <widget class="QWidget" name="Ingame_screen">
+ <class>IngameShogi</class>
+ <widget class="QWidget" name="IngameShogi">
   <property name="windowModality">
    <enum>Qt::NonModal</enum>
   </property>

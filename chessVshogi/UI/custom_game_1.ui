@@ -10,10 +10,22 @@
     <height>457</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>660</width>
+    <height>457</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>660</width>
+    <height>457</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QGroupBox" name="groupBox_6">
+  <widget class="QGroupBox" name="GrpGameOpts">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -38,7 +50,7 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_3">
     <item>
-     <widget class="QGroupBox" name="Board_GBox">
+     <widget class="QGroupBox" name="BoardOpts">
       <property name="font">
        <font>
         <pointsize>12</pointsize>
@@ -75,14 +87,14 @@
      </widget>
     </item>
     <item>
-     <widget class="QCheckBox" name="checkBox">
+     <widget class="QCheckBox" name="e_promodrop">
       <property name="text">
        <string>Promoted Drop</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QCheckBox" name="checkBox_2">
+     <widget class="QCheckBox" name="e_menpassant">
       <property name="text">
        <string>Metal Piece
 en-passant</string>
@@ -93,7 +105,7 @@ en-passant</string>
      </widget>
     </item>
     <item>
-     <widget class="QCheckBox" name="checkBox_4">
+     <widget class="QCheckBox" name="e_mdoublemove">
       <property name="text">
        <string>Metal Piece
 Double initial move</string>
@@ -101,7 +113,7 @@ Double initial move</string>
      </widget>
     </item>
     <item>
-     <widget class="QGroupBox" name="groupBox_8">
+     <widget class="QGroupBox" name="CaptureOpts">
       <property name="font">
        <font>
         <pointsize>12</pointsize>
@@ -118,7 +130,7 @@ Double initial move</string>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QRadioButton" name="radioButton_15">
+        <widget class="QRadioButton" name="c_crazyhouse">
          <property name="text">
           <string>Crazyhouse</string>
          </property>
@@ -128,14 +140,14 @@ Double initial move</string>
         </widget>
        </item>
        <item>
-        <widget class="QRadioButton" name="radioButton_16">
+        <widget class="QRadioButton" name="c_graveyard">
          <property name="text">
           <string>Graveyard</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QRadioButton" name="radioButton_17">
+        <widget class="QRadioButton" name="c_shogionly">
          <property name="text">
           <string>Shogi Pieces Only</string>
          </property>
@@ -146,7 +158,7 @@ Double initial move</string>
     </item>
    </layout>
   </widget>
-  <widget class="QGroupBox" name="groupBox_7">
+  <widget class="QGroupBox" name="GrpPlayerOpts">
    <property name="geometry">
     <rect>
      <x>190</x>
@@ -169,7 +181,7 @@ Double initial move</string>
    <property name="flat">
     <bool>false</bool>
    </property>
-   <widget class="QGroupBox" name="groupBox_4">
+   <widget class="QGroupBox" name="P1Side">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -192,7 +204,7 @@ Double initial move</string>
     <property name="flat">
      <bool>false</bool>
     </property>
-    <widget class="QRadioButton" name="radioButton_7">
+    <widget class="QRadioButton" name="P1_Chess">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -208,7 +220,7 @@ Double initial move</string>
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QRadioButton" name="radioButton_8">
+    <widget class="QRadioButton" name="P1_Shogi">
      <property name="geometry">
       <rect>
        <x>130</x>
@@ -222,7 +234,7 @@ Double initial move</string>
      </property>
     </widget>
    </widget>
-   <widget class="QGroupBox" name="groupBox_9">
+   <widget class="QGroupBox" name="Lineup">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -245,7 +257,7 @@ Double initial move</string>
     <property name="flat">
      <bool>false</bool>
     </property>
-    <widget class="QGroupBox" name="SL_GBox">
+    <widget class="QGroupBox" name="L_Shogi">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -311,7 +323,7 @@ Double initial move</string>
       </property>
      </widget>
     </widget>
-    <widget class="QGroupBox" name="CL_GBox">
+    <widget class="QGroupBox" name="L_Chess">
      <property name="enabled">
       <bool>false</bool>
      </property>
@@ -403,7 +415,7 @@ Double initial move</string>
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="buttonStart">
    <property name="geometry">
     <rect>
      <x>450</x>
@@ -421,7 +433,7 @@ Double initial move</string>
     <string>Start Playing</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="buttonAdvOpts">
    <property name="geometry">
     <rect>
      <x>450</x>
@@ -439,7 +451,7 @@ Double initial move</string>
     <string>Advanced Options</string>
    </property>
   </widget>
-  <widget class="QGroupBox" name="Timer_GBox">
+  <widget class="QGroupBox" name="GrpTimerOpts">
    <property name="geometry">
     <rect>
      <x>200</x>
@@ -465,7 +477,7 @@ Double initial move</string>
    <property name="checkable">
     <bool>true</bool>
    </property>
-   <widget class="QCheckBox" name="checkBox_3">
+   <widget class="QCheckBox" name="checkDelay">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -478,7 +490,7 @@ Double initial move</string>
      <string>Delay</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_5">
+   <widget class="QCheckBox" name="checkByoyomi">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -491,7 +503,7 @@ Double initial move</string>
      <string>Byoyomi</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_6">
+   <widget class="QCheckBox" name="checkIncrement">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -504,7 +516,7 @@ Double initial move</string>
      <string>Increment</string>
     </property>
    </widget>
-   <widget class="QTimeEdit" name="timeEdit">
+   <widget class="QTimeEdit" name="timeTimer">
     <property name="geometry">
      <rect>
       <x>120</x>
@@ -514,7 +526,7 @@ Double initial move</string>
      </rect>
     </property>
    </widget>
-   <widget class="QTimeEdit" name="timeEdit_2">
+   <widget class="QTimeEdit" name="timeIncrement">
     <property name="geometry">
      <rect>
       <x>120</x>
@@ -527,7 +539,7 @@ Double initial move</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QTimeEdit" name="timeEdit_3">
+   <widget class="QTimeEdit" name="timeDelay">
     <property name="geometry">
      <rect>
       <x>120</x>
@@ -540,7 +552,7 @@ Double initial move</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QTimeEdit" name="timeEdit_4">
+   <widget class="QTimeEdit" name="timeByoyomi">
     <property name="geometry">
      <rect>
       <x>120</x>
@@ -600,7 +612,7 @@ Double initial move</string>
   <connection>
    <sender>Board_8x8</sender>
    <signal>clicked(bool)</signal>
-   <receiver>CL_GBox</receiver>
+   <receiver>L_Chess</receiver>
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -648,7 +660,7 @@ Double initial move</string>
   <connection>
    <sender>Board_9x9</sender>
    <signal>clicked(bool)</signal>
-   <receiver>SL_GBox</receiver>
+   <receiver>L_Shogi</receiver>
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -664,7 +676,7 @@ Double initial move</string>
   <connection>
    <sender>Board_8x8</sender>
    <signal>clicked(bool)</signal>
-   <receiver>SL_GBox</receiver>
+   <receiver>L_Shogi</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -680,7 +692,7 @@ Double initial move</string>
   <connection>
    <sender>Board_9x9</sender>
    <signal>clicked(bool)</signal>
-   <receiver>CL_GBox</receiver>
+   <receiver>L_Chess</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">

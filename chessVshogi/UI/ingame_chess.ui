@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>IngameChess</class>
+ <widget class="QWidget" name="IngameChess">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -1104,7 +1104,7 @@
       <item>
        <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>TextLabel</string>
+         <string>Black Time</string>
         </property>
        </widget>
       </item>
@@ -1116,8 +1116,18 @@
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
         <property name="buttonSymbols">
          <enum>QAbstractSpinBox::NoButtons</enum>
+        </property>
+        <property name="time">
+         <time>
+          <hour>0</hour>
+          <minute>0</minute>
+          <second>0</second>
+         </time>
         </property>
        </widget>
       </item>
@@ -1135,9 +1145,15 @@
        </spacer>
       </item>
       <item>
-       <widget class="QLabel" name="label">
+       <widget class="QLabel" name="labelTurn">
+        <property name="styleSheet">
+         <string notr="true">font: 75 16pt &quot;MS Shell Dlg 2&quot;;</string>
+        </property>
         <property name="text">
-         <string>TextLabel</string>
+         <string>Turn: White</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
         </property>
        </widget>
       </item>
@@ -1160,7 +1176,7 @@
       <item>
        <widget class="QLabel" name="label_3">
         <property name="text">
-         <string>TextLabel</string>
+         <string>White Time</string>
         </property>
        </widget>
       </item>
@@ -1168,6 +1184,9 @@
        <widget class="QTimeEdit" name="timeEdit">
         <property name="layoutDirection">
          <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
         </property>
         <property name="buttonSymbols">
          <enum>QAbstractSpinBox::NoButtons</enum>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>GamemodeWindow</class>
+ <widget class="QWidget" name="GamemodeWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -9,6 +9,12 @@
     <width>640</width>
     <height>480</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>640</width>
+    <height>480</height>
+   </size>
   </property>
   <property name="maximumSize">
    <size>
@@ -63,7 +69,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButtonChess">
+      <widget class="QPushButton" name="buttonChess">
        <property name="sizePolicy">
         <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
          <horstretch>0</horstretch>
@@ -93,7 +99,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_hybrid">
+      <widget class="QPushButton" name="buttonHybrid">
        <property name="sizePolicy">
         <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
          <horstretch>0</horstretch>
@@ -123,7 +129,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_shogi">
+      <widget class="QPushButton" name="buttonShogi">
        <property name="sizePolicy">
         <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
          <horstretch>0</horstretch>
@@ -189,7 +195,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_custom">
+      <widget class="QPushButton" name="buttonCustom">
        <property name="sizePolicy">
         <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
          <horstretch>0</horstretch>
@@ -219,7 +225,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_versus">
+      <widget class="QPushButton" name="buttonVersus">
        <property name="sizePolicy">
         <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
          <horstretch>0</horstretch>

@@ -1,10 +1,10 @@
 tester = False
 if tester:
     from ingame_chess import *
-    ui_item = Ui_Form
+    ui_item = Ui_IngameChess
 else:
     from ingame_shogi import *
-    ui_item = Ui_Ingame_screen
+    ui_item = Ui_IngameShogi
 
 Piece_Resource_Corresp = {
     "C_WP":":/Chess/resources/chess_48/Chess_plt48.png",
