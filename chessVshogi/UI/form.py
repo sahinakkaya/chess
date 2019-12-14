@@ -2,11 +2,13 @@
 
 # Form implementation generated from reading ui file 'form.ui'
 #
-# Created by: PyQt5 UI code generator 5.9.2
+# Created by: PyQt5 UI code generator 5.13.2
 #
 # WARNING! All changes made in this file will be lost!
 
+
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -125,4 +127,3 @@ class Ui_Form(object):
         self.pushButton_shogi.setText(_translate("Form", "Shogi"))
         self.pushButton_custom.setText(_translate("Form", "Custom"))
         self.pushButton_versus.setText(_translate("Form", "Versus"))
-

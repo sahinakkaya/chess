@@ -2,11 +2,13 @@
 
 # Form implementation generated from reading ui file 'options_menu.ui'
 #
-# Created by: PyQt5 UI code generator 5.9.2
+# Created by: PyQt5 UI code generator 5.13.2
 #
 # WARNING! All changes made in this file will be lost!
 
+
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_Options_Menu(object):
     def setupUi(self, Options_Menu):
@@ -105,4 +107,3 @@ class Ui_Options_Menu(object):
         self.radioButton_5.setText(_translate("Options_Menu", "1 - 9"))
         self.pushButton.setText(_translate("Options_Menu", "Gameplay Presets..."))
         self.pushButton_2.setText(_translate("Options_Menu", "Go Back"))
-

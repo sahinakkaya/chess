@@ -2,11 +2,13 @@
 
 # Form implementation generated from reading ui file 'custom_game_1.ui'
 #
-# Created by: PyQt5 UI code generator 5.9.2
+# Created by: PyQt5 UI code generator 5.13.2
 #
 # WARNING! All changes made in this file will be lost!
 
+
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_Custom_Game_1(object):
     def setupUi(self, Custom_Game_1):
@@ -249,4 +251,3 @@ class Ui_Custom_Game_1(object):
         self.checkBox_5.setText(_translate("Custom_Game_1", "Byoyomi"))
         self.checkBox_6.setText(_translate("Custom_Game_1", "Increment"))
         self.groupBox_5.setTitle(_translate("Custom_Game_1", "Lineup Preview"))
-
