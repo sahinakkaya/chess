@@ -5,12 +5,22 @@ from UI.ingame_shogi import *
 from UI.ingame_chess import *
 from UI.ingame_ui import *
 
+class gamestate:
+    def __init__(self, sz):
+        super().__init__()
+        self.boardsize = sz
+        self.turn = "White"
+        self.action = "Wait" # Wait - Hold
+        self.latest_click = None
+
+
 class window_ingame_8x8(QtWidgets.QWidget, Ui_IngameChess):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
         # self.show()
         self.tiles = []
+        self.state = gamestate(8)
         for i in range(11, 89):
             try:
                 tile = getattr(self, "Tile_{}".format(i))
@@ -25,10 +35,21 @@ class window_ingame_8x8(QtWidgets.QWidget, Ui_IngameChess):
         if event.type() == QtCore.QEvent.MouseButtonPress and source in self.tiles:
             if event.button() == 1:
                 self.clicked_tile = source
-                print("Coordinates:", self.clicked_tile.objectName()[-2], self.clicked_tile.objectName()[-1])
+                posx, posy = self.clicked_tile.objectName()[-2], self.clicked_tile.objectName()[-1]
+                print(self.state.turn, self.state.action)
+                print("Coordinates:", posx, posy)
+                if self.state.action=="Hold":
+                    self.state.action = "Wait"
+                    if self.latest_click is not None:
+                        print("attempt to move the piece at", self.latest_click, "to ", posx, posy)
+                    print("State changed back to Wait")
+
                 if source.pixmap() is not None:
-                    print("You are trying to move a piece!")
-                    print("It is coded as:", source.property("Piece"))
+                    print("You are trying to move",source.property("Piece"))
+                    if self.state.action =="Wait":
+                        self.state.action = "Hold"
+                        self.latest_click = tuple((posx, posy),)
+                        print("State changed to Hold")
         return super(window_ingame_8x8, self).eventFilter(source, event)
 
 class window_ingame_9x9(QtWidgets.QWidget, Ui_IngameShogi):
