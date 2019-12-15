@@ -6,20 +6,32 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>658</width>
-    <height>458</height>
+    <width>660</width>
+    <height>457</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>660</width>
+    <height>457</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>660</width>
+    <height>457</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QGroupBox" name="groupBox_6">
+  <widget class="QGroupBox" name="GrpGameOpts">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>60</y>
-     <width>181</width>
-     <height>391</height>
+     <width>189</width>
+     <height>381</height>
     </rect>
    </property>
    <property name="font">
@@ -36,171 +48,117 @@
    <property name="flat">
     <bool>false</bool>
    </property>
-   <widget class="QGroupBox" name="groupBox">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>30</y>
-      <width>141</width>
-      <height>91</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="title">
-     <string>Board Selection</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-    <property name="flat">
-     <bool>false</bool>
-    </property>
-    <widget class="QRadioButton" name="radioButton">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>30</y>
-       <width>121</width>
-       <height>19</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Chess [ 8x8 ]</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QRadioButton" name="radioButton_2">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>60</y>
-       <width>121</width>
-       <height>19</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Shogi [ 9x9 ]</string>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QCheckBox" name="checkBox">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>130</y>
-      <width>131</width>
-      <height>19</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Promoted Drop</string>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="checkBox_2">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>160</y>
-      <width>111</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Metal Piece
+   <layout class="QVBoxLayout" name="verticalLayout_3">
+    <item>
+     <widget class="QGroupBox" name="BoardOpts">
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="title">
+       <string>Board Selection</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="flat">
+       <bool>false</bool>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QRadioButton" name="Board_8x8">
+         <property name="text">
+          <string>Chess [ 8x8 ]</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="Board_9x9">
+         <property name="text">
+          <string>Shogi [ 9x9 ]</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QCheckBox" name="e_promodrop">
+      <property name="text">
+       <string>Promoted Drop</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QCheckBox" name="e_menpassant">
+      <property name="text">
+       <string>Metal Piece
 en-passant</string>
-    </property>
-    <property name="checked">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="checkBox_4">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>210</y>
-      <width>161</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Metal Piece
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QCheckBox" name="e_mdoublemove">
+      <property name="text">
+       <string>Metal Piece
 Double initial move</string>
-    </property>
-   </widget>
-   <widget class="QGroupBox" name="groupBox_8">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>260</y>
-      <width>161</width>
-      <height>121</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="title">
-     <string>Capture Mode</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-    <property name="flat">
-     <bool>false</bool>
-    </property>
-    <widget class="QRadioButton" name="radioButton_15">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>30</y>
-       <width>121</width>
-       <height>19</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Crazyhouse</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QRadioButton" name="radioButton_16">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>60</y>
-       <width>141</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Graveyard</string>
-     </property>
-    </widget>
-    <widget class="QRadioButton" name="radioButton_17">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>90</y>
-       <width>151</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Shogi Pieces Only</string>
-     </property>
-    </widget>
-   </widget>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="CaptureOpts">
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="title">
+       <string>Capture Mode</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="flat">
+       <bool>false</bool>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QRadioButton" name="c_crazyhouse">
+         <property name="text">
+          <string>Crazyhouse</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="c_graveyard">
+         <property name="text">
+          <string>Graveyard</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="c_shogionly">
+         <property name="text">
+          <string>Shogi Pieces Only</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
   </widget>
-  <widget class="QGroupBox" name="groupBox_7">
+  <widget class="QGroupBox" name="GrpPlayerOpts">
    <property name="geometry">
     <rect>
      <x>190</x>
@@ -223,7 +181,7 @@ Double initial move</string>
    <property name="flat">
     <bool>false</bool>
    </property>
-   <widget class="QGroupBox" name="groupBox_4">
+   <widget class="QGroupBox" name="P1Side">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -246,7 +204,7 @@ Double initial move</string>
     <property name="flat">
      <bool>false</bool>
     </property>
-    <widget class="QRadioButton" name="radioButton_7">
+    <widget class="QRadioButton" name="P1_Chess">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -262,7 +220,7 @@ Double initial move</string>
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QRadioButton" name="radioButton_8">
+    <widget class="QRadioButton" name="P1_Shogi">
      <property name="geometry">
       <rect>
        <x>130</x>
@@ -276,7 +234,7 @@ Double initial move</string>
      </property>
     </widget>
    </widget>
-   <widget class="QGroupBox" name="groupBox_9">
+   <widget class="QGroupBox" name="Lineup">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -299,7 +257,7 @@ Double initial move</string>
     <property name="flat">
      <bool>false</bool>
     </property>
-    <widget class="QGroupBox" name="groupBox_3">
+    <widget class="QGroupBox" name="L_Shogi">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -322,7 +280,7 @@ Double initial move</string>
      <property name="flat">
       <bool>false</bool>
      </property>
-     <widget class="QRadioButton" name="radioButton_5">
+     <widget class="QRadioButton" name="SL_Default">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -338,7 +296,7 @@ Double initial move</string>
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radioButton_6">
+     <widget class="QRadioButton" name="SL_Mirror">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -351,7 +309,7 @@ Double initial move</string>
        <string>Mirror</string>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radioButton_12">
+     <widget class="QRadioButton" name="SL_Outpost">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -365,7 +323,10 @@ Double initial move</string>
       </property>
      </widget>
     </widget>
-    <widget class="QGroupBox" name="groupBox_2">
+    <widget class="QGroupBox" name="L_Chess">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>100</x>
@@ -388,7 +349,7 @@ Double initial move</string>
      <property name="flat">
       <bool>false</bool>
      </property>
-     <widget class="QRadioButton" name="radioButton_3">
+     <widget class="QRadioButton" name="CL_Default">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -404,7 +365,7 @@ Double initial move</string>
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radioButton_4">
+     <widget class="QRadioButton" name="CL_QDown">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -417,7 +378,7 @@ Double initial move</string>
        <string>Queen Down</string>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radioButton_11">
+     <widget class="QRadioButton" name="CL_RKnight">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -454,7 +415,7 @@ Double initial move</string>
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="buttonStart">
    <property name="geometry">
     <rect>
      <x>450</x>
@@ -472,7 +433,7 @@ Double initial move</string>
     <string>Start Playing</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="buttonAdvOpts">
    <property name="geometry">
     <rect>
      <x>450</x>
@@ -490,7 +451,7 @@ Double initial move</string>
     <string>Advanced Options</string>
    </property>
   </widget>
-  <widget class="QGroupBox" name="groupBox_10">
+  <widget class="QGroupBox" name="GrpTimerOpts">
    <property name="geometry">
     <rect>
      <x>200</x>
@@ -516,7 +477,7 @@ Double initial move</string>
    <property name="checkable">
     <bool>true</bool>
    </property>
-   <widget class="QCheckBox" name="checkBox_3">
+   <widget class="QCheckBox" name="checkDelay">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -529,7 +490,7 @@ Double initial move</string>
      <string>Delay</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_5">
+   <widget class="QCheckBox" name="checkByoyomi">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -542,7 +503,7 @@ Double initial move</string>
      <string>Byoyomi</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_6">
+   <widget class="QCheckBox" name="checkIncrement">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -555,7 +516,7 @@ Double initial move</string>
      <string>Increment</string>
     </property>
    </widget>
-   <widget class="QTimeEdit" name="timeEdit">
+   <widget class="QTimeEdit" name="timeTimer">
     <property name="geometry">
      <rect>
       <x>120</x>
@@ -565,7 +526,7 @@ Double initial move</string>
      </rect>
     </property>
    </widget>
-   <widget class="QTimeEdit" name="timeEdit_2">
+   <widget class="QTimeEdit" name="timeIncrement">
     <property name="geometry">
      <rect>
       <x>120</x>
@@ -578,7 +539,7 @@ Double initial move</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QTimeEdit" name="timeEdit_3">
+   <widget class="QTimeEdit" name="timeDelay">
     <property name="geometry">
      <rect>
       <x>120</x>
@@ -591,7 +552,7 @@ Double initial move</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QTimeEdit" name="timeEdit_4">
+   <widget class="QTimeEdit" name="timeByoyomi">
     <property name="geometry">
      <rect>
       <x>120</x>
@@ -647,5 +608,102 @@ Double initial move</string>
   </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>Board_8x8</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>L_Chess</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>104</x>
+     <y>129</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>365</x>
+     <y>240</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Board_8x8</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>CL_Default</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>104</x>
+     <y>129</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>370</x>
+     <y>219</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Board_9x9</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>SL_Default</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>104</x>
+     <y>158</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>250</x>
+     <y>219</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Board_9x9</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>L_Shogi</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>104</x>
+     <y>158</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>250</x>
+     <y>240</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Board_8x8</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>L_Shogi</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>104</x>
+     <y>129</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>250</x>
+     <y>240</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Board_9x9</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>L_Chess</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>104</x>
+     <y>158</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>365</x>
+     <y>240</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

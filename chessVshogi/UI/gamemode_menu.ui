@@ -32,7 +32,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QPushButton" name="pushButton_chess">
+      <widget class="QPushButton" name="buttonChess">
        <property name="font">
         <font>
          <pointsize>18</pointsize>
@@ -44,7 +44,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_shogi">
+      <widget class="QPushButton" name="buttonShogi">
        <property name="font">
         <font>
          <pointsize>18</pointsize>
@@ -56,7 +56,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_hybrid">
+      <widget class="QPushButton" name="buttonHybrid">
        <property name="font">
         <font>
          <pointsize>18</pointsize>
@@ -72,7 +72,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="QPushButton" name="pushButton_custom">
+      <widget class="QPushButton" name="buttonCustom">
        <property name="font">
         <font>
          <pointsize>18</pointsize>
@@ -84,7 +84,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_versus">
+      <widget class="QPushButton" name="buttonVersus">
        <property name="font">
         <font>
          <pointsize>18</pointsize>

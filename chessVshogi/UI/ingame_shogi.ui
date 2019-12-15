@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Ingame_screen</class>
- <widget class="QWidget" name="Ingame_screen">
+ <class>IngameShogi</class>
+ <widget class="QWidget" name="IngameShogi">
   <property name="windowModality">
    <enum>Qt::NonModal</enum>
   </property>
@@ -72,7 +72,7 @@
        <number>1</number>
       </property>
       <item row="3" column="0">
-       <widget class="QLabel" name="Tile_41">
+       <widget class="QLabel" name="Tile_61">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -81,27 +81,30 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string/>
         </property>
        </widget>
       </item>
       <item row="2" column="7">
-       <widget class="QLabel" name="Tile_38">
+       <widget class="QLabel" name="Tile_78">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Gfu.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BP</string>
         </property>
        </widget>
       </item>
       <item row="6" column="0">
-       <widget class="QLabel" name="Tile_71">
+       <widget class="QLabel" name="Tile_31">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -111,19 +114,19 @@
         <property name="textFormat">
          <enum>Qt::PlainText</enum>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Sfu.png</pixmap>
-        </property>
         <property name="scaledContents">
          <bool>false</bool>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string>S_WP</string>
+        </property>
        </widget>
       </item>
       <item row="3" column="8">
-       <widget class="QLabel" name="Tile_49">
+       <widget class="QLabel" name="Tile_69">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -132,27 +135,30 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string/>
         </property>
        </widget>
       </item>
       <item row="0" column="8">
-       <widget class="QLabel" name="Tile_19">
+       <widget class="QLabel" name="Tile_99">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Gkyo.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BL</string>
         </property>
        </widget>
       </item>
       <item row="1" column="2">
-       <widget class="QLabel" name="Tile_23">
+       <widget class="QLabel" name="Tile_83">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -161,38 +167,41 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string/>
         </property>
        </widget>
       </item>
       <item row="0" column="4">
-       <widget class="QLabel" name="Tile_15">
+       <widget class="QLabel" name="Tile_95">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Gou.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BK</string>
         </property>
        </widget>
       </item>
       <item row="2" column="3">
-       <widget class="QLabel" name="Tile_34">
+       <widget class="QLabel" name="Tile_74">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Gfu.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BP</string>
         </property>
        </widget>
       </item>
@@ -207,10 +216,13 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="7" column="5">
-       <widget class="QLabel" name="Tile_86">
+       <widget class="QLabel" name="Tile_26">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -219,11 +231,14 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string/>
         </property>
        </widget>
       </item>
       <item row="5" column="4">
-       <widget class="QLabel" name="Tile_65">
+       <widget class="QLabel" name="Tile_45">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -232,11 +247,14 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string/>
         </property>
        </widget>
       </item>
       <item row="7" column="2">
-       <widget class="QLabel" name="Tile_83">
+       <widget class="QLabel" name="Tile_23">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -246,10 +264,13 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="6" column="1">
-       <widget class="QLabel" name="Tile_72">
+       <widget class="QLabel" name="Tile_32">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -259,14 +280,14 @@
         <property name="textFormat">
          <enum>Qt::PlainText</enum>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Sfu.png</pixmap>
-        </property>
         <property name="scaledContents">
          <bool>false</bool>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WP</string>
         </property>
        </widget>
       </item>
@@ -281,26 +302,29 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="2" column="0">
-       <widget class="QLabel" name="Tile_31">
+       <widget class="QLabel" name="Tile_71">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Gfu.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BP</string>
         </property>
        </widget>
       </item>
       <item row="6" column="7">
-       <widget class="QLabel" name="Tile_78">
+       <widget class="QLabel" name="Tile_38">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -310,19 +334,19 @@
         <property name="textFormat">
          <enum>Qt::PlainText</enum>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Sfu.png</pixmap>
-        </property>
         <property name="scaledContents">
          <bool>false</bool>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WP</string>
         </property>
        </widget>
       </item>
       <item row="7" column="4">
-       <widget class="QLabel" name="Tile_85">
+       <widget class="QLabel" name="Tile_25">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -331,27 +355,30 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string/>
         </property>
        </widget>
       </item>
       <item row="7" column="1">
-       <widget class="QLabel" name="Tile_82">
+       <widget class="QLabel" name="Tile_22">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap>resources/Ichiji/Skaku.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WB</string>
         </property>
        </widget>
       </item>
       <item row="7" column="3">
-       <widget class="QLabel" name="Tile_84">
+       <widget class="QLabel" name="Tile_24">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -360,135 +387,13 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string/>
         </property>
        </widget>
       </item>
       <item row="7" column="0">
-       <widget class="QLabel" name="Tile_81">
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="5">
-       <widget class="QLabel" name="Tile_16">
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Gkin.png</pixmap>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="Tile_11">
-        <property name="autoFillBackground">
-         <bool>false</bool>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Gkyo.png</pixmap>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="7">
-       <widget class="QLabel" name="Tile_68">
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="6">
-       <widget class="QLabel" name="Tile_67">
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="6">
-       <widget class="QLabel" name="Tile_77">
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="textFormat">
-         <enum>Qt::PlainText</enum>
-        </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Sfu.png</pixmap>
-        </property>
-        <property name="scaledContents">
-         <bool>false</bool>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="0">
-       <widget class="QLabel" name="Tile_61">
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="7">
-       <widget class="QLabel" name="Tile_28">
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Gkaku.png</pixmap>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
        <widget class="QLabel" name="Tile_21">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
@@ -499,10 +404,13 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
-      <item row="3" column="3">
-       <widget class="QLabel" name="Tile_44">
+      <item row="0" column="5">
+       <widget class="QLabel" name="Tile_96">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -511,6 +419,146 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BG</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="Tile_91">
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BL</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="7">
+       <widget class="QLabel" name="Tile_48">
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="6">
+       <widget class="QLabel" name="Tile_47">
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="6">
+       <widget class="QLabel" name="Tile_37">
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="textFormat">
+         <enum>Qt::PlainText</enum>
+        </property>
+        <property name="scaledContents">
+         <bool>false</bool>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WP</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="Tile_41">
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="7">
+       <widget class="QLabel" name="Tile_88">
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BB</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="Tile_81">
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="3">
+       <widget class="QLabel" name="Tile_64">
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string/>
         </property>
        </widget>
       </item>
@@ -525,26 +573,29 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QLabel" name="Tile_12">
+       <widget class="QLabel" name="Tile_92">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Gkei.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BN</string>
         </property>
        </widget>
       </item>
       <item row="6" column="4">
-       <widget class="QLabel" name="Tile_75">
+       <widget class="QLabel" name="Tile_35">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -554,19 +605,19 @@
         <property name="textFormat">
          <enum>Qt::PlainText</enum>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Sfu.png</pixmap>
-        </property>
         <property name="scaledContents">
          <bool>false</bool>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WP</string>
         </property>
        </widget>
       </item>
       <item row="5" column="1">
-       <widget class="QLabel" name="Tile_62">
+       <widget class="QLabel" name="Tile_42">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -576,10 +627,13 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="6" column="3">
-       <widget class="QLabel" name="Tile_74">
+       <widget class="QLabel" name="Tile_34">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -589,35 +643,35 @@
         <property name="textFormat">
          <enum>Qt::PlainText</enum>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Sfu.png</pixmap>
-        </property>
         <property name="scaledContents">
          <bool>false</bool>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string>S_WP</string>
+        </property>
        </widget>
       </item>
       <item row="0" column="2">
-       <widget class="QLabel" name="Tile_13">
+       <widget class="QLabel" name="Tile_93">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Ggin.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BS</string>
         </property>
        </widget>
       </item>
       <item row="3" column="2">
-       <widget class="QLabel" name="Tile_43">
+       <widget class="QLabel" name="Tile_63">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -626,6 +680,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string/>
         </property>
        </widget>
       </item>
@@ -640,10 +697,13 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="1" column="5">
-       <widget class="QLabel" name="Tile_26">
+       <widget class="QLabel" name="Tile_86">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -652,27 +712,30 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string/>
         </property>
        </widget>
       </item>
       <item row="2" column="6">
-       <widget class="QLabel" name="Tile_37">
+       <widget class="QLabel" name="Tile_77">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Gfu.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BP</string>
         </property>
        </widget>
       </item>
       <item row="6" column="8">
-       <widget class="QLabel" name="Tile_79">
+       <widget class="QLabel" name="Tile_39">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -682,19 +745,19 @@
         <property name="textFormat">
          <enum>Qt::PlainText</enum>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Sfu.png</pixmap>
-        </property>
         <property name="scaledContents">
          <bool>false</bool>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string>S_WP</string>
+        </property>
        </widget>
       </item>
       <item row="3" column="5">
-       <widget class="QLabel" name="Tile_46">
+       <widget class="QLabel" name="Tile_66">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -703,11 +766,14 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string/>
         </property>
        </widget>
       </item>
       <item row="3" column="1">
-       <widget class="QLabel" name="Tile_42">
+       <widget class="QLabel" name="Tile_62">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -716,38 +782,41 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string/>
         </property>
        </widget>
       </item>
       <item row="0" column="7">
-       <widget class="QLabel" name="Tile_18">
+       <widget class="QLabel" name="Tile_98">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Gkei.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BN</string>
         </property>
        </widget>
       </item>
       <item row="2" column="4">
-       <widget class="QLabel" name="Tile_35">
+       <widget class="QLabel" name="Tile_75">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Gfu.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BP</string>
         </property>
        </widget>
       </item>
@@ -762,6 +831,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="4" column="4">
@@ -775,21 +847,24 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="0" column="3">
-       <widget class="QLabel" name="Tile_14">
+       <widget class="QLabel" name="Tile_94">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Gkin.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BG</string>
         </property>
        </widget>
       </item>
@@ -804,10 +879,13 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="5" column="3">
-       <widget class="QLabel" name="Tile_64">
+       <widget class="QLabel" name="Tile_44">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -816,6 +894,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string/>
         </property>
        </widget>
       </item>
@@ -830,10 +911,13 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="6" column="2">
-       <widget class="QLabel" name="Tile_73">
+       <widget class="QLabel" name="Tile_33">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -843,14 +927,14 @@
         <property name="textFormat">
          <enum>Qt::PlainText</enum>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Sfu.png</pixmap>
-        </property>
         <property name="scaledContents">
          <bool>false</bool>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WP</string>
         </property>
        </widget>
       </item>
@@ -865,10 +949,13 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="5" column="8">
-       <widget class="QLabel" name="Tile_69">
+       <widget class="QLabel" name="Tile_49">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -877,219 +964,13 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string/>
         </property>
        </widget>
       </item>
       <item row="1" column="8">
-       <widget class="QLabel" name="Tile_29">
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="8">
-       <widget class="QLabel" name="Tile_39">
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Gfu.png</pixmap>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="5">
-       <widget class="QLabel" name="Tile_66">
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="3">
-       <widget class="QLabel" name="Tile_24">
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="6">
-       <widget class="QLabel" name="Tile_27">
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="2">
-       <widget class="QLabel" name="Tile_33">
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Gfu.png</pixmap>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="5">
-       <widget class="QLabel" name="Tile_36">
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Gfu.png</pixmap>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="2">
-       <widget class="QLabel" name="Tile_63">
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QLabel" name="Tile_22">
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Ghi.png</pixmap>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="5">
-       <widget class="QLabel" name="Tile_76">
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="textFormat">
-         <enum>Qt::PlainText</enum>
-        </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Sfu.png</pixmap>
-        </property>
-        <property name="scaledContents">
-         <bool>false</bool>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="4">
-       <widget class="QLabel" name="Tile_25">
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="6">
-       <widget class="QLabel" name="Tile_17">
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Ggin.png</pixmap>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="4">
-       <widget class="QLabel" name="Tile_45">
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QLabel" name="Tile_32">
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Gfu.png</pixmap>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="8">
        <widget class="QLabel" name="Tile_89">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
@@ -1100,25 +981,60 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
-      <item row="7" column="7">
-       <widget class="QLabel" name="Tile_88">
+      <item row="2" column="8">
+       <widget class="QLabel" name="Tile_79">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap>resources/Ichiji/Shi.png</pixmap>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BP</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="5">
+       <widget class="QLabel" name="Tile_46">
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
+        </property>
+        <property name="text">
+         <string/>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
-      <item row="7" column="6">
+      <item row="1" column="3">
+       <widget class="QLabel" name="Tile_84">
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="6">
        <widget class="QLabel" name="Tile_87">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
@@ -1129,137 +1045,114 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
-      <item row="8" column="1">
-       <widget class="QLabel" name="Tile_92">
+      <item row="2" column="2">
+       <widget class="QLabel" name="Tile_73">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Skei.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string>S_BP</string>
+        </property>
        </widget>
       </item>
-      <item row="8" column="5">
-       <widget class="QLabel" name="Tile_96">
+      <item row="2" column="5">
+       <widget class="QLabel" name="Tile_76">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Skin.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string>S_BP</string>
+        </property>
        </widget>
       </item>
-      <item row="8" column="0">
-       <widget class="QLabel" name="Tile_91">
+      <item row="5" column="2">
+       <widget class="QLabel" name="Tile_43">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap>resources/Ichiji/Skyo.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
        </widget>
       </item>
-      <item row="8" column="3">
-       <widget class="QLabel" name="Tile_94">
+      <item row="1" column="1">
+       <widget class="QLabel" name="Tile_82">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Skin.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string>S_BR</string>
+        </property>
        </widget>
       </item>
-      <item row="8" column="4">
-       <widget class="QLabel" name="Tile_95">
+      <item row="6" column="5">
+       <widget class="QLabel" name="Tile_36">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap>resources/Ichiji/Sgyoku.png</pixmap>
+        <property name="textFormat">
+         <enum>Qt::PlainText</enum>
+        </property>
+        <property name="scaledContents">
+         <bool>false</bool>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="Piece" stdset="0">
+         <string>S_WP</string>
+        </property>
        </widget>
       </item>
-      <item row="8" column="2">
-       <widget class="QLabel" name="Tile_93">
+      <item row="1" column="4">
+       <widget class="QLabel" name="Tile_85">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Sgin.png</pixmap>
-        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
-       </widget>
-      </item>
-      <item row="8" column="7">
-       <widget class="QLabel" name="Tile_98">
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
-        </property>
-        <property name="text">
+        <property name="Piece" stdset="0">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Skei.png</pixmap>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
        </widget>
       </item>
-      <item row="8" column="8">
-       <widget class="QLabel" name="Tile_99">
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="pixmap">
-         <pixmap>resources/Ichiji/Skyo.png</pixmap>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="8" column="6">
+      <item row="0" column="6">
        <widget class="QLabel" name="Tile_97">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
@@ -1267,16 +1160,240 @@
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Ichiji/resources/Ichiji/Sgin.png</pixmap>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BS</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="4">
+       <widget class="QLabel" name="Tile_65">
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
+        </property>
+        <property name="text">
+         <string/>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLabel" name="Tile_72">
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_BP</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="8">
+       <widget class="QLabel" name="Tile_29">
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="7">
+       <widget class="QLabel" name="Tile_28">
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WR</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="6">
+       <widget class="QLabel" name="Tile_27">
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="1">
+       <widget class="QLabel" name="Tile_12">
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WN</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="5">
+       <widget class="QLabel" name="Tile_16">
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WG</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="0">
+       <widget class="QLabel" name="Tile_11">
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WL</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="3">
+       <widget class="QLabel" name="Tile_14">
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WG</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="4">
+       <widget class="QLabel" name="Tile_15">
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WK</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="2">
+       <widget class="QLabel" name="Tile_13">
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WS</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="7">
+       <widget class="QLabel" name="Tile_18">
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WN</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="8">
+       <widget class="QLabel" name="Tile_19">
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WL</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="6">
+       <widget class="QLabel" name="Tile_17">
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string>S_WS</string>
         </property>
        </widget>
       </item>
       <item row="3" column="6">
-       <widget class="QLabel" name="Tile_47">
+       <widget class="QLabel" name="Tile_67">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -1285,11 +1402,14 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string/>
         </property>
        </widget>
       </item>
       <item row="3" column="7">
-       <widget class="QLabel" name="Tile_48">
+       <widget class="QLabel" name="Tile_68">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -1298,6 +1418,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="Piece" stdset="0">
+         <string/>
         </property>
        </widget>
       </item>
