@@ -4,6 +4,9 @@ from UI.options_menu import *
 from UI.ingame_shogi import *
 from UI.ingame_chess import *
 from UI.ingame_ui import *
+from threading import Thread
+from time import sleep
+# from datetime import datetime, time
 
 class gamestate:
     def __init__(self, sz):
@@ -21,6 +24,9 @@ class window_ingame_8x8(QtWidgets.QWidget, Ui_IngameChess):
         # self.show()
         self.tiles = []
         self.state = gamestate(8)
+        # self.Ui_IngameChess = Ui_IngameChess
+        self.timer_started = False
+
         for i in range(11, 89):
             try:
                 tile = getattr(self, "Tile_{}".format(i))
@@ -31,8 +37,30 @@ class window_ingame_8x8(QtWidgets.QWidget, Ui_IngameChess):
             except AttributeError:
                 pass
 
+    # Code taken from https://www.reddit.com/r/learnpython/comments/cx8qje/how_do_you_have_a_countdown_timer_without_it/
+    def Timer(self, time_limit):
+        sleep_duration = time_limit
+        while sleep_duration > 0:
+            minutes = int(sleep_duration / 60)
+            seconds = int(sleep_duration % 60)
+            print(f"you have {minutes}:{seconds} left")
+            # Gui'de göstermeyi bulamadım???
+            # Ui_IngameChess.setTime(self, minutes, seconds)
+            sleep(1)
+            sleep_duration -= 1
+        print("timer completed")
+
     def eventFilter(self, source, event):
         if event.type() == QtCore.QEvent.MouseButtonPress and source in self.tiles:
+            if not self.timer_started:
+                self.timer_thread = Thread(target=self.Timer, args=[300])
+                self.timer_thread.start()
+                self.timer_started = True
+
+            if not self.timer_thread.is_alive():
+                # timer is complete
+                print("oh no. you ran out of time!")
+
             if event.button() == 1:
                 self.clicked_tile = source
                 posx, posy = self.clicked_tile.objectName()[-2], self.clicked_tile.objectName()[-1]

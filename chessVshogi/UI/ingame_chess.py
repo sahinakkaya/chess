@@ -530,4 +530,9 @@ class Ui_IngameChess(object):
         self.label_2.setText(_translate("IngameChess", "Black Time"))
         self.labelTurn.setText(_translate("IngameChess", "Turn: White"))
         self.label_3.setText(_translate("IngameChess", "White Time"))
+
+    # Gui'de göstermeyi bulamadım???
+    # def setTime(self, minutes, seconds):
+    #     self.timeEdit.setTime(QtCore.QTime(minutes, seconds, 0))
+
 from . import rsrc_rc
