@@ -63,7 +63,6 @@ class window_ingame_8x8(QtWidgets.QWidget, Ui_IngameChess):
                     if self.latest_click is not None:
                         print("attempt to move the piece at", self.latest_click, "to ", posx, posy)
                     print("State changed back to Wait")
-                    # assuming move is successfull
                     if self.latest_click == (posx, posy):
                         print("Piece unhold")
                     else:
@@ -71,7 +70,9 @@ class window_ingame_8x8(QtWidgets.QWidget, Ui_IngameChess):
                         self.change_turn()
                 elif source.pixmap() is not None:
                     print("You are trying to move",source.property("Piece"))
-                    if self.state.action =="Wait":
+                    if source.property("Piece")[2] != self.state.turn[0]:
+                        print("... which is not your piece.")
+                    elif self.state.action =="Wait":
                         self.state.action = "Hold"
                         self.latest_click = tuple((posx, posy),)
                         print("State changed to Hold")
