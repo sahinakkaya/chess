@@ -28,9 +28,3 @@ Piece_Resource_Corresp = {
     "S_WB":":/Ichiji/resources/Ichiji/Skaku.png",
     "S_WR":":/Ichiji/resources/Ichiji/Shi.png",
 }
-
-# import sys
-# 
-# app = QtWidgets.QApplication([])
-# w = Window()
-# sys.exit(app.exec_())

@@ -1122,6 +1122,12 @@
         <property name="buttonSymbols">
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
+        <property name="currentSection">
+         <enum>QDateTimeEdit::SecondSection</enum>
+        </property>
+        <property name="displayFormat">
+         <string>mm:ss</string>
+        </property>
         <property name="time">
          <time>
           <hour>0</hour>
@@ -1190,6 +1196,12 @@
         </property>
         <property name="buttonSymbols">
          <enum>QAbstractSpinBox::NoButtons</enum>
+        </property>
+        <property name="currentSection">
+         <enum>QDateTimeEdit::SecondSection</enum>
+        </property>
+        <property name="displayFormat">
+         <string>mm:ss</string>
         </property>
        </widget>
       </item>

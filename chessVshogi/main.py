@@ -1,12 +1,10 @@
-from UI.mainwindow import *
-from UI.gamemode_menu import *
-from UI.options_menu import *
-from UI.ingame_shogi import *
-from UI.ingame_chess import *
-from UI.ingame_ui import *
-from threading import Thread
-from time import sleep
-# from datetime import datetime, time
+from PyQt5 import QtCore, QtGui, QtWidgets
+from UI.mainwindow import Ui_MainWindow
+from UI.gamemode_menu import Ui_Gamemode_Menu
+from UI.options_menu import Ui_Options_Menu
+from UI.ingame_shogi import Ui_IngameShogi
+from UI.ingame_chess import Ui_IngameChess
+from UI.ingame_ui import Piece_Resource_Corresp
 
 class gamestate:
     def __init__(self, sz):
@@ -15,17 +13,23 @@ class gamestate:
         self.turn = "White"
         self.action = "Wait" # Wait - Hold
         self.latest_click = None
-
+        self.wt = QtCore.QTimer()
+        self.wt.setInterval(1000)
+        self.bt = QtCore.QTimer()
+        self.bt.setInterval(1000)
 
 class window_ingame_8x8(QtWidgets.QWidget, Ui_IngameChess):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        # self.show()
         self.tiles = []
         self.state = gamestate(8)
+        self.timeEdit.setTime(QtCore.QTime(0, 10))
+        self.timeEdit_2.setTime(QtCore.QTime(0, 10))
+        self.state.wt.timeout.connect(self.whiteCD)
+        self.state.bt.timeout.connect(self.blackCD)
+        self.showEvent = self.showEvent
         # self.Ui_IngameChess = Ui_IngameChess
-        self.timer_started = False
 
         for i in range(11, 89):
             try:
@@ -37,30 +41,18 @@ class window_ingame_8x8(QtWidgets.QWidget, Ui_IngameChess):
             except AttributeError:
                 pass
 
-    # Code taken from https://www.reddit.com/r/learnpython/comments/cx8qje/how_do_you_have_a_countdown_timer_without_it/
-    def Timer(self, time_limit):
-        sleep_duration = time_limit
-        while sleep_duration > 0:
-            minutes = int(sleep_duration / 60)
-            seconds = int(sleep_duration % 60)
-            print(f"you have {minutes}:{seconds} left")
-            # Gui'de göstermeyi bulamadım???
-            # Ui_IngameChess.setTime(self, minutes, seconds)
-            sleep(1)
-            sleep_duration -= 1
-        print("timer completed")
+    def showEvent(self, event):
+        self.state.wt.start()
+        event.accept()
+
+    def whiteCD(self):
+        self.timeEdit.setTime(self.timeEdit.time().addSecs(-1))
+
+    def blackCD(self):
+        self.timeEdit_2.setTime(self.timeEdit_2.time().addSecs(-1))
 
     def eventFilter(self, source, event):
         if event.type() == QtCore.QEvent.MouseButtonPress and source in self.tiles:
-            if not self.timer_started:
-                self.timer_thread = Thread(target=self.Timer, args=[300])
-                self.timer_thread.start()
-                self.timer_started = True
-
-            if not self.timer_thread.is_alive():
-                # timer is complete
-                print("oh no. you ran out of time!")
-
             if event.button() == 1:
                 self.clicked_tile = source
                 posx, posy = self.clicked_tile.objectName()[-2], self.clicked_tile.objectName()[-1]
@@ -71,14 +63,29 @@ class window_ingame_8x8(QtWidgets.QWidget, Ui_IngameChess):
                     if self.latest_click is not None:
                         print("attempt to move the piece at", self.latest_click, "to ", posx, posy)
                     print("State changed back to Wait")
-
-                if source.pixmap() is not None:
+                    # assuming move is successfull
+                    if self.latest_click == (posx, posy):
+                        print("Piece unhold")
+                    else:
+                        print("Changing turn")
+                        self.change_turn()
+                elif source.pixmap() is not None:
                     print("You are trying to move",source.property("Piece"))
                     if self.state.action =="Wait":
                         self.state.action = "Hold"
                         self.latest_click = tuple((posx, posy),)
                         print("State changed to Hold")
         return super(window_ingame_8x8, self).eventFilter(source, event)
+
+    def change_turn(self):
+        if self.state.turn == "White":
+            self.state.turn = "Black"
+            self.state.wt.stop()
+            self.state.bt.start()
+        else:
+            self.state.turn = "White"
+            self.state.bt.stop()
+            self.state.wt.start()
 
 class window_ingame_9x9(QtWidgets.QWidget, Ui_IngameShogi):
     def __init__(self):

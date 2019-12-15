@@ -466,6 +466,7 @@ class Ui_IngameChess(object):
         self.timeEdit_2.setSizePolicy(sizePolicy)
         self.timeEdit_2.setReadOnly(True)
         self.timeEdit_2.setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
+        self.timeEdit_2.setCurrentSection(QtWidgets.QDateTimeEdit.SecondSection)
         self.timeEdit_2.setTime(QtCore.QTime(0, 0, 0))
         self.timeEdit_2.setObjectName("timeEdit_2")
         self.verticalLayout.addWidget(self.timeEdit_2)
@@ -485,6 +486,7 @@ class Ui_IngameChess(object):
         self.timeEdit.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.timeEdit.setReadOnly(True)
         self.timeEdit.setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
+        self.timeEdit.setCurrentSection(QtWidgets.QDateTimeEdit.SecondSection)
         self.timeEdit.setObjectName("timeEdit")
         self.verticalLayout.addWidget(self.timeEdit)
         self.horizontalLayout.addWidget(self.verticalFrame)
@@ -528,11 +530,8 @@ class Ui_IngameChess(object):
         self.Tile_76.setProperty("Piece", _translate("IngameChess", "C_BP"))
         self.Tile_88.setProperty("Piece", _translate("IngameChess", "C_BR"))
         self.label_2.setText(_translate("IngameChess", "Black Time"))
+        self.timeEdit_2.setDisplayFormat(_translate("IngameChess", "mm:ss"))
         self.labelTurn.setText(_translate("IngameChess", "Turn: White"))
         self.label_3.setText(_translate("IngameChess", "White Time"))
-
-    # Gui'de göstermeyi bulamadım???
-    # def setTime(self, minutes, seconds):
-    #     self.timeEdit.setTime(QtCore.QTime(minutes, seconds, 0))
-
+        self.timeEdit.setDisplayFormat(_translate("IngameChess", "mm:ss"))
 from . import rsrc_rc
