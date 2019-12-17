@@ -663,6 +663,8 @@ class Ui_IngameShogi(object):
         self.Tile_19.setProperty("Piece", _translate("IngameShogi", "S_WL"))
         self.Tile_17.setProperty("Piece", _translate("IngameShogi", "S_WS"))
         self.label_2.setText(_translate("IngameShogi", "TextLabel"))
+        self.timeEdit_2.setDisplayFormat(_translate("IngameShogi", "mm:ss"))
         self.label.setText(_translate("IngameShogi", "TextLabel"))
         self.label_3.setText(_translate("IngameShogi", "TextLabel"))
+        self.timeEdit.setDisplayFormat(_translate("IngameShogi", "mm:ss"))
 from . import rsrc_rc

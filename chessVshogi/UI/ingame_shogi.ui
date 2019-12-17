@@ -1460,6 +1460,9 @@
         <property name="buttonSymbols">
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
+        <property name="displayFormat">
+         <string>mm:ss</string>
+        </property>
        </widget>
       </item>
       <item>
@@ -1512,6 +1515,9 @@
         </property>
         <property name="buttonSymbols">
          <enum>QAbstractSpinBox::NoButtons</enum>
+        </property>
+        <property name="displayFormat">
+         <string>mm:ss</string>
         </property>
        </widget>
       </item>

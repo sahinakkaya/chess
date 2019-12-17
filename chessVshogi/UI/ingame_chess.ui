@@ -61,6 +61,9 @@
         <property name="styleSheet">
          <string notr="true"/>
         </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -526,7 +529,13 @@
       <item row="3" column="3">
        <widget class="QLabel" name="Tile_54">
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 255, 255);</string>
+         <string notr="true">background-color: rgb(42, 142, 92);</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="lineWidth">
+         <number>3</number>
         </property>
         <property name="text">
          <string/>
@@ -706,6 +715,9 @@
        <widget class="QLabel" name="Tile_47">
         <property name="styleSheet">
          <string notr="true">background-color: rgb(255, 255, 255);</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
         </property>
         <property name="text">
          <string/>
