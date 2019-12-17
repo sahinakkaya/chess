@@ -6,25 +6,27 @@ from UI.ingame_shogi import Ui_IngameShogi
 from UI.ingame_chess import Ui_IngameChess
 from UI.ingame_ui import Piece_Resource_Corresp
 
-class gamestate:
+
+class GameState:
     def __init__(self, sz):
         super().__init__()
-        self.boardsize = sz
+        self.board_size = sz
         self.turn = "White"
-        self.action = "Wait" # Wait - Hold
+        self.action = "Wait"  # Wait - Hold
         self.latest_click = None
         self.wt = QtCore.QTimer()
         self.wt.setInterval(1000)
         self.bt = QtCore.QTimer()
         self.bt.setInterval(1000)
 
-def ingame_wrapper(ui_class, boardsize):
-    class window_ingame(QtWidgets.QWidget, ui_class):
+
+def in_game_wrapper(ui_class, board_size):
+    class WindowInGame(QtWidgets.QWidget, ui_class):
         def __init__(self):
             super().__init__()
             self.setupUi(self)
             self.tiles = []
-            self.state = gamestate(boardsize)
+            self.state = GameState(board_size)
             self.timeWhite.setTime(QtCore.QTime(0, 10))
             self.timeBlack.setTime(QtCore.QTime(0, 10))
             self.state.wt.timeout.connect(self.whiteCD)
@@ -37,12 +39,13 @@ def ingame_wrapper(ui_class, boardsize):
                     self.tiles.append(tile)
                     tile.installEventFilter(self)
                     if tile.property("Piece") != '':
-                        tile.setPixmap(QtGui.QPixmap(Piece_Resource_Corresp[tile.property("Piece")]))
+                        tile.setPixmap(QtGui.QPixmap(
+                            Piece_Resource_Corresp[tile.property("Piece")]))
                     else:
                         tile.clear()
                 except AttributeError:
                     pass
-                
+
         def showEvent(self, event):
             self.state.wt.start()
             event.accept()
@@ -53,13 +56,14 @@ def ingame_wrapper(ui_class, boardsize):
         def blackCD(self):
             self.timeBlack.setTime(self.timeBlack.time().addSecs(-1))
 
-        def drawBoard(self):
+        def draw_board(self):
             # O tile'daki piece'i ekrana çiz
             for i in range(11, 89):
                 try:
                     tile = getattr(self, "Tile_{}".format(i))
                     if tile.property("Piece") != '':
-                        tile.setPixmap(QtGui.QPixmap(Piece_Resource_Corresp[tile.property("Piece")]))
+                        tile.setPixmap(QtGui.QPixmap(
+                            Piece_Resource_Corresp[tile.property("Piece")]))
                     else:
                         tile.clear()
                 except AttributeError:
@@ -72,38 +76,47 @@ def ingame_wrapper(ui_class, boardsize):
                 # Sol click ile tıklandıysa
                 if event.button() == 1:
                     self.clicked_tile = source
-                    posx, posy = self.clicked_tile.objectName()[-2], self.clicked_tile.objectName()[-1]
+                    posx, posy = self.clicked_tile.objectName()[-2], \
+                                 self.clicked_tile.objectName()[-1]
                     print(self.state.turn, self.state.action)
                     print("Coordinates:", posx, posy)
 
                     # Bir taşa bastıysam hold state'ine geçip ife giriyor
                     # Hold state'ine geçiş sonraki if'te (elif'te)
-                    if self.state.action=="Hold":
+                    if self.state.action == "Hold":
                         self.state.action = "Wait"
                         if self.latest_click is not None:
-                            piece_tile = getattr(self, "Tile_{}{}".format(self.latest_click[0], self.latest_click[1]))
-                            destination_tile = getattr(self, "Tile_{}{}".format(posx, posy))
-                            print("attempt to move the piece", piece_tile.property("Piece"), "at", piece_tile, "to ", destination_tile)
+                            piece_tile = getattr(self, "Tile_{}{}".format(
+                                self.latest_click[0], self.latest_click[1]))
+                            destination_tile = getattr(self,
+                                                       "Tile_{}{}".format(posx,
+                                                                          posy))
+                            print("attempt to move the piece",
+                                  piece_tile.property("Piece"), "at",
+                                  piece_tile, "to ", destination_tile)
                         print("State changed back to Wait")
                         if self.latest_click == (posx, posy):
                             print("Piece unhold")
                         else:
-                            destination_tile.setProperty("Piece", piece_tile.property("Piece")) 
+                            destination_tile.setProperty("Piece",
+                                                         piece_tile.property(
+                                                             "Piece"))
                             piece_tile.setProperty("Piece", '')
-                            self.drawBoard()
+                            self.draw_board()
                             print("Changing turn")
                             self.change_turn()
                         self.toggle_highlight_tile(piece_tile)
                     elif source.pixmap() is not None:
-                        print("You are trying to move",source.property("Piece"))
+                        print("You are trying to move",
+                              source.property("Piece"))
                         self.toggle_highlight_tile(source)
                         if source.property("Piece")[2] != self.state.turn[0]:
                             print("... which is not your piece.")
-                        elif self.state.action =="Wait":
+                        elif self.state.action == "Wait":
                             self.state.action = "Hold"
-                            self.latest_click = tuple((posx, posy),)
+                            self.latest_click = tuple((posx, posy), )
                             print("State changed to Hold")
-            return super(window_ingame, self).eventFilter(source, event)
+            return super(WindowInGame, self).eventFilter(source, event)
 
         def change_turn(self):
             if self.state.turn == "White":
@@ -114,64 +127,76 @@ def ingame_wrapper(ui_class, boardsize):
                 self.state.turn = "White"
                 self.state.bt.stop()
                 self.state.wt.start()
-        
+
         def toggle_highlight_tile(self, tile):
-            
+
             pass
-            
-    return window_ingame
 
-class window_optsmenu(QtWidgets.QWidget, Ui_Options_Menu):
-	def __init__(self):
-		super().__init__()
-		self.setupUi(self)
-		self.closeEvent = self.closeEvent
-		self.buttonReturn.clicked.connect(self.close)
-	def closeEvent(self, event):
-		back_to_main()
-		event.accept()
+    return WindowInGame
 
-class window_gamemode(QtWidgets.QWidget, Ui_Gamemode_Menu):
-	def __init__(self):
-		super().__init__()
-		self.setupUi(self)
-		self.buttonChess.clicked.connect(self.start_chess_game)
-		self.buttonShogi.clicked.connect(self.start_shogi_game)
-		self.closeEvent = self.closeEvent
-	def start_chess_game(self):
-		w_w = ingame_wrapper(Ui_IngameChess, 8)()
-		w_w.show()
-		self.hide()
-	def start_shogi_game(self):
-		w_w = ingame_wrapper(Ui_IngameShogi, 9)()
-		w_w.show()
-		self.hide()
-	def closeEvent(self, event):
-		back_to_main()
-		event.accept()
 
-class window_main(QtWidgets.QMainWindow, Ui_MainWindow):
-	def __init__(self):
-		super().__init__()
-		self.setupUi(self)
-		self.buttonStart.clicked.connect(self.game_menu)
-		self.buttonOpts.clicked.connect(self.opts_menu)
-		self.buttonExit.clicked.connect(self.close)
-		self.show()
-	def game_menu(self):
-		w_g.show()
-		self.hide()
-	def opts_menu(self):
-		w_o.show()
-		self.hide()
+class WindowOptsMenu(QtWidgets.QWidget, Ui_Options_Menu):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+        self.closeEvent = self.closeEvent
+        self.buttonReturn.clicked.connect(self.close)
+
+    def closeEvent(self, event):
+        back_to_main()
+        event.accept()
+
+
+class WindowGameMode(QtWidgets.QWidget, Ui_Gamemode_Menu):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+        self.buttonChess.clicked.connect(self.start_chess_game)
+        self.buttonShogi.clicked.connect(self.start_shogi_game)
+        self.closeEvent = self.closeEvent
+
+    def start_chess_game(self):
+        w_w = in_game_wrapper(Ui_IngameChess, 8)()
+        w_w.show()
+        self.hide()
+
+    def start_shogi_game(self):
+        w_w = in_game_wrapper(Ui_IngameShogi, 9)()
+        w_w.show()
+        self.hide()
+
+    def closeEvent(self, event):
+        back_to_main()
+        event.accept()
+
+
+class WindowMain(QtWidgets.QMainWindow, Ui_MainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+        self.buttonStart.clicked.connect(self.game_menu)
+        self.buttonOpts.clicked.connect(self.opts_menu)
+        self.buttonExit.clicked.connect(self.close)
+        self.show()
+
+    def game_menu(self):
+        w_g.show()
+        self.hide()
+
+    def opts_menu(self):
+        w_o.show()
+        self.hide()
+
 
 def back_to_main():
-	w.show()
+    w.show()
 
-import sys
 
-app = QtWidgets.QApplication([])
-w = window_main()
-w_g = window_gamemode()
-w_o = window_optsmenu()
-sys.exit(app.exec_())
+if __name__ == '__main__':
+    import sys
+
+    app = QtWidgets.QApplication([])
+    w = WindowMain()
+    w_g = WindowGameMode()
+    w_o = WindowOptsMenu()
+    sys.exit(app.exec_())
