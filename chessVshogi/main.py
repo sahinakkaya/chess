@@ -109,10 +109,10 @@ def in_game_wrapper(ui_class, board_size):
                     elif source.pixmap() is not None:
                         print("You are trying to move",
                               source.property("Piece"))
-                        self.toggle_highlight_tile(source)
                         if source.property("Piece")[2] != self.state.turn[0]:
                             print("... which is not your piece.")
                         elif self.state.action == "Wait":
+                            self.toggle_highlight_tile(source)
                             self.state.action = "Hold"
                             self.latest_click = tuple((posx, posy), )
                             print("State changed to Hold")
@@ -129,7 +129,17 @@ def in_game_wrapper(ui_class, board_size):
                 self.state.wt.start()
 
         def toggle_highlight_tile(self, tile):
-
+            stylesheet_remapper = {
+                "border-image: url(:/BG/resources/Wooden_noborder.jpg);": "border-image: url("
+                                                                          ":/BG/resources/Wooden_selected.jpg);",
+                "border-image: url(:/BG/resources/Wooden_selected.jpg);": "border-image: url("
+                                                                          ":/BG/resources/Wooden_noborder.jpg);",
+                "background-color: rgb(255, 255, 255);": "background-color: rgb(42, 192, 92);",
+                "background-color: rgb(42, 192, 92);": "background-color: rgb(255, 255, 255);",
+                "background-color: rgb(127, 127, 127);": "background-color: rgb(42, 191, 92);",
+                "background-color: rgb(42, 191, 92);": "background-color: rgb(127, 127, 127);"
+            }
+            tile.setStyleSheet(stylesheet_remapper[tile.styleSheet()])
             pass
 
     return WindowInGame
