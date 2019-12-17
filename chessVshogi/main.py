@@ -124,7 +124,6 @@ class window_ingame_9x9(QtWidgets.QWidget, Ui_IngameShogi):
         self.setupUi(self)
         # self.show()
         self.tiles = []
-
         self.state = gamestate(9)
         self.timeEdit.setTime(QtCore.QTime(0, 10))
         self.timeEdit_2.setTime(QtCore.QTime(0, 10))
@@ -159,27 +158,12 @@ class window_ingame_9x9(QtWidgets.QWidget, Ui_IngameShogi):
     def eventFilter(self, source, event):
         if event.type() == QtCore.QEvent.MouseButtonPress and source in self.tiles:
             if event.button() == 1:
-                self.clicked_tile = source
-                posx, posy = self.clicked_tile.objectName()[-2], self.clicked_tile.objectName()[-1]
-                print(self.state.turn, self.state.action)
-                print("Coordinates:", posx, posy)
+                posx, posy = source.objectName()[-2], source.objectName()[-1]
                 if self.state.action=="Hold":
                     self.state.action = "Wait"
-                    if self.latest_click is not None:
-                        piece_tile = getattr(self, "Tile_{}{}".format(self.latest_click[0], self.latest_click[1]))
-                        destination_tile = getattr(self, "Tile_{}{}".format(posx, posy))
-                        print("attempt to move the piece", piece_tile.property("Piece"), "at", piece_tile, "to ", destination_tile)
-                    print("State changed back to Wait")
-                    if self.latest_click == (posx, posy):
-                        print("Piece unhold")
-                    else:
-                        destination_tile.setProperty("Piece", piece_tile.property("Piece")) 
-                        piece_tile.setProperty("Piece", '')
-                        self.drawBoard()
-                        print("Changing turn")
-                        self.change_turn()
+                    self.relocate_piece(posx, posy)
                 elif source.pixmap() is not None:
-                    print("You are trying to move",source.property("Piece"))
+                    print("Trying to hold:",source.property("Piece"))
                     if source.property("Piece")[2] != self.state.turn[0]:
                         print("... which is not your piece.")
                     elif self.state.action =="Wait":
@@ -193,7 +177,23 @@ class window_ingame_9x9(QtWidgets.QWidget, Ui_IngameShogi):
 
     def blackCD(self):
         self.timeEdit_2.setTime(self.timeEdit_2.time().addSecs(-1))
-
+    
+    def relocate_piece(self, posx, posy):
+        if self.latest_click is not None:
+            piece_tile = getattr(self, "Tile_{}{}".format(self.latest_click[0], self.latest_click[1]))
+            destination_tile = getattr(self, "Tile_{}{}".format(posx, posy))
+            print("Moving", piece_tile.property("Piece"), "at", self.latest_click[0], self.latest_click[1], "to ", posx, posy)
+        print("State changed back to Wait")
+        if self.latest_click == (posx, posy):
+            print("Piece unhold")
+        else:
+            destination_tile.setProperty("Piece", piece_tile.property("Piece")) 
+            piece_tile.setProperty("Piece", '')
+            self.drawBoard()
+            print("Changing turn")
+            self.change_turn()
+        pass
+    
     def change_turn(self):
         if self.state.turn == "White":
             self.state.turn = "Black"
