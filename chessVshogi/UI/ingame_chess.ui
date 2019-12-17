@@ -62,7 +62,7 @@
          <string notr="true"/>
         </property>
         <property name="frameShape">
-         <enum>QFrame::StyledPanel</enum>
+         <enum>QFrame::NoFrame</enum>
         </property>
         <property name="text">
          <string/>
@@ -529,7 +529,7 @@
       <item row="3" column="3">
        <widget class="QLabel" name="Tile_54">
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(42, 142, 92);</string>
+         <string notr="true">background-color: rgb(255, 255, 255);</string>
         </property>
         <property name="frameShape">
          <enum>QFrame::NoFrame</enum>
@@ -539,9 +539,6 @@
         </property>
         <property name="text">
          <string/>
-        </property>
-        <property name="pixmap">
-         <pixmap resource="rsrc.qrc">:/Hidetchi/resources/hidetchi/Sngin.png</pixmap>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -715,9 +712,6 @@
        <widget class="QLabel" name="Tile_47">
         <property name="styleSheet">
          <string notr="true">background-color: rgb(255, 255, 255);</string>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::Box</enum>
         </property>
         <property name="text">
          <string/>
@@ -1124,12 +1118,18 @@
        </widget>
       </item>
       <item>
-       <widget class="QTimeEdit" name="timeEdit_2">
+       <widget class="QTimeEdit" name="timeBlack">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="inputMethodHints">
+         <set>Qt::ImhNone</set>
         </property>
         <property name="readOnly">
          <bool>true</bool>
@@ -1142,13 +1142,6 @@
         </property>
         <property name="displayFormat">
          <string>mm:ss</string>
-        </property>
-        <property name="time">
-         <time>
-          <hour>0</hour>
-          <minute>0</minute>
-          <second>0</second>
-         </time>
         </property>
        </widget>
       </item>
@@ -1202,7 +1195,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QTimeEdit" name="timeEdit">
+       <widget class="QTimeEdit" name="timeWhite">
         <property name="layoutDirection">
          <enum>Qt::LeftToRight</enum>
         </property>

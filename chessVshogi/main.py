@@ -25,8 +25,8 @@ def ingame_wrapper(ui_class, boardsize):
             self.setupUi(self)
             self.tiles = []
             self.state = gamestate(boardsize)
-            self.timeEdit.setTime(QtCore.QTime(0, 10))
-            self.timeEdit_2.setTime(QtCore.QTime(0, 10))
+            self.timeWhite.setTime(QtCore.QTime(0, 10))
+            self.timeBlack.setTime(QtCore.QTime(0, 10))
             self.state.wt.timeout.connect(self.whiteCD)
             self.state.bt.timeout.connect(self.blackCD)
             self.showEvent = self.showEvent
@@ -48,10 +48,10 @@ def ingame_wrapper(ui_class, boardsize):
             event.accept()
 
         def whiteCD(self):
-            self.timeEdit.setTime(self.timeEdit.time().addSecs(-1))
+            self.timeWhite.setTime(self.timeWhite.time().addSecs(-1))
 
         def blackCD(self):
-            self.timeEdit_2.setTime(self.timeEdit_2.time().addSecs(-1))
+            self.timeBlack.setTime(self.timeBlack.time().addSecs(-1))
 
         def drawBoard(self):
             # O tile'daki piece'i ekrana çiz
@@ -83,22 +83,20 @@ def ingame_wrapper(ui_class, boardsize):
                         if self.latest_click is not None:
                             piece_tile = getattr(self, "Tile_{}{}".format(self.latest_click[0], self.latest_click[1]))
                             destination_tile = getattr(self, "Tile_{}{}".format(posx, posy))
-                            # self.cursor().setShape(Qt.CursorShape(piece_tile.property("Piece")) )
-                            # self.cursor().setShape( QtGui.QPixmap(Piece_Resource_Corresp[piece_tile.property("Piece")]) )
                             print("attempt to move the piece", piece_tile.property("Piece"), "at", piece_tile, "to ", destination_tile)
                         print("State changed back to Wait")
                         if self.latest_click == (posx, posy):
                             print("Piece unhold")
-                            # self.cursor().setShape(ArrowCursor)
                         else:
                             destination_tile.setProperty("Piece", piece_tile.property("Piece")) 
                             piece_tile.setProperty("Piece", '')
                             self.drawBoard()
-                            # self.cursor().setShape(ArrowCursor)
                             print("Changing turn")
                             self.change_turn()
+                        self.toggle_highlight_tile(piece_tile)
                     elif source.pixmap() is not None:
                         print("You are trying to move",source.property("Piece"))
+                        self.toggle_highlight_tile(source)
                         if source.property("Piece")[2] != self.state.turn[0]:
                             print("... which is not your piece.")
                         elif self.state.action =="Wait":
@@ -116,7 +114,11 @@ def ingame_wrapper(ui_class, boardsize):
                 self.state.turn = "White"
                 self.state.bt.stop()
                 self.state.wt.start()
-
+        
+        def toggle_highlight_tile(self, tile):
+            
+            pass
+            
     return window_ingame
 
 class window_optsmenu(QtWidgets.QWidget, Ui_Options_Menu):
@@ -171,7 +173,5 @@ import sys
 app = QtWidgets.QApplication([])
 w = window_main()
 w_g = window_gamemode()
-# w_c = window_ingame_8x8()
-# w_s = window_ingame_9x9()
 w_o = window_optsmenu()
 sys.exit(app.exec_())
