@@ -531,6 +531,9 @@
         <property name="text">
          <string/>
         </property>
+        <property name="pixmap">
+         <pixmap resource="rsrc.qrc">:/Hidetchi/resources/hidetchi/Sngin.png</pixmap>
+        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
@@ -1123,7 +1126,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="currentSection">
-         <enum>QDateTimeEdit::SecondSection</enum>
+         <enum>QDateTimeEdit::MinuteSection</enum>
         </property>
         <property name="displayFormat">
          <string>mm:ss</string>
@@ -1198,7 +1201,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="currentSection">
-         <enum>QDateTimeEdit::SecondSection</enum>
+         <enum>QDateTimeEdit::MinuteSection</enum>
         </property>
         <property name="displayFormat">
          <string>mm:ss</string>

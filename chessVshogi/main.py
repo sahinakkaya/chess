@@ -18,6 +18,7 @@ class gamestate:
         self.bt = QtCore.QTimer()
         self.bt.setInterval(1000)
 
+
 class window_ingame_8x8(QtWidgets.QWidget, Ui_IngameChess):
     def __init__(self):
         super().__init__()
@@ -38,8 +39,11 @@ class window_ingame_8x8(QtWidgets.QWidget, Ui_IngameChess):
                 tile.installEventFilter(self)
                 if tile.property("Piece") != '':
                     tile.setPixmap(QtGui.QPixmap(Piece_Resource_Corresp[tile.property("Piece")]))
+                else:
+                    tile.clear()
             except AttributeError:
                 pass
+        
 
     def showEvent(self, event):
         self.state.wt.start()
@@ -51,6 +55,18 @@ class window_ingame_8x8(QtWidgets.QWidget, Ui_IngameChess):
     def blackCD(self):
         self.timeEdit_2.setTime(self.timeEdit_2.time().addSecs(-1))
 
+    def drawBoard(self):
+        # O tile'daki piece'i ekrana çiz
+        for i in range(11, 89):
+            try:
+                tile = getattr(self, "Tile_{}".format(i))
+                if tile.property("Piece") != '':
+                    tile.setPixmap(QtGui.QPixmap(Piece_Resource_Corresp[tile.property("Piece")]))
+                else:
+                    tile.clear()
+            except AttributeError:
+                pass
+
     def eventFilter(self, source, event):
         if event.type() == QtCore.QEvent.MouseButtonPress and source in self.tiles:
             if event.button() == 1:
@@ -61,11 +77,16 @@ class window_ingame_8x8(QtWidgets.QWidget, Ui_IngameChess):
                 if self.state.action=="Hold":
                     self.state.action = "Wait"
                     if self.latest_click is not None:
-                        print("attempt to move the piece at", self.latest_click, "to ", posx, posy)
+                        piece_tile = getattr(self, "Tile_{}{}".format(self.latest_click[0], self.latest_click[1]))
+                        destination_tile = getattr(self, "Tile_{}{}".format(posx, posy))
+                        print("attempt to move the piece", piece_tile.property("Piece"), "at", piece_tile, "to ", destination_tile)
                     print("State changed back to Wait")
                     if self.latest_click == (posx, posy):
                         print("Piece unhold")
                     else:
+                        destination_tile.setProperty("Piece", piece_tile.property("Piece")) 
+                        piece_tile.setProperty("Piece", '')
+                        self.drawBoard()
                         print("Changing turn")
                         self.change_turn()
                 elif source.pixmap() is not None:
