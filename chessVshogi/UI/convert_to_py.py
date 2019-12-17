@@ -9,6 +9,6 @@ for file in files:
 
 for file in resourcefiles:
     file_out = file[:-4]+"_rc.py"
-    os.system("python -m PyQt5.pyrcc_main {} -o {}".format(file, file_out))
+    os.system("python -m PyQt5.pyrcc_main {} -o ../{}".format(file, file_out))
 
 print("Done.")
