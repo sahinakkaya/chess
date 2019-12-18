@@ -126,6 +126,7 @@ def in_game_wrapper(ui_class, board_size):
                 self.state.turn = "White"
                 self.state.bt.stop()
                 self.state.wt.start()
+            self.labelTurn.setText("Turn: {}".format(self.state.turn))
 
         def toggle_highlight_tile(self, tile):
             stylesheet_remapper = {

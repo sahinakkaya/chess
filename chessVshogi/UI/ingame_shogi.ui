@@ -1479,7 +1479,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="QLabel" name="label">
+       <widget class="QLabel" name="labelTurn">
         <property name="styleSheet">
          <string notr="true">font: 75 16pt &quot;MS Shell Dlg 2&quot;;</string>
         </property>
