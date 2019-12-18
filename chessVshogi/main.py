@@ -172,9 +172,6 @@ def in_game_wrapper(ui_class, board_size):
                             "Tile_{}{}".format(i + 1, j + 1)).setProperty(
                         "Piece", piece)
 
-        def set_possible_moves(self, possible_moves):
-            self.possible_moves = possible_moves
-
     return WindowInGame
 
 
