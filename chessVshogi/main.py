@@ -5,7 +5,7 @@ from UI.options_menu import Ui_Options_Menu
 from UI.ingame_shogi import Ui_IngameShogi
 from UI.ingame_chess import Ui_IngameChess
 from UI.ingame_ui import Piece_Resource_Corresp
-
+import chessVshogi.layouts
 
 class GameState:
     def __init__(self, sz):
@@ -58,7 +58,7 @@ def in_game_wrapper(ui_class, board_size):
 
         def draw_board(self):
             # O tile'daki piece'i ekrana çiz
-            for i in range(11, 89):
+            for i in range(11, 100):
                 try:
                     tile = getattr(self, "Tile_{}".format(i))
                     if tile.property("Piece") != '':
@@ -141,6 +141,11 @@ def in_game_wrapper(ui_class, board_size):
             tile.setStyleSheet(stylesheet_remapper[tile.styleSheet()])
             pass
 
+        def load_layout(self, layout):
+            for i, line in enumerate(layout):
+                for j, piece in enumerate(line):
+                    print("Tile_{}{}".format(i+1, j+1), "set to", piece)
+                    getattr(self, "Tile_{}{}".format(i+1, j+1)).setProperty("Piece", piece)
     return WindowInGame
 
 
@@ -162,6 +167,7 @@ class WindowGameMode(QtWidgets.QWidget, Ui_Gamemode_Menu):
         self.setupUi(self)
         self.buttonChess.clicked.connect(self.start_chess_game)
         self.buttonShogi.clicked.connect(self.start_shogi_game)
+        self.buttonHybrid.clicked.connect(self.start_hybrid_game)
         self.closeEvent = self.closeEvent
 
     def start_chess_game(self):
@@ -171,6 +177,13 @@ class WindowGameMode(QtWidgets.QWidget, Ui_Gamemode_Menu):
 
     def start_shogi_game(self):
         w_w = in_game_wrapper(Ui_IngameShogi, 9)()
+        w_w.show()
+        self.hide()
+
+    def start_hybrid_game(self):
+        w_w = in_game_wrapper(Ui_IngameShogi, 9)()
+        w_w.load_layout(chessVshogi.layouts.hybrid_default)
+        w_w.draw_board()
         w_w.show()
         self.hide()
 

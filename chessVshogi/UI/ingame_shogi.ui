@@ -104,7 +104,7 @@
        </widget>
       </item>
       <item row="6" column="0">
-       <widget class="QLabel" name="Tile_31">
+       <widget class="QLabel" name="Tile_13">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -126,7 +126,7 @@
        </widget>
       </item>
       <item row="3" column="8">
-       <widget class="QLabel" name="Tile_69">
+       <widget class="QLabel" name="Tile_96">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
