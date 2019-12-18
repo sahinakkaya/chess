@@ -150,6 +150,13 @@ class SetOfVectors(set):
             return NotImplemented
         return SetOfVectors(*return_val)
 
+    def __contains__(self, item):
+        for x, y in self:
+            if (x, y) == item:
+                return True
+        else:
+            return False
+
     def __and__(self, other):
         if isinstance(other, Vector2D):
             other = SetOfVectors(other)
