@@ -85,15 +85,14 @@ def in_game_wrapper(ui_class, board_size):
                     # Hold state'ine geçiş sonraki if'te (elif'te)
                     if self.state.action == "Hold":
                         self.state.action = "Wait"
-                        if self.latest_click is not None:
-                            piece_tile = getattr(self, "Tile_{}{}".format(
-                                self.latest_click[0], self.latest_click[1]))
-                            destination_tile = getattr(self,
-                                                       "Tile_{}{}".format(posx,
-                                                                          posy))
-                            print("attempt to move the piece",
-                                  piece_tile.property("Piece"), "at",
-                                  piece_tile, "to ", destination_tile)
+                        piece_tile = getattr(self, "Tile_{}{}".format(
+                            self.latest_click[0], self.latest_click[1]))
+                        destination_tile = getattr(self,
+                                                   "Tile_{}{}".format(posx,
+                                                                      posy))
+                        print("attempt to move the piece",
+                              piece_tile.property("Piece"), "at",
+                              self.latest_click[0], self.latest_click[1], "to ", posx, posy)
                         print("State changed back to Wait")
                         if self.latest_click == (posx, posy):
                             print("Piece unhold")

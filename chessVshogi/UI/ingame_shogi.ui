@@ -72,7 +72,7 @@
        <number>1</number>
       </property>
       <item row="3" column="0">
-       <widget class="QLabel" name="Tile_61">
+       <widget class="QLabel" name="Tile_16">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -88,7 +88,7 @@
        </widget>
       </item>
       <item row="2" column="7">
-       <widget class="QLabel" name="Tile_78">
+       <widget class="QLabel" name="Tile_87">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -158,7 +158,7 @@
        </widget>
       </item>
       <item row="1" column="2">
-       <widget class="QLabel" name="Tile_83">
+       <widget class="QLabel" name="Tile_38">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -174,7 +174,7 @@
        </widget>
       </item>
       <item row="0" column="4">
-       <widget class="QLabel" name="Tile_95">
+       <widget class="QLabel" name="Tile_59">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -190,7 +190,7 @@
        </widget>
       </item>
       <item row="2" column="3">
-       <widget class="QLabel" name="Tile_74">
+       <widget class="QLabel" name="Tile_47">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -206,7 +206,7 @@
        </widget>
       </item>
       <item row="4" column="1">
-       <widget class="QLabel" name="Tile_52">
+       <widget class="QLabel" name="Tile_25">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -222,7 +222,7 @@
        </widget>
       </item>
       <item row="7" column="5">
-       <widget class="QLabel" name="Tile_26">
+       <widget class="QLabel" name="Tile_62">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -238,7 +238,7 @@
        </widget>
       </item>
       <item row="5" column="4">
-       <widget class="QLabel" name="Tile_45">
+       <widget class="QLabel" name="Tile_54">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -254,7 +254,7 @@
        </widget>
       </item>
       <item row="7" column="2">
-       <widget class="QLabel" name="Tile_23">
+       <widget class="QLabel" name="Tile_32">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -270,7 +270,7 @@
        </widget>
       </item>
       <item row="6" column="1">
-       <widget class="QLabel" name="Tile_32">
+       <widget class="QLabel" name="Tile_23">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -292,7 +292,7 @@
        </widget>
       </item>
       <item row="4" column="7">
-       <widget class="QLabel" name="Tile_58">
+       <widget class="QLabel" name="Tile_85">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -308,7 +308,7 @@
        </widget>
       </item>
       <item row="2" column="0">
-       <widget class="QLabel" name="Tile_71">
+       <widget class="QLabel" name="Tile_17">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -324,7 +324,7 @@
        </widget>
       </item>
       <item row="6" column="7">
-       <widget class="QLabel" name="Tile_38">
+       <widget class="QLabel" name="Tile_83">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -346,7 +346,7 @@
        </widget>
       </item>
       <item row="7" column="4">
-       <widget class="QLabel" name="Tile_25">
+       <widget class="QLabel" name="Tile_52">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -378,7 +378,7 @@
        </widget>
       </item>
       <item row="7" column="3">
-       <widget class="QLabel" name="Tile_24">
+       <widget class="QLabel" name="Tile_42">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -394,7 +394,7 @@
        </widget>
       </item>
       <item row="7" column="0">
-       <widget class="QLabel" name="Tile_21">
+       <widget class="QLabel" name="Tile_12">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -410,7 +410,7 @@
        </widget>
       </item>
       <item row="0" column="5">
-       <widget class="QLabel" name="Tile_96">
+       <widget class="QLabel" name="Tile_69">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -426,7 +426,7 @@
        </widget>
       </item>
       <item row="0" column="0">
-       <widget class="QLabel" name="Tile_91">
+       <widget class="QLabel" name="Tile_19">
         <property name="autoFillBackground">
          <bool>false</bool>
         </property>
@@ -445,7 +445,7 @@
        </widget>
       </item>
       <item row="5" column="7">
-       <widget class="QLabel" name="Tile_48">
+       <widget class="QLabel" name="Tile_84">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -461,7 +461,7 @@
        </widget>
       </item>
       <item row="5" column="6">
-       <widget class="QLabel" name="Tile_47">
+       <widget class="QLabel" name="Tile_74">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -477,7 +477,7 @@
        </widget>
       </item>
       <item row="6" column="6">
-       <widget class="QLabel" name="Tile_37">
+       <widget class="QLabel" name="Tile_73">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -499,7 +499,7 @@
        </widget>
       </item>
       <item row="5" column="0">
-       <widget class="QLabel" name="Tile_41">
+       <widget class="QLabel" name="Tile_14">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -531,7 +531,7 @@
        </widget>
       </item>
       <item row="1" column="0">
-       <widget class="QLabel" name="Tile_81">
+       <widget class="QLabel" name="Tile_18">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -547,7 +547,7 @@
        </widget>
       </item>
       <item row="3" column="3">
-       <widget class="QLabel" name="Tile_64">
+       <widget class="QLabel" name="Tile_46">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -563,7 +563,7 @@
        </widget>
       </item>
       <item row="4" column="3">
-       <widget class="QLabel" name="Tile_54">
+       <widget class="QLabel" name="Tile_45">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -579,7 +579,7 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QLabel" name="Tile_92">
+       <widget class="QLabel" name="Tile_29">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -595,7 +595,7 @@
        </widget>
       </item>
       <item row="6" column="4">
-       <widget class="QLabel" name="Tile_35">
+       <widget class="QLabel" name="Tile_53">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -617,7 +617,7 @@
        </widget>
       </item>
       <item row="5" column="1">
-       <widget class="QLabel" name="Tile_42">
+       <widget class="QLabel" name="Tile_24">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -633,7 +633,7 @@
        </widget>
       </item>
       <item row="6" column="3">
-       <widget class="QLabel" name="Tile_34">
+       <widget class="QLabel" name="Tile_43">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -655,7 +655,7 @@
        </widget>
       </item>
       <item row="0" column="2">
-       <widget class="QLabel" name="Tile_93">
+       <widget class="QLabel" name="Tile_39">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -671,7 +671,7 @@
        </widget>
       </item>
       <item row="3" column="2">
-       <widget class="QLabel" name="Tile_63">
+       <widget class="QLabel" name="Tile_36">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -687,7 +687,7 @@
        </widget>
       </item>
       <item row="4" column="5">
-       <widget class="QLabel" name="Tile_56">
+       <widget class="QLabel" name="Tile_65">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -703,7 +703,7 @@
        </widget>
       </item>
       <item row="1" column="5">
-       <widget class="QLabel" name="Tile_86">
+       <widget class="QLabel" name="Tile_68">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -735,7 +735,7 @@
        </widget>
       </item>
       <item row="6" column="8">
-       <widget class="QLabel" name="Tile_39">
+       <widget class="QLabel" name="Tile_93">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -773,7 +773,7 @@
        </widget>
       </item>
       <item row="3" column="1">
-       <widget class="QLabel" name="Tile_62">
+       <widget class="QLabel" name="Tile_26">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -789,7 +789,7 @@
        </widget>
       </item>
       <item row="0" column="7">
-       <widget class="QLabel" name="Tile_98">
+       <widget class="QLabel" name="Tile_89">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -805,7 +805,7 @@
        </widget>
       </item>
       <item row="2" column="4">
-       <widget class="QLabel" name="Tile_75">
+       <widget class="QLabel" name="Tile_57">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -821,7 +821,7 @@
        </widget>
       </item>
       <item row="4" column="2">
-       <widget class="QLabel" name="Tile_53">
+       <widget class="QLabel" name="Tile_35">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -853,7 +853,7 @@
        </widget>
       </item>
       <item row="0" column="3">
-       <widget class="QLabel" name="Tile_94">
+       <widget class="QLabel" name="Tile_49">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -869,7 +869,7 @@
        </widget>
       </item>
       <item row="4" column="0">
-       <widget class="QLabel" name="Tile_51">
+       <widget class="QLabel" name="Tile_15">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -901,7 +901,7 @@
        </widget>
       </item>
       <item row="4" column="8">
-       <widget class="QLabel" name="Tile_59">
+       <widget class="QLabel" name="Tile_95">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -939,7 +939,7 @@
        </widget>
       </item>
       <item row="4" column="6">
-       <widget class="QLabel" name="Tile_57">
+       <widget class="QLabel" name="Tile_75">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -955,7 +955,7 @@
        </widget>
       </item>
       <item row="5" column="8">
-       <widget class="QLabel" name="Tile_49">
+       <widget class="QLabel" name="Tile_94">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -971,7 +971,7 @@
        </widget>
       </item>
       <item row="1" column="8">
-       <widget class="QLabel" name="Tile_89">
+       <widget class="QLabel" name="Tile_98">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -987,7 +987,7 @@
        </widget>
       </item>
       <item row="2" column="8">
-       <widget class="QLabel" name="Tile_79">
+       <widget class="QLabel" name="Tile_97">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -1003,7 +1003,7 @@
        </widget>
       </item>
       <item row="5" column="5">
-       <widget class="QLabel" name="Tile_46">
+       <widget class="QLabel" name="Tile_64">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -1019,7 +1019,7 @@
        </widget>
       </item>
       <item row="1" column="3">
-       <widget class="QLabel" name="Tile_84">
+       <widget class="QLabel" name="Tile_48">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -1035,7 +1035,7 @@
        </widget>
       </item>
       <item row="1" column="6">
-       <widget class="QLabel" name="Tile_87">
+       <widget class="QLabel" name="Tile_78">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -1051,7 +1051,7 @@
        </widget>
       </item>
       <item row="2" column="2">
-       <widget class="QLabel" name="Tile_73">
+       <widget class="QLabel" name="Tile_37">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -1067,7 +1067,7 @@
        </widget>
       </item>
       <item row="2" column="5">
-       <widget class="QLabel" name="Tile_76">
+       <widget class="QLabel" name="Tile_67">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -1083,7 +1083,7 @@
        </widget>
       </item>
       <item row="5" column="2">
-       <widget class="QLabel" name="Tile_43">
+       <widget class="QLabel" name="Tile_34">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -1099,7 +1099,7 @@
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QLabel" name="Tile_82">
+       <widget class="QLabel" name="Tile_28">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -1115,7 +1115,7 @@
        </widget>
       </item>
       <item row="6" column="5">
-       <widget class="QLabel" name="Tile_36">
+       <widget class="QLabel" name="Tile_63">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -1137,7 +1137,7 @@
        </widget>
       </item>
       <item row="1" column="4">
-       <widget class="QLabel" name="Tile_85">
+       <widget class="QLabel" name="Tile_58">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -1153,7 +1153,7 @@
        </widget>
       </item>
       <item row="0" column="6">
-       <widget class="QLabel" name="Tile_97">
+       <widget class="QLabel" name="Tile_79">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -1169,7 +1169,7 @@
        </widget>
       </item>
       <item row="3" column="4">
-       <widget class="QLabel" name="Tile_65">
+       <widget class="QLabel" name="Tile_56">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -1185,7 +1185,7 @@
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QLabel" name="Tile_72">
+       <widget class="QLabel" name="Tile_27">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -1201,7 +1201,7 @@
        </widget>
       </item>
       <item row="7" column="8">
-       <widget class="QLabel" name="Tile_29">
+       <widget class="QLabel" name="Tile_92">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -1217,7 +1217,7 @@
        </widget>
       </item>
       <item row="7" column="7">
-       <widget class="QLabel" name="Tile_28">
+       <widget class="QLabel" name="Tile_82">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -1233,7 +1233,7 @@
        </widget>
       </item>
       <item row="7" column="6">
-       <widget class="QLabel" name="Tile_27">
+       <widget class="QLabel" name="Tile_72">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -1249,7 +1249,7 @@
        </widget>
       </item>
       <item row="8" column="1">
-       <widget class="QLabel" name="Tile_12">
+       <widget class="QLabel" name="Tile_21">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -1265,7 +1265,7 @@
        </widget>
       </item>
       <item row="8" column="5">
-       <widget class="QLabel" name="Tile_16">
+       <widget class="QLabel" name="Tile_61">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -1297,7 +1297,7 @@
        </widget>
       </item>
       <item row="8" column="3">
-       <widget class="QLabel" name="Tile_14">
+       <widget class="QLabel" name="Tile_41">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -1313,7 +1313,7 @@
        </widget>
       </item>
       <item row="8" column="4">
-       <widget class="QLabel" name="Tile_15">
+       <widget class="QLabel" name="Tile_51">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -1329,7 +1329,7 @@
        </widget>
       </item>
       <item row="8" column="2">
-       <widget class="QLabel" name="Tile_13">
+       <widget class="QLabel" name="Tile_31">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -1345,7 +1345,7 @@
        </widget>
       </item>
       <item row="8" column="7">
-       <widget class="QLabel" name="Tile_18">
+       <widget class="QLabel" name="Tile_81">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -1361,7 +1361,7 @@
        </widget>
       </item>
       <item row="8" column="8">
-       <widget class="QLabel" name="Tile_19">
+       <widget class="QLabel" name="Tile_91">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -1377,7 +1377,7 @@
        </widget>
       </item>
       <item row="8" column="6">
-       <widget class="QLabel" name="Tile_17">
+       <widget class="QLabel" name="Tile_71">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -1393,7 +1393,7 @@
        </widget>
       </item>
       <item row="3" column="6">
-       <widget class="QLabel" name="Tile_67">
+       <widget class="QLabel" name="Tile_76">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
@@ -1409,7 +1409,7 @@
        </widget>
       </item>
       <item row="3" column="7">
-       <widget class="QLabel" name="Tile_68">
+       <widget class="QLabel" name="Tile_86">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/BG/resources/Wooden_noborder.jpg);</string>
         </property>
