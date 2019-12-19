@@ -134,7 +134,6 @@ def in_game_wrapper(ui_class, board_size):
         def get_last_clicked_tile(self):
             piece_tile = getattr(self, "Tile_{}{}".format(
                 self.latest_click[0], self.latest_click[1]))
-            print("last clicked tile:", piece_tile.property("Piece"))
             return piece_tile
 
         def change_turn(self):
@@ -173,12 +172,17 @@ def in_game_wrapper(ui_class, board_size):
         def set_possible_moves(self, possible_moves):
             filtered_moves = directions.SetOfVectors()
             for x, y in possible_moves:
-                tile = self.get_tile_at(x, y)
-                piece = tile.property("Piece")
+                piece = self.get_piece(x, y)
                 if piece == "" or piece[2] != self.state.turn[0]:
                     filtered_moves.add(directions.Vector2D(x, y))
             filtered_moves.add(directions.Vector2D(*self.latest_click))
             self.possible_moves = filtered_moves
+
+        def is_empty(self, x, y):
+            return self.get_piece(x, y) == ""
+
+        def get_piece(self, x, y):
+            return self.get_tile_at(x, y).property("Piece")
 
         def get_tile_at(self, x, y):
             return getattr(self, "Tile_{}{}".format(x, y))

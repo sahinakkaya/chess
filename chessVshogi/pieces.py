@@ -42,6 +42,8 @@ class Piece(QObject):
                     move = (direction * i) + Vector2D(self.x, self.y)
                     if (1, 1) <= move <= (board_size, board_size):
                         possible_moves.add(move)
+                        if not self.board.is_empty(move.x, move.y):
+                            break
             self.possible_moves_found.emit(possible_moves)
 
     def update_position(self, from_position, to_position):
