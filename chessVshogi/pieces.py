@@ -38,7 +38,6 @@ class Piece(QObject):
         # TODO: Update this docstring
         :return: a set of Vector2D objects that a piece can go
         """
-        print("test")
         if self.x == x and self.y == y:
             primary_movement, range_ = self.PRIMARY_MOVE
             possible_moves = self.get_moves_for_movement(primary_movement,
@@ -81,7 +80,7 @@ class Piece(QObject):
         if from_position == (self.x, self.y):
             self.x, self.y = to_position
         elif to_position == (self.x, self.y):
-            self.board.mouse_clicked.disconnect(self.lambda_func)
+            self.board.mouse_clicked.disconnect(self.get_possible_moves)
             self.deleteLater()
 
 
@@ -149,73 +148,64 @@ class King(ChessPiece):
 
 
 class S_King(ShogiPiece):  # can be renamed to "Gyoku"
-    MOVEMENT = Direction.STRAIGHT | Direction.DIAGONAL
-    MOVEMENT_RANGE = 1
+    PRIMARY_MOVE = [Direction.STRAIGHT | Direction.DIAGONAL, 1]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
 
 class S_Rook(ShogiPiece):  # can be renamed to "Hisha"
-    MOVEMENT = Direction.STRAIGHT
-    MOVEMENT_RANGE = 8
+    PRIMARY_MOVE = [Direction.STRAIGHT, 8]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
 
 class S_Bishop(ShogiPiece):  # can be renamed to "Kaku"
-    MOVEMENT = Direction.DIAGONAL
-    MOVEMENT_RANGE = 8
+    PRIMARY_MOVE = [Direction.DIAGONAL, 8]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
 
 class Lance(ShogiPiece):  # can be renamed to "Kyo"
-    MOVEMENT = SetOfVectors(Direction.FORWARD)
-    MOVEMENT_RANGE = 8
+    PRIMARY_MOVE = [SetOfVectors(Direction.FORWARD), 8]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
 
 class S_Knight(ShogiPiece):  # can be renamed to "Kei" or "Forward Knight"
-    MOVEMENT = SetOfVectors((1, 2), ).flip(axes="h", in_place=True)
-    MOVEMENT_RANGE = 1
+    PRIMARY_MOVE = [SetOfVectors((1, 2), ).flip(axes="h", in_place=True), 1]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
 
 class S_Pawn(ShogiPiece):  # can be renamed to "Fu"
-    MOVEMENT = SetOfVectors(Direction.FORWARD)
-    MOVEMENT_RANGE = 1
+    PRIMARY_MOVE = [SetOfVectors(Direction.FORWARD), 1]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
 
 class Silver(ShogiPiece):  # can be renamed to "Gin"
-    MOVEMENT = Direction.FORWARD | Direction.LDIAGONAL | Direction.RDIAGONAL
-    MOVEMENT_RANGE = 1
+    PRIMARY_MOVE = [Direction.FORWARD | Direction.LDIAGONAL | Direction.RDIAGONAL, 1]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
 
 class Gold(ShogiPiece):  # can be renamed to "Kin"
-    MOVEMENT = Direction.HORIZONTAL | Direction.VERTICAL | (
-            Direction.FORWARD & Direction.LEFT) | (
-                       Direction.FORWARD & Direction.RIGHT)
-    MOVEMENT_RANGE = 1
+    PRIMARY_MOVE = [Direction.HORIZONTAL | Direction.VERTICAL | (
+            Direction.HORIZONTAL & Direction.FORWARD), 1]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
 
 class Promoted_Pawn:  # can be renamed to "Tokin"
-    MOVEMENT = Gold.MOVEMENT
+    PRIMARY_MOVE = Gold.PRIMARY_MOVE
     MOVEMENT_RANGE = 1
 
     def __init__(self, *args, **kwargs):
@@ -223,7 +213,7 @@ class Promoted_Pawn:  # can be renamed to "Tokin"
 
 
 class Promoted_Lance:  # can be renamed to "Narikyo"
-    MOVEMENT = Gold.MOVEMENT
+    PRIMARY_MOVE = Gold.PRIMARY_MOVE
     MOVEMENT_RANGE = 1
 
     def __init__(self, *args, **kwargs):
@@ -231,7 +221,7 @@ class Promoted_Lance:  # can be renamed to "Narikyo"
 
 
 class Promoted_Knight:  # can be renamed to "NariKei"
-    MOVEMENT = Gold.MOVEMENT
+    PRIMARY_MOVE = Gold.PRIMARY_MOVE
     MOVEMENT_RANGE = 1
 
     def __init__(self, *args, **kwargs):
@@ -239,7 +229,7 @@ class Promoted_Knight:  # can be renamed to "NariKei"
 
 
 class Promoted_Silver:  # can be renamed to "Narigin"
-    MOVEMENT = Gold.MOVEMENT
+    PRIMARY_MOVE = Gold.PRIMARY_MOVE
     MOVEMENT_RANGE = 1
 
     def __init__(self, *args, **kwargs):
