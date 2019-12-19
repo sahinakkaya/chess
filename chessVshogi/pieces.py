@@ -19,8 +19,8 @@ class Piece(QObject):
         self.promotable = promotable
         self.has_promoted = has_promoted
         self.is_dead = is_dead
-        board.mouse_clicked.connect(
-            lambda x, y: self.get_possible_moves(8, x, y))
+        self.lambda_func = lambda x, y: self.get_possible_moves(8, x, y)
+        board.mouse_clicked.connect(self.lambda_func)
         board.piece_moved.connect(self.update_position)
 
     @classmethod
@@ -44,11 +44,10 @@ class Piece(QObject):
 
     def update_position(self, from_position, to_position):
         if from_position == (self.x, self.y):
-            print(f"I'm {type(self).__name__}")
             self.x, self.y = to_position
         elif to_position == (self.x, self.y):
-            print(f"I'm deleted {type(self).__name__}")
-            del self
+            self.board.mouse_clicked.disconnect(self.lambda_func)
+            self.deleteLater()
 
 
 

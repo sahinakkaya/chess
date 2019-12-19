@@ -253,7 +253,8 @@ if __name__ == '__main__':
     import sys
 
     app = QtWidgets.QApplication([])
-    w = WindowMain()
+    # w = WindowMain()
     w_g = WindowGameMode()
-    w_o = WindowOptsMenu()
+    w_g.start_chess_game()
+    # w_o = WindowOptsMenu()
     sys.exit(app.exec_())
