@@ -181,6 +181,7 @@ def in_game_wrapper(ui_class, board_size):
                 piece = tile.property("Piece")
                 if piece == "" or piece[2] != self.state.turn[0]:
                     filtered_moves.add(directions.Vector2D(x, y))
+            filtered_moves.add(directions.Vector2D(*self.latest_click))
             self.possible_moves = filtered_moves
 
         def get_tile_at(self, x, y):
