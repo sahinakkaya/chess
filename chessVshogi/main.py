@@ -155,8 +155,8 @@ def in_game_wrapper(ui_class, board_size):
                                                                           ":/BG/resources/Wooden_noborder.jpg);",
                 "background-color: rgb(255, 255, 255);": "background-color: rgb(42, 192, 92);",
                 "background-color: rgb(42, 192, 92);": "background-color: rgb(255, 255, 255);",
-                "background-color: rgb(127, 127, 127);": "background-color: rgb(42, 191, 92);",
-                "background-color: rgb(42, 191, 92);": "background-color: rgb(127, 127, 127);"
+                "background-color: rgb(127, 127, 127);": "background-color: rgb(21, 96, 46);",
+                "background-color: rgb(21, 96, 46);": "background-color: rgb(127, 127, 127);"
                 }
             tile.setStyleSheet(stylesheet_remapper[tile.styleSheet()])
             pass
