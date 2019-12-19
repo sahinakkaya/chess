@@ -8,6 +8,7 @@ class Piece(QObject):
     """
     MOVEMENT = SetOfVectors()
     MOVEMENT_RANGE = 1
+    possible_moves_found = pyqtSignal(SetOfVectors)
 
     def __init__(self, board, x, y, promotable=False,
                  has_promoted=False,
@@ -22,6 +23,7 @@ class Piece(QObject):
         self.lambda_func = lambda x, y: self.get_possible_moves(8, x, y)
         board.mouse_clicked.connect(self.lambda_func)
         board.piece_moved.connect(self.update_position)
+        self.possible_moves_found.connect(board.set_possible_moves)
 
     @classmethod
     def name(cls):
@@ -40,7 +42,7 @@ class Piece(QObject):
                     move = (direction * i) + Vector2D(self.x, self.y)
                     if (1, 1) <= move <= (board_size, board_size):
                         possible_moves.add(move)
-            self.board.possible_moves = possible_moves
+            self.possible_moves_found.emit(possible_moves)
 
     def update_position(self, from_position, to_position):
         if from_position == (self.x, self.y):
@@ -48,7 +50,6 @@ class Piece(QObject):
         elif to_position == (self.x, self.y):
             self.board.mouse_clicked.disconnect(self.lambda_func)
             self.deleteLater()
-
 
 
 class ChessPiece(Piece):

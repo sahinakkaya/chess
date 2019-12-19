@@ -8,7 +8,7 @@ from chessVshogi.UI.ingame_chess import Ui_IngameChess
 from chessVshogi.UI.ingame_ui import Piece_Resource_Corresp
 from chessVshogi.UI.ingame_ui import Piece_Class_Corresp as pcc
 import chessVshogi.layouts
-import chessVshogi.pieces as pieces
+import chessVshogi.directions as directions
 
 
 class GameState:
@@ -174,6 +174,18 @@ def in_game_wrapper(ui_class, board_size):
                             "Tile_{}{}".format(i + 1, j + 1)).setProperty(
                         "Piece", piece)
 
+        def set_possible_moves(self, possible_moves):
+            filtered_moves = directions.SetOfVectors()
+            for x, y in possible_moves:
+                tile = self.get_tile_at(x, y)
+                piece = tile.property("Piece")
+                if piece == "" or piece[2] != self.state.turn[0]:
+                    filtered_moves.add(directions.Vector2D(x, y))
+            self.possible_moves = filtered_moves
+
+        def get_tile_at(self, x, y):
+            return getattr(self, "Tile_{}{}".format(x, y))
+
     return WindowInGame
 
 
@@ -203,9 +215,9 @@ class WindowGameMode(QtWidgets.QWidget, Ui_Gamemode_Menu):
         pieces_onboard = []
         for i in [1, 2, 7, 8]:
             for j in range(1, 9):
-                piece = pcc[chessVshogi.layouts.chess_default[j-1][i-1]](
+                piece = pcc[chessVshogi.layouts.chess_default[j - 1][i - 1]](
                     board=self.w_w, x=j, y=i
-                )
+                    )
                 pieces_onboard.append(piece)
         self.w_w.show()
         self.hide()
