@@ -6,8 +6,9 @@ class Piece(QObject):
     """
     Base class for a piece in the game
     """
-    MOVEMENT = SetOfVectors()
-    MOVEMENT_RANGE = 1
+    PRIMARY_MOVE = [SetOfVectors(), 1]
+    SECONDARY_MOVE = None
+    CAPTURE_MOVE = None
     possible_moves_found = pyqtSignal(SetOfVectors)
 
     def __init__(self, board, x, y, promotable=False,
@@ -18,11 +19,11 @@ class Piece(QObject):
         self.x = x
         self.y = y
         self.side = "W"  # as in White
+        self.is_moved = False
         self.promotable = promotable
         self.has_promoted = has_promoted
         self.is_dead = is_dead
-        self.lambda_func = lambda x, y: self.get_possible_moves(board.state.board_size, x, y)
-        board.mouse_clicked.connect(self.lambda_func)
+        board.mouse_clicked.connect(self.get_possible_moves)
         board.piece_moved.connect(self.update_position)
         self.possible_moves_found.connect(board.set_possible_moves)
 
@@ -30,24 +31,50 @@ class Piece(QObject):
     def name(cls):
         return cls.__name__
 
-    def get_possible_moves(self, board_size, x, y):
+    def get_possible_moves(self, x, y):
         """
         Return possible moves for the piece
-        :param board_size: an integer that is used for checking bounds
+        # TODO: Update this docstring
         :return: a set of Vector2D objects that a piece can go
         """
-        possible_moves = SetOfVectors()
+        print("test")
         if self.x == x and self.y == y:
-            for direction in self.MOVEMENT:
-                if self.side == "B":  # as in Black
-                    direction = reversed(direction)
-                for i in range(1, self.MOVEMENT_RANGE + 1):
-                    move = (direction * i) + Vector2D(self.x, self.y)
-                    if (1, 1) <= move <= (board_size, board_size):
-                        possible_moves.add(move)
-                        if not self.board.is_empty(move.x, move.y):
+            primary_movement, range_ = self.PRIMARY_MOVE
+            possible_moves = self.get_moves_for_movement(primary_movement,
+                                                         range_)
+
+            if self.SECONDARY_MOVE:
+                possible_moves.add(
+                    self.get_moves_for_movement(*self.SECONDARY_MOVE))
+            if self.CAPTURE_MOVE:
+                board_size = self.board.state.board_size
+                movement, range_ = self.CAPTURE_MOVE
+                for direction in movement:
+                    if self.side == "B":  # as in Black
+                        direction = reversed(direction)
+                    for i in range(1, range_ + 1):
+                        move = (direction * i) + Vector2D(self.x, self.y)
+                        if (1, 1) <= move <= (board_size, board_size):
+                            if self.board.is_empty(move.x, move.y):
+                                continue
+                            possible_moves.add(move)
                             break
+
             self.possible_moves_found.emit(possible_moves)
+
+    def get_moves_for_movement(self, movement, range_):
+        possible_moves = SetOfVectors()
+        board_size = self.board.state.board_size
+        for direction in movement:
+            if self.side == "B":  # as in Black
+                direction = reversed(direction)
+            for i in range(1, range_ + 1):
+                move = (direction * i) + Vector2D(self.x, self.y)
+                if (1, 1) <= move <= (board_size, board_size):
+                    possible_moves.add(move)
+                    if not self.board.is_empty(move.x, move.y):
+                        break
+        return possible_moves
 
     def update_position(self, from_position, to_position):
         if from_position == (self.x, self.y):
@@ -68,9 +95,8 @@ class ShogiPiece(Piece):
 
 
 class Pawn(ChessPiece):
-    MOVEMENT = Direction.FORWARD | (
-            Direction.HORIZONTAL & Direction.FORWARD)
-    MOVEMENT_RANGE = 2
+    PRIMARY_MOVE = [Direction.FORWARD, 2]
+    CAPTURE_MOVE = [Direction.HORIZONTAL & Direction.FORWARD, 1]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -86,41 +112,36 @@ class Pawn(ChessPiece):
 
 
 class Knight(ChessPiece):
-    MOVEMENT = SetOfVectors((2, 1), (1, 2)).flip(
-        axes="h", in_place=True).flip(axes="v", in_place=True)
-    MOVEMENT_RANGE = 1
+    PRIMARY_MOVE = [SetOfVectors((2, 1), (1, 2)).flip(
+        axes="h", in_place=True).flip(axes="v", in_place=True), 1]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
 
 class Rook(ChessPiece):
-    MOVEMENT = Direction.STRAIGHT
-    MOVEMENT_RANGE = 8
+    PRIMARY_MOVE = [Direction.STRAIGHT, 8]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
 
 class Bishop(ChessPiece):
-    MOVEMENT = Direction.DIAGONAL
-    MOVEMENT_RANGE = 8
+    PRIMARY_MOVE = [Direction.DIAGONAL, 8]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
 
 class Queen(ChessPiece):
-    MOVEMENT = Direction.STRAIGHT | Direction.DIAGONAL
-    MOVEMENT_RANGE = 8
+    PRIMARY_MOVE = [Direction.STRAIGHT | Direction.DIAGONAL, 8]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
 
 class King(ChessPiece):
-    MOVEMENT = Direction.STRAIGHT | Direction.DIAGONAL
-    MOVEMENT_RANGE = 1
+    PRIMARY_MOVE = [Direction.STRAIGHT | Direction.DIAGONAL, 1]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -159,7 +180,7 @@ class Lance(ShogiPiece):  # can be renamed to "Kyo"
 
 
 class S_Knight(ShogiPiece):  # can be renamed to "Kei" or "Forward Knight"
-    MOVEMENT = SetOfVectors((1, 2),).flip(axes="h", in_place=True)
+    MOVEMENT = SetOfVectors((1, 2), ).flip(axes="h", in_place=True)
     MOVEMENT_RANGE = 1
 
     def __init__(self, *args, **kwargs):
@@ -225,20 +246,20 @@ class Promoted_Silver:  # can be renamed to "Narigin"
 
 
 # TODO: Need to define special cases where one direction of movement is limited in range
-class Promoted_Rook:  # can be renamed to "Ryu" or "Dragon"
-    MOVEMENT = Rook.MOVEMENT
-    MOVEMENT_RANGE = -1
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-
-class Promoted_Bishop:  # can be renamed to "Uma" or "Horse"
-    MOVEMENT = Bishop.MOVEMENT
-    MOVEMENT_RANGE = -1
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+# class Promoted_Rook:  # can be renamed to "Ryu" or "Dragon"
+#     MOVEMENT = Rook.MOVEMENT
+#     MOVEMENT_RANGE = -1
+#
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
+#
+#
+# class Promoted_Bishop:  # can be renamed to "Uma" or "Horse"
+#     MOVEMENT = Bishop.MOVEMENT
+#     MOVEMENT_RANGE = -1
+#
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
 
 
 if __name__ == '__main__':
