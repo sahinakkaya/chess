@@ -15,6 +15,7 @@ class Piece(QObject):
                  has_promoted=False,
                  is_dead=False):
         super(Piece, self).__init__()
+        self.CAPTURE_MOVE = self.PRIMARY_MOVE
         self.board = board
         self.x = x
         self.y = y
@@ -70,13 +71,14 @@ class Piece(QObject):
             for i in range(1, range_ + 1):
                 move = (direction * i) + Vector2D(self.x, self.y)
                 if (1, 1) <= move <= (board_size, board_size):
-                    possible_moves.add(move)
                     if not self.board.is_empty(move.x, move.y):
                         break
+                    possible_moves.add(move)
         return possible_moves
 
     def update_position(self, from_position, to_position):
         if from_position == (self.x, self.y):
+            print("called!", self.name())
             self.x, self.y = to_position
         elif to_position == (self.x, self.y):
             self.board.mouse_clicked.disconnect(self.get_possible_moves)
@@ -87,19 +89,22 @@ class ChessPiece(Piece):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-
 class ShogiPiece(Piece):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
 
 class Pawn(ChessPiece):
-    PRIMARY_MOVE = [SetOfVectors(Direction.FORWARD), 2]
-    CAPTURE_MOVE = [Direction.HORIZONTAL & Direction.FORWARD, 1]
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.PRIMARY_MOVE = [SetOfVectors(Direction.FORWARD), 2]
+        self.CAPTURE_MOVE = [Direction.HORIZONTAL & Direction.FORWARD, 1]
 
+    def update_position(self, from_position, to_position):
+        if from_position == (self.x, self.y):
+            print(self.x, self.y, "yes")
+            self.PRIMARY_MOVE[1] = 1
+        super().update_position(from_position, to_position)
 
 # class BlackPawn(ChessPiece):
 #     MOVEMENT = Direction.BACKWARD | (

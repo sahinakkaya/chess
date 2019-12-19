@@ -221,7 +221,7 @@ class WindowGameMode(QtWidgets.QWidget, Ui_Gamemode_Menu):
                     board=self.w_w, x=j, y=i
                     )
                 piece.side = chessVshogi.layouts.chess_default[j - 1][i - 1][2]  # 3rd character is piece side
-                self.pieces_onboard.append(piece)
+                self.pieces_on_board.append(piece)
         self.w_w.show()
         self.hide()
 
@@ -234,7 +234,7 @@ class WindowGameMode(QtWidgets.QWidget, Ui_Gamemode_Menu):
                         board=self.w_w, x=j+1, y=i+1
                     )
                     piece.side = chessVshogi.layouts.shogi_default[j][i][2]  # 3rd character is piece side
-                    self.pieces_onboard.append(piece)
+                    self.pieces_on_board.append(piece)
                 except KeyError:
                     pass
         self.w_w.show()
@@ -250,7 +250,7 @@ class WindowGameMode(QtWidgets.QWidget, Ui_Gamemode_Menu):
                         board=self.w_w, x=j+1, y=i+1
                     )
                     piece.side = chessVshogi.layouts.hybrid_default[j][i][2]  # 3rd character is piece side
-                    self.pieces_onboard.append(piece)
+                    self.pieces_on_board.append(piece)
                 except KeyError:
                     pass
         self.w_w.draw_board()
