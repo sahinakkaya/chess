@@ -23,6 +23,7 @@ class Piece(QObject):
         self.promotable = promotable
         self.has_promoted = has_promoted
         self.is_dead = is_dead
+        self.get_possible_moves = self.get_possible_moves
         board.mouse_clicked.connect(self.get_possible_moves)
         board.piece_moved.connect(self.update_position)
         self.possible_moves_found.connect(board.set_possible_moves)
@@ -95,7 +96,7 @@ class ShogiPiece(Piece):
 
 
 class Pawn(ChessPiece):
-    PRIMARY_MOVE = [Direction.FORWARD, 2]
+    PRIMARY_MOVE = [SetOfVectors(Direction.FORWARD), 2]
     CAPTURE_MOVE = [Direction.HORIZONTAL & Direction.FORWARD, 1]
 
     def __init__(self, *args, **kwargs):
