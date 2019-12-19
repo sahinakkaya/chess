@@ -17,10 +17,11 @@ class Piece(QObject):
         self.board = board
         self.x = x
         self.y = y
+        self.side = "W"  # as in White
         self.promotable = promotable
         self.has_promoted = has_promoted
         self.is_dead = is_dead
-        self.lambda_func = lambda x, y: self.get_possible_moves(8, x, y)
+        self.lambda_func = lambda x, y: self.get_possible_moves(board.state.board_size, x, y)
         board.mouse_clicked.connect(self.lambda_func)
         board.piece_moved.connect(self.update_position)
         self.possible_moves_found.connect(board.set_possible_moves)
@@ -38,6 +39,8 @@ class Piece(QObject):
         possible_moves = SetOfVectors()
         if self.x == x and self.y == y:
             for direction in self.MOVEMENT:
+                if self.side == "B":  # as in Black
+                    direction = reversed(direction)
                 for i in range(1, self.MOVEMENT_RANGE + 1):
                     move = (direction * i) + Vector2D(self.x, self.y)
                     if (1, 1) <= move <= (board_size, board_size):
@@ -64,7 +67,7 @@ class ShogiPiece(Piece):
         super().__init__(*args, **kwargs)
 
 
-class WhitePawn(ChessPiece):
+class Pawn(ChessPiece):
     MOVEMENT = Direction.FORWARD | (
             Direction.HORIZONTAL & Direction.FORWARD)
     MOVEMENT_RANGE = 2
@@ -73,13 +76,13 @@ class WhitePawn(ChessPiece):
         super().__init__(*args, **kwargs)
 
 
-class BlackPawn(ChessPiece):
-    MOVEMENT = Direction.BACKWARD | (
-            Direction.HORIZONTAL & Direction.BACKWARD)
-    MOVEMENT_RANGE = 2
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+# class BlackPawn(ChessPiece):
+#     MOVEMENT = Direction.BACKWARD | (
+#             Direction.HORIZONTAL & Direction.BACKWARD)
+#     MOVEMENT_RANGE = 2
+#
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
 
 
 class Knight(ChessPiece):
@@ -148,7 +151,7 @@ class S_Bishop(ShogiPiece):  # can be renamed to "Kaku"
 
 
 class Lance(ShogiPiece):  # can be renamed to "Kyo"
-    MOVEMENT = Direction.FORWARD
+    MOVEMENT = SetOfVectors(Direction.FORWARD)
     MOVEMENT_RANGE = 8
 
     def __init__(self, *args, **kwargs):
@@ -156,7 +159,7 @@ class Lance(ShogiPiece):  # can be renamed to "Kyo"
 
 
 class S_Knight(ShogiPiece):  # can be renamed to "Kei" or "Forward Knight"
-    MOVEMENT = Vector2D(1, 2).flip(axes="h", in_place=True)
+    MOVEMENT = SetOfVectors((1, 2),).flip(axes="h", in_place=True)
     MOVEMENT_RANGE = 1
 
     def __init__(self, *args, **kwargs):
@@ -164,7 +167,7 @@ class S_Knight(ShogiPiece):  # can be renamed to "Kei" or "Forward Knight"
 
 
 class S_Pawn(ShogiPiece):  # can be renamed to "Fu"
-    MOVEMENT = Direction.FORWARD
+    MOVEMENT = SetOfVectors(Direction.FORWARD)
     MOVEMENT_RANGE = 1
 
     def __init__(self, *args, **kwargs):

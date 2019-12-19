@@ -164,7 +164,6 @@ def in_game_wrapper(ui_class, board_size):
         def load_layout(self, layout):
             for i, line in enumerate(layout):
                 for j, piece in enumerate(line):
-                    print("Tile_{}{}".format(i + 1, j + 1), "set to", piece)
                     getattr(self,
                             "Tile_{}{}".format(i + 1, j + 1)).setProperty(
                         "Piece", piece)
@@ -219,20 +218,43 @@ class WindowGameMode(QtWidgets.QWidget, Ui_Gamemode_Menu):
                 piece = pcc[chessVshogi.layouts.chess_default[j - 1][i - 1]](
                     board=self.w_w, x=j, y=i
                     )
+                piece.side = chessVshogi.layouts.chess_default[j - 1][i - 1][2]  # 3rd character is piece side
                 pieces_onboard.append(piece)
         self.w_w.show()
         self.hide()
 
     def start_shogi_game(self):
-        w_w = in_game_wrapper(Ui_IngameShogi, 9)()
-        w_w.show()
+        self.w_w = in_game_wrapper(Ui_IngameShogi, 9)()
+        pieces_onboard = []
+        for i in range(9):
+            for j in range(9):
+                try:
+                    piece = pcc[chessVshogi.layouts.shogi_default[j][i]](
+                        board=self.w_w, x=j+1, y=i+1
+                    )
+                    piece.side = chessVshogi.layouts.shogi_default[j][i][2]  # 3rd character is piece side
+                    pieces_onboard.append(piece)
+                except KeyError:
+                    pass
+        self.w_w.show()
         self.hide()
 
     def start_hybrid_game(self):
-        w_w = in_game_wrapper(Ui_IngameShogi, 9)()
-        w_w.load_layout(chessVshogi.layouts.hybrid_default)
-        w_w.draw_board()
-        w_w.show()
+        self.w_w = in_game_wrapper(Ui_IngameShogi, 9)()
+        self.w_w.load_layout(chessVshogi.layouts.hybrid_default)
+        pieces_onboard = []
+        for i in range(9):
+            for j in range(9):
+                try:
+                    piece = pcc[chessVshogi.layouts.hybrid_default[j][i]](
+                        board=self.w_w, x=j+1, y=i+1
+                    )
+                    piece.side = chessVshogi.layouts.hybrid_default[j][i][2]  # 3rd character is piece side
+                    pieces_onboard.append(piece)
+                except KeyError:
+                    pass
+        self.w_w.draw_board()
+        self.w_w.show()
         self.hide()
 
     def closeEvent(self, event):
@@ -266,8 +288,8 @@ if __name__ == '__main__':
     import sys
 
     app = QtWidgets.QApplication([])
-    # w = WindowMain()
+    w = WindowMain()
     w_g = WindowGameMode()
-    w_g.start_chess_game()
-    # w_o = WindowOptsMenu()
+    # w_g.start_chess_game()
+    w_o = WindowOptsMenu()
     sys.exit(app.exec_())
