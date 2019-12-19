@@ -93,9 +93,7 @@ def in_game_wrapper(ui_class, board_size):
                     if self.state.action == "Hold":
                         self.state.action = "Wait"
                         piece_tile = self.get_last_clicked_tile()
-                        destination_tile = getattr(self,
-                                                   "Tile_{}{}".format(posx,
-                                                                      posy))
+                        destination_tile = self.get_tile_at(posx, posy)
                         print("attempt to move the piece",
                               piece_tile.property("Piece"), "at",
                               self.latest_click[0], self.latest_click[1],
@@ -116,8 +114,7 @@ def in_game_wrapper(ui_class, board_size):
                             self.state.action = "Hold"
                         if self.state.action != "Hold":
                             for i in self.possible_moves:
-                                tile = getattr(self,
-                                               "Tile_{}{}".format(i.x, i.y))
+                                tile = self.get_tile_at(i.x, i.y)
                                 self.toggle_highlight_tile(tile)
                     elif source.pixmap() is not None:
                         print("You are trying to move",
@@ -129,8 +126,7 @@ def in_game_wrapper(ui_class, board_size):
                             self.latest_click = (posx, posy)
                             self.mouse_clicked.emit(posx, posy)
                             for i in self.possible_moves:
-                                tile = getattr(self,
-                                               "Tile_{}{}".format(i.x, i.y))
+                                tile = self.get_tile_at(i.x, i.y)
                                 self.toggle_highlight_tile(tile)
                             print("State changed to Hold")
             return super(WindowInGame, self).eventFilter(source, event)
