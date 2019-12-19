@@ -6,6 +6,7 @@ from chessVshogi.UI.options_menu import Ui_Options_Menu
 from chessVshogi.UI.ingame_shogi import Ui_IngameShogi
 from chessVshogi.UI.ingame_chess import Ui_IngameChess
 from chessVshogi.UI.ingame_ui import Piece_Resource_Corresp
+from chessVshogi.UI.ingame_ui import Piece_Class_Corresp as pcc
 import chessVshogi.layouts
 import chessVshogi.pieces as pieces
 
@@ -137,6 +138,7 @@ def in_game_wrapper(ui_class, board_size):
         def get_last_clicked_tile(self):
             piece_tile = getattr(self, "Tile_{}{}".format(
                 self.latest_click[0], self.latest_click[1]))
+            print("last clicked tile:", piece_tile.property("Piece"))
             return piece_tile
 
         def change_turn(self):
@@ -199,36 +201,15 @@ class WindowGameMode(QtWidgets.QWidget, Ui_Gamemode_Menu):
     def start_chess_game(self):
         self.w_w = in_game_wrapper(Ui_IngameChess, 8)()
         pawns = []
-        for i in range(1, 9):
-            w_pawn = pieces.WhitePawn(board=self.w_w, x=i, y=2,
-                                      promotable=True)
-            b_pawn = pieces.BlackPawn(board=self.w_w, x=i, y=7,
-                                      promotable=True)
-            pawns.append(w_pawn)
-            pawns.append(b_pawn)
-
-        bishops = [pieces.Bishop(board=self.w_w, x=3, y=1),
-                   pieces.Bishop(board=self.w_w, x=6, y=1),
-                   pieces.Bishop(board=self.w_w, x=3, y=8),
-                   pieces.Bishop(board=self.w_w, x=6, y=8)]
-
-        rooks = [pieces.Rook(board=self.w_w, x=1, y=1),
-                 pieces.Rook(board=self.w_w, x=8, y=1),
-                 pieces.Rook(board=self.w_w, x=1, y=8),
-                 pieces.Rook(board=self.w_w, x=8, y=8)]
+        pieces_onboard = []
+        for i in [1, 2, 7, 8]:
+            for j in range(1, 9):
+                piece = pcc[chessVshogi.layouts.chess_default[j-1][i-1]](
+                    board=self.w_w, x=j, y=i
+                )
+                pieces_onboard.append(piece)
         self.w_w.show()
         self.hide()
-
-        kings = [pieces.King(board=self.w_w, x=5, y=1),
-                 pieces.King(board=self.w_w, x=5, y=8)]
-
-        queens = [pieces.Queen(board=self.w_w, x=4, y=1),
-                  pieces.Queen(self.w_w, 4, 8)]
-
-        knights = [pieces.Knight(self.w_w, x=2, y=1),
-                   pieces.Knight(self.w_w, x=7, y=1),
-                   pieces.Knight(self.w_w, x=2, y=8),
-                   pieces.Knight(self.w_w, x=7, y=8)]
 
     def start_shogi_game(self):
         w_w = in_game_wrapper(Ui_IngameShogi, 9)()

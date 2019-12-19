@@ -9,3 +9,14 @@ hybrid_default = [
     ["C_WN", "S_WR", "S_WP", "", "", "", "S_BP", "S_BB", "S_BN"],
     ["C_WR", "", "S_WP", "", "", "", "S_BP", "", "S_BL"]
 ]
+
+chess_default = [
+    ["C_WR", "C_WP", "", "", "", "", "C_BP", "C_BR"],
+    ["C_WN", "C_WP", "", "", "", "", "C_BP", "C_BN"],
+    ["C_WB", "C_WP", "", "", "", "", "C_BP", "C_BB"],
+    ["C_WQ", "C_WP", "", "", "", "", "C_BP", "C_BQ"],
+    ["C_WK", "C_WP", "", "", "", "", "C_BP", "C_BK"],
+    ["C_WB", "C_WP", "", "", "", "", "C_BP", "C_BB"],
+    ["C_WN", "C_WP", "", "", "", "", "C_BP", "C_BN"],
+    ["C_WR", "C_WP", "", "", "", "", "C_BP", "C_BR"]
+]

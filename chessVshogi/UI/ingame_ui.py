@@ -1,3 +1,5 @@
+import chessVshogi.pieces as pieces
+
 Piece_Resource_Corresp = {
     "C_WP": ":/Chess/resources/chess_48/Chess_plt48.png",
     "C_WR": ":/Chess/resources/chess_48/Chess_rlt48.png",
@@ -27,4 +29,35 @@ Piece_Resource_Corresp = {
     "S_WK": ":/Ichiji/resources/Ichiji/Sou.png",
     "S_WB": ":/Ichiji/resources/Ichiji/Skaku.png",
     "S_WR": ":/Ichiji/resources/Ichiji/Shi.png",
+}
+
+Piece_Class_Corresp = {
+    "C_WP": pieces.WhitePawn,
+    "C_WR": pieces.Rook,
+    "C_WN": pieces.Knight,
+    "C_WB": pieces.Bishop,
+    "C_WQ": pieces.Queen,
+    "C_WK": pieces.King,
+    "C_BP": pieces.BlackPawn,
+    "C_BR": pieces.Rook,
+    "C_BN": pieces.Knight,
+    "C_BB": pieces.Bishop,
+    "C_BQ": pieces.Queen,
+    "C_BK": pieces.King,
+    "S_BP": "",
+    "S_BL": "",
+    "S_BN": "",
+    "S_BS": "",
+    "S_BG": "",
+    "S_BK": "",
+    "S_BB": "",
+    "S_BR": "",
+    "S_WP": "",
+    "S_WL": "",
+    "S_WN": "",
+    "S_WS": "",
+    "S_WG": "",
+    "S_WK": "",
+    "S_WB": "",
+    "S_WR": ""
 }
