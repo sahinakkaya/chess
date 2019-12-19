@@ -44,8 +44,10 @@ class Piece(QObject):
 
     def update_position(self, from_position, to_position):
         if from_position == (self.x, self.y):
+            print(f"I'm {type(self).__name__}")
             self.x, self.y = to_position
         elif to_position == (self.x, self.y):
+            print(f"I'm deleted {type(self).__name__}")
             del self
 
 

@@ -200,7 +200,6 @@ class WindowGameMode(QtWidgets.QWidget, Ui_Gamemode_Menu):
 
     def start_chess_game(self):
         self.w_w = in_game_wrapper(Ui_IngameChess, 8)()
-        pawns = []
         pieces_onboard = []
         for i in [1, 2, 7, 8]:
             for j in range(1, 9):
