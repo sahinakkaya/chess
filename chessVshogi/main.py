@@ -1,5 +1,3 @@
-import time
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import pyqtSignal, QEvent
 from chessVshogi.UI.mainwindow import Ui_MainWindow
@@ -43,9 +41,8 @@ def in_game_wrapper(ui_class, board_size):
             self.state = GameState(board_size)
             self.timeWhite.setTime(QtCore.QTime(0, 10))
             self.timeBlack.setTime(QtCore.QTime(0, 10))
-            self.state.wt.timeout.connect(self.whiteCD)
-            self.state.bt.timeout.connect(self.blackCD)
-            # self.Ui_IngameChess = Ui_IngameChess
+            self.state.wt.timeout.connect(lambda: self.cool_down("White"))
+            self.state.bt.timeout.connect(lambda: self.cool_down("Black"))
             for i in range(11, 100):
                 try:
                     tile = getattr(self, "Tile_{}".format(i))
@@ -63,46 +60,33 @@ def in_game_wrapper(ui_class, board_size):
             self.state.wt.start()
             event.accept()
 
-        def whiteCD(self):
-            self.timeWhite.setTime(self.timeWhite.time().addSecs(-1))
-
-        def blackCD(self):
-            self.timeBlack.setTime(self.timeBlack.time().addSecs(-1))
+        def cool_down(self, color):
+            time_edit = getattr(self, f"time{color}")
+            time_edit.setTime(time_edit.time().addSecs(-1))
 
         def draw_board(self):
-            # O tile'daki piece'i ekrana çiz
             for i in range(11, 100):
                 try:
                     tile = getattr(self, "Tile_{}".format(i))
                     if tile.property("Piece") not in ("", "shadow"):
-                        tile.setPixmap(QtGui.QPixmap(
-                            Piece_Resource_Corresp[tile.property("Piece")]))
+                        pixmap = Piece_Resource_Corresp[tile.property("Piece")]
+                        tile.setPixmap(QtGui.QPixmap(pixmap))
                     else:
                         tile.clear()
                 except AttributeError:
                     pass
 
         def eventFilter(self, source, event):
-            # Saha içinde mouse'a tıklandıysa
             if event.type() == QEvent.MouseButtonPress and source in self.tiles:
-
-                # Sol click ile tıklandıysa
                 if event.button() == 1:
-                    self.clicked_tile = source
-                    posx, posy = int(self.clicked_tile.objectName()[-2]), \
-                                 int(self.clicked_tile.objectName()[-1])
+                    posx, posy = map(int, iter(source.objectName()[-2:]))
                     print(self.state.turn, self.state.action)
                     if self.state.action == "Hold":
                         self.relocate_piece(posx, posy)
-                    elif self.clicked_tile.pixmap() is not None:
+                    elif source.pixmap() is not None:
                         self.hold_piece(posx, posy)
 
             return super(WindowInGame, self).eventFilter(source, event)
-
-        def get_last_clicked_tile(self):
-            piece_tile = getattr(self, "Tile_{}{}".format(
-                self.latest_click[0], self.latest_click[1]))
-            return piece_tile
 
         def change_turn(self):
             if self.state.turn == "White":
@@ -116,7 +100,7 @@ def in_game_wrapper(ui_class, board_size):
             self.labelTurn.setText("Turn: {}".format(self.state.turn))
 
         def hold_piece(self, posx, posy):
-            if self.clicked_tile.property("Piece")[2] != self.state.turn[0]:
+            if self.get_piece(posx, posy)[2] != self.state.turn[0]:
                 pass
             elif self.state.action == "Wait":
                 self.state.action = "Hold"
@@ -191,9 +175,7 @@ def in_game_wrapper(ui_class, board_size):
         def load_layout(self, layout):
             for i, line in enumerate(layout):
                 for j, piece in enumerate(line):
-                    getattr(self,
-                            "Tile_{}{}".format(i + 1, j + 1)).setProperty(
-                        "Piece", piece)
+                    self.get_tile_at(i + 1, j + 1).setProperty("Piece", piece)
 
         def set_possible_moves(self, possible_moves):
             filtered_moves = directions.SetOfVectors()
@@ -213,25 +195,25 @@ def in_game_wrapper(ui_class, board_size):
         def get_tile_at(self, x, y):
             return getattr(self, "Tile_{}{}".format(x, y))
 
+        def get_last_clicked_tile(self):
+            return self.get_tile_at(*self.latest_click)
+
         def load_pieces(self, layout):
             for i in range(self.state.board_size):
                 for j in range(self.state.board_size):
                     try:
                         piece = pcc[layout[j][i]](board=self, x=j + 1, y=i + 1)
-                        piece.side = layout[j][i][2]  # 3rd character is piece side
+                        piece.side = layout[j][i][2]
                         self.state.pieces_on_board.append(piece)
                     except KeyError:
                         pass
 
         def get_king_position(self):
-            if self.state.turn == "White":
-                for piece in self.state.pieces_on_board:
-                    if piece.name() in ["King", "S_King"] and piece.side == "W":
-                        return piece.x, piece.y
-            else:
-                for piece in self.state.pieces_on_board:
-                    if piece.name() in ["King", "S_King"] and piece.side == "B":
-                        return piece.x, piece.y
+            for piece in self.state.pieces_on_board:
+                if piece.name() in ["King", "S_King"] and \
+                        piece.side == self.state.turn[0]:
+                    return piece.x, piece.y
+
     return WindowInGame
 
 
@@ -254,7 +236,7 @@ class WindowGameMode(QtWidgets.QWidget, Ui_Gamemode_Menu):
         self.buttonChess.clicked.connect(self.start_chess_game)
         self.buttonShogi.clicked.connect(self.start_shogi_game)
         self.buttonHybrid.clicked.connect(self.start_hybrid_game)
-        self.pieces_on_board = []
+        # FIXME: Is this really needed?
         self.closeEvent = self.closeEvent
 
     def start_chess_game(self):
