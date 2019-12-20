@@ -78,7 +78,6 @@ class Piece(QObject):
 
     def update_position(self, from_position, to_position):
         if from_position == (self.x, self.y):
-            print("called!", self.name())
             self.x, self.y = to_position
         elif to_position == (self.x, self.y):
             self.board.mouse_clicked.disconnect(self.get_possible_moves)
@@ -102,17 +101,8 @@ class Pawn(ChessPiece):
 
     def update_position(self, from_position, to_position):
         if from_position == (self.x, self.y):
-            print(self.x, self.y, "yes")
             self.PRIMARY_MOVE[1] = 1
         super().update_position(from_position, to_position)
-
-# class BlackPawn(ChessPiece):
-#     MOVEMENT = Direction.BACKWARD | (
-#             Direction.HORIZONTAL & Direction.BACKWARD)
-#     MOVEMENT_RANGE = 2
-#
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
 
 
 class Knight(ChessPiece):
