@@ -215,47 +215,35 @@ class WindowGameMode(QtWidgets.QWidget, Ui_Gamemode_Menu):
 
     def start_chess_game(self):
         self.w_w = in_game_wrapper(Ui_IngameChess, 8)()
-        for i in [1, 2, 7, 8]:
-            for j in range(1, 9):
-                piece = pcc[chessVshogi.layouts.chess_default[j - 1][i - 1]](
-                    board=self.w_w, x=j, y=i
-                    )
-                piece.side = chessVshogi.layouts.chess_default[j - 1][i - 1][2]  # 3rd character is piece side
-                self.pieces_on_board.append(piece)
+        self.load_pieces(chessVshogi.layouts.chess_default, 8)
         self.w_w.show()
         self.hide()
 
     def start_shogi_game(self):
         self.w_w = in_game_wrapper(Ui_IngameShogi, 9)()
-        for i in range(9):
-            for j in range(9):
-                try:
-                    piece = pcc[chessVshogi.layouts.shogi_default[j][i]](
-                        board=self.w_w, x=j+1, y=i+1
-                    )
-                    piece.side = chessVshogi.layouts.shogi_default[j][i][2]  # 3rd character is piece side
-                    self.pieces_on_board.append(piece)
-                except KeyError:
-                    pass
+        self.load_pieces(chessVshogi.layouts.shogi_default, 9)
         self.w_w.show()
         self.hide()
 
     def start_hybrid_game(self):
         self.w_w = in_game_wrapper(Ui_IngameShogi, 9)()
         self.w_w.load_layout(chessVshogi.layouts.hybrid_default)
-        for i in range(9):
-            for j in range(9):
-                try:
-                    piece = pcc[chessVshogi.layouts.hybrid_default[j][i]](
-                        board=self.w_w, x=j+1, y=i+1
-                    )
-                    piece.side = chessVshogi.layouts.hybrid_default[j][i][2]  # 3rd character is piece side
-                    self.pieces_on_board.append(piece)
-                except KeyError:
-                    pass
+        self.load_pieces(chessVshogi.layouts.hybrid_default, 9)
         self.w_w.draw_board()
         self.w_w.show()
         self.hide()
+
+    def load_pieces(self, layout, size):
+        for i in range(size):
+            for j in range(size):
+                try:
+                    piece = pcc[layout[j][i]](
+                        board=self.w_w, x=j+1, y=i+1
+                    )
+                    piece.side = layout[j][i][2]  # 3rd character is piece side
+                    self.pieces_on_board.append(piece)
+                except KeyError:
+                    pass
 
     def closeEvent(self, event):
         back_to_main()
