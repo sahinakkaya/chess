@@ -119,14 +119,13 @@ def in_game_wrapper(ui_class, board_size):
                 self.state.action = "Hold"
                 self.latest_click = (posx, posy)
                 self.mouse_clicked.emit(posx, posy)
-                for i in self.possible_moves:
-                    tile = self.get_tile_at(i.x, i.y)
-                    self.toggle_highlight_tile(tile)
+                self.toggle_highlight_for_possible_moves()
 
         def relocate_piece(self, posx, posy):
             self.state.action = "Wait"
             piece_tile = self.get_last_clicked_tile()
             destination_tile = self.get_tile_at(posx, posy)
+            clicked_piece = self.get_piece(posx, posy)
             if self.latest_click == (posx, posy):
                 pass
             elif (posx, posy) in self.possible_moves:
@@ -138,12 +137,18 @@ def in_game_wrapper(ui_class, board_size):
                 piece_tile.setProperty("Piece", '')
                 self.draw_board()
                 self.change_turn()
+            elif clicked_piece and clicked_piece[2] == self.state.turn[0]:
+                self.toggle_highlight_for_possible_moves()
+                self.hold_piece(posx, posy)
             else:
                 self.state.action = "Hold"
             if self.state.action != "Hold":
-                for i in self.possible_moves:
-                    tile = self.get_tile_at(i.x, i.y)
-                    self.toggle_highlight_tile(tile)
+                self.toggle_highlight_for_possible_moves()
+
+        def toggle_highlight_for_possible_moves(self):
+            for i in self.possible_moves:
+                tile = self.get_tile_at(i.x, i.y)
+                self.toggle_highlight_tile(tile)
 
         def toggle_highlight_tile(self, tile):
             stylesheet_remapper = {
