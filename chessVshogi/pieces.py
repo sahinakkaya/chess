@@ -105,9 +105,9 @@ class Pawn(ChessPiece):
         self.moved_double_square.connect(self.board.handle_double_square_move)
 
     def update_position(self, from_position, to_position, moved_piece):
+        self.shadow = None
         if from_position == (self.x, self.y):
             self.PRIMARY_MOVE[1] = 1
-            self.shadow = None
             difference = Vector2D(*to_position) - Vector2D(*from_position)
             if difference.y in (2, -2):
                 summation = (Vector2D(*from_position) + Vector2D(*to_position))
