@@ -29,7 +29,7 @@ class GameState:
 def in_game_wrapper(ui_class, board_size):
     class WindowInGame(QtWidgets.QWidget, ui_class):
         mouse_clicked = pyqtSignal(int, int)
-        piece_moved = pyqtSignal(tuple, tuple)
+        piece_moved = pyqtSignal(tuple, tuple, str)
 
         def __init__(self):
             super().__init__()
@@ -134,12 +134,15 @@ def in_game_wrapper(ui_class, board_size):
                 destination_tile.setProperty("Piece",
                                              piece_tile.property("Piece"))
                 piece_tile.setProperty("Piece", '')
+                moved_piece = destination_tile.property("Piece")[3]
                 if clicked_piece == "shadow":
-                    self.remove_dead_pawn()
+                    if moved_piece == "P":
+                        self.remove_dead_pawn()
                 else:
                     self.clear_shadows()
                 self.latest_shadow = None
-                self.piece_moved.emit(self.latest_click, (posx, posy))
+                self.piece_moved.emit(self.latest_click, (posx, posy),
+                                      moved_piece)
                 self.draw_board()
                 self.change_turn()
             elif clicked_piece and clicked_piece[2] == self.state.turn[0]:

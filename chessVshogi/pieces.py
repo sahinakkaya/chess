@@ -76,7 +76,7 @@ class Piece(QObject):
                     possible_moves.add(move)
         return possible_moves
 
-    def update_position(self, from_position, to_position):
+    def update_position(self, from_position, to_position, moved_piece):
         if from_position == (self.x, self.y):
             self.x, self.y = to_position
         elif to_position == (self.x, self.y):
@@ -104,7 +104,7 @@ class Pawn(ChessPiece):
         self.shadow = None
         self.moved_double_square.connect(self.board.handle_double_square_move)
 
-    def update_position(self, from_position, to_position):
+    def update_position(self, from_position, to_position, moved_piece):
         if from_position == (self.x, self.y):
             self.PRIMARY_MOVE[1] = 1
             self.shadow = None
@@ -113,9 +113,9 @@ class Pawn(ChessPiece):
                 summation = (Vector2D(*from_position) + Vector2D(*to_position))
                 self.shadow = summation // 2
                 self.moved_double_square.emit(*self.shadow, *to_position)
-        elif Vector2D(*to_position) == self.shadow:
+        elif Vector2D(*to_position) == self.shadow and moved_piece == "P":
             to_position = self.x, self.y
-        super().update_position(from_position, to_position)
+        super().update_position(from_position, to_position, moved_piece)
 
 
 class Knight(ChessPiece):
