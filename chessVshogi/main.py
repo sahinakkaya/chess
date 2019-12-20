@@ -16,6 +16,7 @@ import chessVshogi.directions as directions
 class GameState:
     def __init__(self, sz):
         super().__init__()
+        self.pieces_on_board = []
         self.board_size = sz
         self.turn = "White"
         self.action = "Wait"  # Wait - Hold
@@ -212,6 +213,25 @@ def in_game_wrapper(ui_class, board_size):
         def get_tile_at(self, x, y):
             return getattr(self, "Tile_{}{}".format(x, y))
 
+        def load_pieces(self, layout):
+            for i in range(self.state.board_size):
+                for j in range(self.state.board_size):
+                    try:
+                        piece = pcc[layout[j][i]](board=self, x=j + 1, y=i + 1)
+                        piece.side = layout[j][i][2]  # 3rd character is piece side
+                        self.state.pieces_on_board.append(piece)
+                    except KeyError:
+                        pass
+
+        def get_king_position(self):
+            if self.state.turn == "White":
+                for piece in self.state.pieces_on_board:
+                    if piece.name() in ["King", "S_King"] and piece.side == "W":
+                        return piece.x, piece.y
+            else:
+                for piece in self.state.pieces_on_board:
+                    if piece.name() in ["King", "S_King"] and piece.side == "B":
+                        return piece.x, piece.y
     return WindowInGame
 
 
@@ -239,33 +259,23 @@ class WindowGameMode(QtWidgets.QWidget, Ui_Gamemode_Menu):
 
     def start_chess_game(self):
         self.w_w = in_game_wrapper(Ui_IngameChess, 8)()
-        self.load_pieces(chessVshogi.layouts.chess_default, 8)
+        self.w_w.load_pieces(chessVshogi.layouts.chess_default)
         self.w_w.show()
         self.hide()
 
     def start_shogi_game(self):
         self.w_w = in_game_wrapper(Ui_IngameShogi, 9)()
-        self.load_pieces(chessVshogi.layouts.shogi_default, 9)
+        self.w_w.load_pieces(chessVshogi.layouts.shogi_default)
         self.w_w.show()
         self.hide()
 
     def start_hybrid_game(self):
         self.w_w = in_game_wrapper(Ui_IngameShogi, 9)()
         self.w_w.load_layout(chessVshogi.layouts.hybrid_default)
-        self.load_pieces(chessVshogi.layouts.hybrid_default, 9)
+        self.w_w.load_pieces(chessVshogi.layouts.hybrid_default)
         self.w_w.draw_board()
         self.w_w.show()
         self.hide()
-
-    def load_pieces(self, layout, size):
-        for i in range(size):
-            for j in range(size):
-                try:
-                    piece = pcc[layout[j][i]](board=self.w_w, x=j + 1, y=i + 1)
-                    piece.side = layout[j][i][2]  # 3rd character is piece side
-                    self.pieces_on_board.append(piece)
-                except KeyError:
-                    pass
 
     def closeEvent(self, event):
         back_to_main()
