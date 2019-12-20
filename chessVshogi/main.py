@@ -1,7 +1,7 @@
 import time
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtCore import pyqtSignal
+from PyQt5.QtCore import pyqtSignal, QEvent
 from chessVshogi.UI.mainwindow import Ui_MainWindow
 from chessVshogi.UI.gamemode_menu import Ui_Gamemode_Menu
 from chessVshogi.UI.options_menu import Ui_Options_Menu
@@ -35,12 +35,13 @@ def in_game_wrapper(ui_class, board_size):
             super().__init__()
             self.setupUi(self)
             self.tiles = []
+            self.possible_moves = None
+            self.latest_click = None
             self.state = GameState(board_size)
             self.timeWhite.setTime(QtCore.QTime(0, 10))
             self.timeBlack.setTime(QtCore.QTime(0, 10))
             self.state.wt.timeout.connect(self.whiteCD)
             self.state.bt.timeout.connect(self.blackCD)
-            self.showEvent = self.showEvent
             # self.Ui_IngameChess = Ui_IngameChess
             for i in range(11, 100):
                 try:
@@ -80,7 +81,7 @@ def in_game_wrapper(ui_class, board_size):
 
         def eventFilter(self, source, event):
             # Saha içinde mouse'a tıklandıysa
-            if event.type() == QtCore.QEvent.MouseButtonPress and source in self.tiles:
+            if event.type() == QEvent.MouseButtonPress and source in self.tiles:
 
                 # Sol click ile tıklandıysa
                 if event.button() == 1:
@@ -156,7 +157,6 @@ def in_game_wrapper(ui_class, board_size):
                 "background-color: rgb(21, 96, 46);": "background-color: rgb(127, 127, 127);"
                 }
             tile.setStyleSheet(stylesheet_remapper[tile.styleSheet()])
-            pass
 
         def load_layout(self, layout):
             for i, line in enumerate(layout):
@@ -232,9 +232,7 @@ class WindowGameMode(QtWidgets.QWidget, Ui_Gamemode_Menu):
         for i in range(size):
             for j in range(size):
                 try:
-                    piece = pcc[layout[j][i]](
-                        board=self.w_w, x=j+1, y=i+1
-                    )
+                    piece = pcc[layout[j][i]](board=self.w_w, x=j+1, y=i+1)
                     piece.side = layout[j][i][2]  # 3rd character is piece side
                     self.pieces_on_board.append(piece)
                 except KeyError:

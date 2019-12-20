@@ -88,6 +88,7 @@ class ChessPiece(Piece):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+
 class ShogiPiece(Piece):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -184,7 +185,8 @@ class S_Pawn(ShogiPiece):  # can be renamed to "Fu"
 
 
 class Silver(ShogiPiece):  # can be renamed to "Gin"
-    PRIMARY_MOVE = [Direction.FORWARD | Direction.LDIAGONAL | Direction.RDIAGONAL, 1]
+    PRIMARY_MOVE = [
+        Direction.FORWARD | Direction.LDIAGONAL | Direction.RDIAGONAL, 1]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
