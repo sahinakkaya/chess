@@ -37,6 +37,8 @@ def in_game_wrapper(ui_class, board_size):
             self.tiles = []
             self.possible_moves = None
             self.latest_click = None
+            self.latest_shadow = None
+            self.possible_dead_pawn = None
             self.state = GameState(board_size)
             self.timeWhite.setTime(QtCore.QTime(0, 10))
             self.timeBlack.setTime(QtCore.QTime(0, 10))
@@ -71,7 +73,7 @@ def in_game_wrapper(ui_class, board_size):
             for i in range(11, 100):
                 try:
                     tile = getattr(self, "Tile_{}".format(i))
-                    if tile.property("Piece") != '':
+                    if tile.property("Piece") not in ("", "shadow"):
                         tile.setPixmap(QtGui.QPixmap(
                             Piece_Resource_Corresp[tile.property("Piece")]))
                     else:
@@ -129,12 +131,15 @@ def in_game_wrapper(ui_class, board_size):
             if self.latest_click == (posx, posy):
                 pass
             elif (posx, posy) in self.possible_moves:
-                self.piece_moved.emit(self.latest_click,
-                                      (posx, posy))
                 destination_tile.setProperty("Piece",
-                                             piece_tile.property(
-                                                 "Piece"))
+                                             piece_tile.property("Piece"))
                 piece_tile.setProperty("Piece", '')
+                if clicked_piece == "shadow":
+                    self.remove_dead_pawn()
+                else:
+                    self.clear_shadows()
+                self.latest_shadow = None
+                self.piece_moved.emit(self.latest_click, (posx, posy))
                 self.draw_board()
                 self.change_turn()
             elif clicked_piece and clicked_piece[2] == self.state.turn[0]:
@@ -145,12 +150,28 @@ def in_game_wrapper(ui_class, board_size):
             if self.state.action != "Hold":
                 self.toggle_highlight_for_possible_moves()
 
+        def clear_shadows(self):
+            if self.latest_shadow:
+                tile = self.get_tile_at(*self.latest_shadow)
+                tile.setProperty("Piece", "")
+
+        def remove_dead_pawn(self):
+            self.get_tile_at(*self.possible_dead_pawn).setProperty("Piece", "")
+
         def toggle_highlight_for_possible_moves(self):
             for i in self.possible_moves:
                 tile = self.get_tile_at(i.x, i.y)
                 self.toggle_highlight_tile(tile)
 
-        def toggle_highlight_tile(self, tile):
+        def handle_double_square_move(self, shadow_x, shadow_y,
+                                      actual_x, actual_y):
+            self.latest_shadow = shadow_x, shadow_y
+            self.possible_dead_pawn = actual_x, actual_y
+            tile = self.get_tile_at(*self.latest_shadow)
+            tile.setProperty("Piece", "shadow")
+
+        @staticmethod
+        def toggle_highlight_tile(tile):
             stylesheet_remapper = {
                 "border-image: url(:/BG/resources/Wooden_noborder.jpg);": "border-image: url("
                                                                           ":/BG/resources/Wooden_selected.jpg);",
@@ -237,7 +258,7 @@ class WindowGameMode(QtWidgets.QWidget, Ui_Gamemode_Menu):
         for i in range(size):
             for j in range(size):
                 try:
-                    piece = pcc[layout[j][i]](board=self.w_w, x=j+1, y=i+1)
+                    piece = pcc[layout[j][i]](board=self.w_w, x=j + 1, y=i + 1)
                     piece.side = layout[j][i][2]  # 3rd character is piece side
                     self.pieces_on_board.append(piece)
                 except KeyError:

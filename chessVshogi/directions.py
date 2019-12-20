@@ -96,12 +96,22 @@ class Vector2D:
             return Vector2D(self.x * other, self.y * other)
         return NotImplemented
 
+    def __floordiv__(self, other):
+        if isinstance(other, int):
+            return Vector2D(self.x // other, self.y // other)
+        return NotImplemented
+
     def __reversed__(self):
         return self * -1
 
     @handle_non_vector_params
     def __add__(self, other):
         return Vector2D(self.x + other.x, self.y + other.y)
+
+    @handle_non_vector_params
+    def __sub__(self, other):
+        return Vector2D(self.x - other.x, self.y - other.y)
+
 
     def flip(self, axes=None, in_place=False):
         """

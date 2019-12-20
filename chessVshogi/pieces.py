@@ -95,14 +95,26 @@ class ShogiPiece(Piece):
 
 
 class Pawn(ChessPiece):
+    moved_double_square = pyqtSignal(int, int, int, int)
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.PRIMARY_MOVE = [SetOfVectors(Direction.FORWARD), 2]
         self.CAPTURE_MOVE = [Direction.HORIZONTAL & Direction.FORWARD, 1]
+        self.shadow = None
+        self.moved_double_square.connect(self.board.handle_double_square_move)
 
     def update_position(self, from_position, to_position):
         if from_position == (self.x, self.y):
             self.PRIMARY_MOVE[1] = 1
+            self.shadow = None
+            difference = Vector2D(*to_position) - Vector2D(*from_position)
+            if difference.y in (2, -2):
+                summation = (Vector2D(*from_position) + Vector2D(*to_position))
+                self.shadow = summation // 2
+                self.moved_double_square.emit(*self.shadow, *to_position)
+        elif Vector2D(*to_position) == self.shadow:
+            to_position = self.x, self.y
         super().update_position(from_position, to_position)
 
 
