@@ -93,44 +93,10 @@ def in_game_wrapper(ui_class, board_size):
                     # Bir taşa bastıysam hold state'ine geçip ife giriyor
                     # Hold state'ine geçiş sonraki if'te (elif'te)
                     if self.state.action == "Hold":
-                        self.state.action = "Wait"
-                        piece_tile = self.get_last_clicked_tile()
-                        destination_tile = self.get_tile_at(posx, posy)
-                        print("attempt to move the piece",
-                              piece_tile.property("Piece"), "at",
-                              self.latest_click[0], self.latest_click[1],
-                              "to ", posx, posy)
-                        if self.latest_click == (posx, posy):
-                            print("Piece unhold")
-                        elif (posx, posy) in self.possible_moves:
-                            self.piece_moved.emit(self.latest_click,
-                                                  (posx, posy))
-                            destination_tile.setProperty("Piece",
-                                                         piece_tile.property(
-                                                             "Piece"))
-                            piece_tile.setProperty("Piece", '')
-                            self.draw_board()
-                            print("Changing turn")
-                            self.change_turn()
-                        else:
-                            self.state.action = "Hold"
-                        if self.state.action != "Hold":
-                            for i in self.possible_moves:
-                                tile = self.get_tile_at(i.x, i.y)
-                                self.toggle_highlight_tile(tile)
-                    elif source.pixmap() is not None:
-                        print("You are trying to move",
-                              source.property("Piece"))
-                        if source.property("Piece")[2] != self.state.turn[0]:
-                            print("... which is not your piece.")
-                        elif self.state.action == "Wait":
-                            self.state.action = "Hold"
-                            self.latest_click = (posx, posy)
-                            self.mouse_clicked.emit(posx, posy)
-                            for i in self.possible_moves:
-                                tile = self.get_tile_at(i.x, i.y)
-                                self.toggle_highlight_tile(tile)
-                            print("State changed to Hold")
+                        self.relocate_piece(posx, posy)
+                    elif self.clicked_tile.pixmap() is not None:
+                        self.hold_piece(posx, posy)
+
             return super(WindowInGame, self).eventFilter(source, event)
 
         def get_last_clicked_tile(self):
@@ -148,6 +114,47 @@ def in_game_wrapper(ui_class, board_size):
                 self.state.bt.stop()
                 self.state.wt.start()
             self.labelTurn.setText("Turn: {}".format(self.state.turn))
+
+        def hold_piece(self, posx, posy):
+            print("You are trying to move",
+                  self.clicked_tile.property("Piece"))
+            if self.clicked_tile.property("Piece")[2] != self.state.turn[0]:
+                print("... which is not your piece.")
+            elif self.state.action == "Wait":
+                self.state.action = "Hold"
+                self.latest_click = (posx, posy)
+                self.mouse_clicked.emit(posx, posy)
+                for i in self.possible_moves:
+                    tile = self.get_tile_at(i.x, i.y)
+                    self.toggle_highlight_tile(tile)
+                print("State changed to Hold")
+
+        def relocate_piece(self, posx, posy):
+            self.state.action = "Wait"
+            piece_tile = self.get_last_clicked_tile()
+            destination_tile = self.get_tile_at(posx, posy)
+            # print("attempt to move the piece",
+            #       piece_tile.property("Piece"), "at",
+            #       self.latest_click[0], self.latest_click[1],
+            #       "to ", posx, posy)
+            if self.latest_click == (posx, posy):
+                print("Piece unhold")
+            elif (posx, posy) in self.possible_moves:
+                self.piece_moved.emit(self.latest_click,
+                                      (posx, posy))
+                destination_tile.setProperty("Piece",
+                                             piece_tile.property(
+                                                 "Piece"))
+                piece_tile.setProperty("Piece", '')
+                self.draw_board()
+                print("Changing turn")
+                self.change_turn()
+            else:
+                self.state.action = "Hold"
+            if self.state.action != "Hold":
+                for i in self.possible_moves:
+                    tile = self.get_tile_at(i.x, i.y)
+                    self.toggle_highlight_tile(tile)
 
         def toggle_highlight_tile(self, tile):
             stylesheet_remapper = {
