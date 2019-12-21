@@ -48,10 +48,11 @@ def in_game_wrapper(ui_class, board_size):
         def cool_down(self, color):
             time_edit = getattr(self, f"time{color}")
             time_edit.setTime(time_edit.time().addSecs(-1))
-            self.setWindowTitle(self.labelTurn.text() +
-                                " Remaining Time:" +
-                                time_edit.text() +
-                                "- chessVshogi")
+            main_window = self.parentWidget().parentWidget().parentWidget()
+            main_window.setWindowTitle(self.labelTurn.text() +
+                                       " Remaining Time:" +
+                                       time_edit.text() +
+                                       "- chessVshogi")
 
         def draw_board(self):
             for tile in self.tiles:
