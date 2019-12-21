@@ -19,6 +19,7 @@ class GameState:
         self.turn = "White"
         self.action = "Wait"  # Wait - Hold
         self.latest_click = None
+        self.king_threat = False
         self.wt = QtCore.QTimer()
         self.wt.setInterval(1000)
         self.bt = QtCore.QTimer()
@@ -63,7 +64,6 @@ def in_game_wrapper(ui_class, board_size):
         def cool_down(self, color):
             time_edit = getattr(self, f"time{color}")
             time_edit.setTime(time_edit.time().addSecs(-1))
-            self.check_king_threat()
 
         def draw_board(self):
             for i in range(11, 100):
@@ -81,7 +81,6 @@ def in_game_wrapper(ui_class, board_size):
             if event.type() == QEvent.MouseButtonPress and source in self.tiles:
                 if event.button() == 1:
                     posx, posy = map(int, iter(source.objectName()[-2:]))
-                    print(self.state.turn, self.state.action)
                     if self.state.action == "Hold":
                         self.relocate_piece(posx, posy)
                     elif source.pixmap() is not None:
@@ -130,7 +129,11 @@ def in_game_wrapper(ui_class, board_size):
                 self.piece_moved.emit(self.latest_click, (posx, posy),
                                       moved_piece)
                 self.draw_board()
+                if self.check_king_threat():
+                    print("Illegal move.")
                 self.change_turn()
+                if self.check_king_threat():
+                    print("Threat!")
             elif clicked_piece and clicked_piece[2] == self.state.turn[0]:
                 self.toggle_highlight_for_possible_moves()
                 self.hold_piece(posx, posy)
@@ -160,7 +163,7 @@ def in_game_wrapper(ui_class, board_size):
             tile.setProperty("Piece", "shadow")
 
         @staticmethod
-        def toggle_highlight_tile(tile):
+        def toggle_highlight_tile(tile, style="move"):
             stylesheet_remapper = {
                 "border-image: url(:/BG/resources/Wooden_noborder.jpg);": "border-image: url("
                                                                           ":/BG/resources/Wooden_selected.jpg);",
@@ -170,8 +173,21 @@ def in_game_wrapper(ui_class, board_size):
                 "background-color: rgb(42, 192, 92);": "background-color: rgb(255, 255, 255);",
                 "background-color: rgb(127, 127, 127);": "background-color: rgb(21, 96, 46);",
                 "background-color: rgb(21, 96, 46);": "background-color: rgb(127, 127, 127);"
-                }
-            tile.setStyleSheet(stylesheet_remapper[tile.styleSheet()])
+            }
+            threat_remapper = {
+                "border-image: url(:/BG/resources/Wooden_noborder.jpg);": "border-image: url("
+                                                                          ":/BG/resources/Wooden_selected.jpg);",
+                "border-image: url(:/BG/resources/Wooden_selected.jpg);": "border-image: url("
+                                                                          ":/BG/resources/Wooden_noborder.jpg);",
+                "background-color: rgb(255, 255, 255);": "background-color: rgb(192, 42, 92);",
+                "background-color: rgb(192, 42, 92);": "background-color: rgb(255, 255, 255);",
+                "background-color: rgb(127, 127, 127);": "background-color: rgb(96, 21, 46);",
+                "background-color: rgb(96, 21, 46);": "background-color: rgb(127, 127, 127);"
+            }
+            if style == "move":
+                tile.setStyleSheet(stylesheet_remapper[tile.styleSheet()])
+            elif style == "threat":
+                tile.setStyleSheet(threat_remapper[tile.styleSheet()])
 
         def load_layout(self, layout):
             for i, line in enumerate(layout):
@@ -220,7 +236,13 @@ def in_game_wrapper(ui_class, board_size):
             for piece in self.state.pieces_on_board:
                 if piece.side != self.state.turn[0]:
                     if king_pos in piece.get_possible_moves(piece.x, piece.y, False):
-                        print("Threat!")
+                        self.state.king_threat = True
+                        self.toggle_highlight_tile(self.get_tile_at(king_pos[0], king_pos[1]), style="threat")
+                        return True
+            if self.state.king_threat:
+                self.state.king_threat = False
+                self.toggle_highlight_tile(self.get_tile_at(king_pos[0], king_pos[1]), style="threat")
+            return False
 
     return WindowInGame
 
