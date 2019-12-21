@@ -2,13 +2,11 @@
 
 # Form implementation generated from reading ui file 'ingame_chess.ui'
 #
-# Created by: PyQt5 UI code generator 5.13.2
+# Created by: PyQt5 UI code generator 5.10.1
 #
 # WARNING! All changes made in this file will be lost!
 
-
 from PyQt5 import QtCore, QtGui, QtWidgets
-
 
 class Ui_IngameChess(object):
     def setupUi(self, IngameChess):
@@ -482,6 +480,13 @@ class Ui_IngameChess(object):
         self.verticalLayout.addWidget(self.labelTurn)
         spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout.addItem(spacerItem1)
+        self.buttonResign = QtWidgets.QPushButton(self.verticalFrame)
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.buttonResign.setFont(font)
+        self.buttonResign.setObjectName("buttonResign")
+        self.verticalLayout.addWidget(self.buttonResign)
         self.label_3 = QtWidgets.QLabel(self.verticalFrame)
         self.label_3.setObjectName("label_3")
         self.verticalLayout.addWidget(self.label_3)
@@ -535,6 +540,8 @@ class Ui_IngameChess(object):
         self.label_2.setText(_translate("IngameChess", "Black Time"))
         self.timeBlack.setDisplayFormat(_translate("IngameChess", "mm:ss"))
         self.labelTurn.setText(_translate("IngameChess", "Turn: White"))
+        self.buttonResign.setText(_translate("IngameChess", "Resign"))
         self.label_3.setText(_translate("IngameChess", "White Time"))
         self.timeWhite.setDisplayFormat(_translate("IngameChess", "mm:ss"))
+
 import rsrc_rc

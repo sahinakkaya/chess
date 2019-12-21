@@ -2,13 +2,11 @@
 
 # Form implementation generated from reading ui file 'ingame_shogi.ui'
 #
-# Created by: PyQt5 UI code generator 5.13.2
+# Created by: PyQt5 UI code generator 5.10.1
 #
 # WARNING! All changes made in this file will be lost!
 
-
 from PyQt5 import QtCore, QtGui, QtWidgets
-
 
 class Ui_IngameShogi(object):
     def setupUi(self, IngameShogi):
@@ -608,6 +606,13 @@ class Ui_IngameShogi(object):
         self.verticalLayout.addWidget(self.labelTurn)
         spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout.addItem(spacerItem1)
+        self.buttonResign = QtWidgets.QPushButton(self.verticalFrame)
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.buttonResign.setFont(font)
+        self.buttonResign.setObjectName("buttonResign")
+        self.verticalLayout.addWidget(self.buttonResign)
         self.label_3 = QtWidgets.QLabel(self.verticalFrame)
         self.label_3.setObjectName("label_3")
         self.verticalLayout.addWidget(self.label_3)
@@ -667,6 +672,8 @@ class Ui_IngameShogi(object):
         self.label_2.setText(_translate("IngameShogi", "Black Time"))
         self.timeBlack.setDisplayFormat(_translate("IngameShogi", "mm:ss"))
         self.labelTurn.setText(_translate("IngameShogi", "Turn: White"))
+        self.buttonResign.setText(_translate("IngameShogi", "Resign"))
         self.label_3.setText(_translate("IngameShogi", "White Time"))
         self.timeWhite.setDisplayFormat(_translate("IngameShogi", "mm:ss"))
+
 import rsrc_rc

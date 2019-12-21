@@ -1185,6 +1185,19 @@
        </spacer>
       </item>
       <item>
+       <widget class="QPushButton" name="buttonResign">
+        <property name="font">
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Resign</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QLabel" name="label_3">
         <property name="text">
          <string>White Time</string>

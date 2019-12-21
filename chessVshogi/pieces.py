@@ -32,7 +32,7 @@ class Piece(QObject):
     def name(cls):
         return cls.__name__
 
-    def get_possible_moves(self, x, y):
+    def get_possible_moves(self, x, y, fromclickevent = True):
         """
         Return possible moves for the piece
         # TODO: Update this docstring
@@ -59,8 +59,10 @@ class Piece(QObject):
                                 continue
                             possible_moves.add(move)
                             break
-
-            self.possible_moves_found.emit(possible_moves)
+            if fromclickevent:
+                self.possible_moves_found.emit(possible_moves)
+            else:
+                return possible_moves
 
     def get_moves_for_movement(self, movement, range_):
         possible_moves = SetOfVectors()
@@ -80,6 +82,7 @@ class Piece(QObject):
         if from_position == (self.x, self.y):
             self.x, self.y = to_position
         elif to_position == (self.x, self.y):
+            self.board.state.pieces_on_board.remove(self)
             self.board.mouse_clicked.disconnect(self.get_possible_moves)
             self.deleteLater()
 

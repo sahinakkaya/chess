@@ -1,32 +1,14 @@
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtCore import pyqtSignal, QEvent
-from chessVshogi.UI.mainwindow import Ui_MainWindow
-from chessVshogi.UI.gamemode_menu import Ui_Gamemode_Menu
-from chessVshogi.UI.options_menu import Ui_Options_Menu
-from chessVshogi.UI.ingame_shogi import Ui_IngameShogi
-from chessVshogi.UI.ingame_chess import Ui_IngameChess
-from chessVshogi.UI.ingame_ui import Piece_Resource_Corresp
-from chessVshogi.UI.ingame_ui import Piece_Class_Corresp as pcc
-import chessVshogi.layouts
-import chessVshogi.directions as directions
+from PyQt5 import QtWidgets
+from PyQt5.QtCore import pyqtSignal, QTime, QEvent
+from PyQt5.QtGui import QPixmap
 
-
-class GameState:
-    def __init__(self, sz):
-        super().__init__()
-        self.pieces_on_board = []
-        self.board_size = sz
-        self.turn = "White"
-        self.action = "Wait"  # Wait - Hold
-        self.latest_click = None
-        self.wt = QtCore.QTimer()
-        self.wt.setInterval(1000)
-        self.bt = QtCore.QTimer()
-        self.bt.setInterval(1000)
+from chessVshogi import directions
+from chessVshogi.UI.ui_mapper import mapper
+from chessVshogi.src.game_state import GameState
 
 
 def in_game_wrapper(ui_class, board_size):
-    class WindowInGame(QtWidgets.QWidget, ui_class):
+    class InGameWindow(QtWidgets.QWidget, ui_class):
         mouse_clicked = pyqtSignal(int, int)
         piece_moved = pyqtSignal(tuple, tuple, str)
 
@@ -34,69 +16,71 @@ def in_game_wrapper(ui_class, board_size):
             super().__init__()
             self.setupUi(self)
             self.tiles = []
+            self.create_tiles()
             self.possible_moves = None
             self.latest_click = None
             self.latest_shadow = None
             self.possible_dead_pawn = None
             self.state = GameState(board_size)
-            self.timeWhite.setTime(QtCore.QTime(0, 10))
-            self.timeBlack.setTime(QtCore.QTime(0, 10))
-            self.state.wt.timeout.connect(lambda: self.cool_down("White"))
-            self.state.bt.timeout.connect(lambda: self.cool_down("Black"))
+            self.timeWhite.setTime(QTime(0, 10))
+            self.timeBlack.setTime(QTime(0, 10))
+            self.state.timer_white.timeout.connect(
+                lambda: self.cool_down("White"))
+            self.state.timer_black.timeout.connect(
+                lambda: self.cool_down("Black"))
+            self.buttonResign.clicked.connect(
+                lambda: self.terminate_game("lost", self.state.turn,
+                                            "Resigned"))
+
+        def create_tiles(self):
             for i in range(11, 100):
                 try:
                     tile = getattr(self, "Tile_{}".format(i))
-                    self.tiles.append(tile)
-                    tile.installEventFilter(self)
-                    if tile.property("Piece") != '':
-                        tile.setPixmap(QtGui.QPixmap(
-                            Piece_Resource_Corresp[tile.property("Piece")]))
-                    else:
-                        tile.clear()
                 except AttributeError:
-                    pass
+                    continue
+                tile.installEventFilter(self)
+                self.tiles.append(tile)
 
         def showEvent(self, event):
-            self.state.wt.start()
+            self.state.timer_white.start()
             event.accept()
 
         def cool_down(self, color):
             time_edit = getattr(self, f"time{color}")
             time_edit.setTime(time_edit.time().addSecs(-1))
+            self.setWindowTitle(self.labelTurn.text() +
+                                " Remaining Time:" +
+                                time_edit.text()+
+                                "- chessVshogi")
 
         def draw_board(self):
-            for i in range(11, 100):
-                try:
-                    tile = getattr(self, "Tile_{}".format(i))
-                    if tile.property("Piece") not in ("", "shadow"):
-                        pixmap = Piece_Resource_Corresp[tile.property("Piece")]
-                        tile.setPixmap(QtGui.QPixmap(pixmap))
-                    else:
-                        tile.clear()
-                except AttributeError:
-                    pass
+            for tile in self.tiles:
+                if tile.property("Piece") not in ("", "shadow"):
+                    pixmap = mapper[tile.property("Piece")]["resource"]
+                    tile.setPixmap(QPixmap(pixmap))
+                else:
+                    tile.clear()
 
         def eventFilter(self, source, event):
             if event.type() == QEvent.MouseButtonPress and source in self.tiles:
                 if event.button() == 1:
                     posx, posy = map(int, iter(source.objectName()[-2:]))
-                    print(self.state.turn, self.state.action)
                     if self.state.action == "Hold":
                         self.relocate_piece(posx, posy)
                     elif source.pixmap() is not None:
                         self.hold_piece(posx, posy)
 
-            return super(WindowInGame, self).eventFilter(source, event)
+            return super(InGameWindow, self).eventFilter(source, event)
 
         def change_turn(self):
             if self.state.turn == "White":
                 self.state.turn = "Black"
-                self.state.wt.stop()
-                self.state.bt.start()
+                self.state.timer_white.stop()
+                self.state.timer_black.start()
             else:
                 self.state.turn = "White"
-                self.state.bt.stop()
-                self.state.wt.start()
+                self.state.timer_black.stop()
+                self.state.timer_white.start()
             self.labelTurn.setText("Turn: {}".format(self.state.turn))
 
         def hold_piece(self, posx, posy):
@@ -129,7 +113,16 @@ def in_game_wrapper(ui_class, board_size):
                 self.piece_moved.emit(self.latest_click, (posx, posy),
                                       moved_piece)
                 self.draw_board()
+                if moved_piece == "K" and self.state.danger[self.state.turn]:
+                    self.toggle_highlight_tile(piece_tile, "threat")
+                    self.toggle_highlight_tile(piece_tile)
+                if self.check_king_threat():
+                    print("Illegal move.")
+                    self.terminate_game(result="lost", player=self.state.turn, case="Illegal move.")
+                    return
                 self.change_turn()
+                if self.check_king_threat():
+                    print("Threat!")
             elif clicked_piece and clicked_piece[2] == self.state.turn[0]:
                 self.toggle_highlight_for_possible_moves()
                 self.hold_piece(posx, posy)
@@ -159,18 +152,39 @@ def in_game_wrapper(ui_class, board_size):
             tile.setProperty("Piece", "shadow")
 
         @staticmethod
-        def toggle_highlight_tile(tile):
+        def toggle_highlight_tile(tile, style="move"):
             stylesheet_remapper = {
                 "border-image: url(:/BG/resources/Wooden_noborder.jpg);": "border-image: url("
                                                                           ":/BG/resources/Wooden_selected.jpg);",
                 "border-image: url(:/BG/resources/Wooden_selected.jpg);": "border-image: url("
                                                                           ":/BG/resources/Wooden_noborder.jpg);",
+                "border-image: url(:/BG/resources/Wooden_threat.jpg);": "border-image: url("
+                                                                        ":/BG/resources/Wooden_threat.jpg);",
                 "background-color: rgb(255, 255, 255);": "background-color: rgb(42, 192, 92);",
                 "background-color: rgb(42, 192, 92);": "background-color: rgb(255, 255, 255);",
                 "background-color: rgb(127, 127, 127);": "background-color: rgb(21, 96, 46);",
-                "background-color: rgb(21, 96, 46);": "background-color: rgb(127, 127, 127);"
-                }
-            tile.setStyleSheet(stylesheet_remapper[tile.styleSheet()])
+                "background-color: rgb(21, 96, 46);": "background-color: rgb(127, 127, 127);",
+                "background-color: rgb(96, 24, 12);": "background-color: rgb(96, 24, 12);",
+                "background-color: rgb(192, 48, 24);": "background-color: rgb(192, 48, 24);"
+            }
+            threat_remapper = {
+                "border-image: url(:/BG/resources/Wooden_noborder.jpg);": "border-image: url("
+                                                                          ":/BG/resources/Wooden_threat.jpg);",
+                "border-image: url(:/BG/resources/Wooden_threat.jpg);": "border-image: url("
+                                                                          ":/BG/resources/Wooden_noborder.jpg);",
+                "border-image: url(:/BG/resources/Wooden_selected.jpg);": "border-image: url("
+                                                                          ":/BG/resources/Wooden_selected.jpg);",
+                "background-color: rgb(255, 255, 255);": "background-color: rgb(192, 48, 24);",
+                "background-color: rgb(192, 48, 24);": "background-color: rgb(255, 255, 255);",
+                "background-color: rgb(127, 127, 127);": "background-color: rgb(96, 24, 12);",
+                "background-color: rgb(96, 24, 12);": "background-color: rgb(127, 127, 127);",
+                "background-color: rgb(42, 192, 92);": "background-color: rgb(42, 192, 92);",
+                "background-color: rgb(21, 96, 46);": "background-color: rgb(21, 96, 46);"
+            }
+            if style == "move":
+                tile.setStyleSheet(stylesheet_remapper[tile.styleSheet()])
+            elif style == "threat":
+                tile.setStyleSheet(threat_remapper[tile.styleSheet()])
 
         def load_layout(self, layout):
             for i, line in enumerate(layout):
@@ -202,7 +216,8 @@ def in_game_wrapper(ui_class, board_size):
             for i in range(self.state.board_size):
                 for j in range(self.state.board_size):
                     try:
-                        piece = pcc[layout[j][i]](board=self, x=j + 1, y=i + 1)
+                        piece = mapper[layout[j][i]]["piece"](board=self,
+                                                              x=j + 1, y=i + 1)
                         piece.side = layout[j][i][2]
                         self.state.pieces_on_board.append(piece)
                     except KeyError:
@@ -214,84 +229,38 @@ def in_game_wrapper(ui_class, board_size):
                         piece.side == self.state.turn[0]:
                     return piece.x, piece.y
 
-    return WindowInGame
+        def check_king_threat(self):
+            king_pos = self.get_king_position()
+            for piece in self.state.pieces_on_board:
+                if piece.side != self.state.turn[0]:
+                    if king_pos in piece.get_possible_moves(piece.x, piece.y, False):
+                        if not self.state.danger[self.state.turn]:
+                            self.state.danger[self.state.turn] = True
+                            self.toggle_highlight_tile(self.get_tile_at(*king_pos), style="threat")
+                        return True
+            if self.state.danger[self.state.turn]:
+                self.state.danger[self.state.turn] = False
+                self.toggle_highlight_tile(self.get_tile_at(*king_pos), style="threat")
+            return False
+
+        def terminate_game(self, result, player, case):
+            self.state.timer_white.stop()
+            self.state.timer_black.stop()
+            g_over = QtWidgets.QMessageBox()
+            g_over.setIcon(QtWidgets.QMessageBox.Information)
+            g_over.setWindowTitle('Game Over')
+            g_over.setText(case+"\n{} has {}".format(player, result))
+            g_over.setStandardButtons(QtWidgets.QMessageBox.Ok)
+            g_over.exec()
+            for i in range(11, 100):
+                try:
+                    tile = getattr(self, "Tile_{}".format(i))
+                    tile.removeEventFilter(self)
+                except AttributeError:
+                    pass
+
+            self.setDisabled(True)
+
+    return InGameWindow
 
 
-class WindowOptsMenu(QtWidgets.QWidget, Ui_Options_Menu):
-    def __init__(self):
-        super().__init__()
-        self.setupUi(self)
-        self.closeEvent = self.closeEvent
-        self.buttonReturn.clicked.connect(self.close)
-
-    def closeEvent(self, event):
-        back_to_main()
-        event.accept()
-
-
-class WindowGameMode(QtWidgets.QWidget, Ui_Gamemode_Menu):
-    def __init__(self):
-        super().__init__()
-        self.setupUi(self)
-        self.buttonChess.clicked.connect(self.start_chess_game)
-        self.buttonShogi.clicked.connect(self.start_shogi_game)
-        self.buttonHybrid.clicked.connect(self.start_hybrid_game)
-        # FIXME: Is this really needed?
-        self.closeEvent = self.closeEvent
-
-    def start_chess_game(self):
-        self.w_w = in_game_wrapper(Ui_IngameChess, 8)()
-        self.w_w.load_pieces(chessVshogi.layouts.chess_default)
-        self.w_w.show()
-        self.hide()
-
-    def start_shogi_game(self):
-        self.w_w = in_game_wrapper(Ui_IngameShogi, 9)()
-        self.w_w.load_pieces(chessVshogi.layouts.shogi_default)
-        self.w_w.show()
-        self.hide()
-
-    def start_hybrid_game(self):
-        self.w_w = in_game_wrapper(Ui_IngameShogi, 9)()
-        self.w_w.load_layout(chessVshogi.layouts.hybrid_default)
-        self.w_w.load_pieces(chessVshogi.layouts.hybrid_default)
-        self.w_w.draw_board()
-        self.w_w.show()
-        self.hide()
-
-    def closeEvent(self, event):
-        back_to_main()
-        event.accept()
-
-
-class WindowMain(QtWidgets.QMainWindow, Ui_MainWindow):
-    def __init__(self):
-        super().__init__()
-        self.setupUi(self)
-        self.buttonStart.clicked.connect(self.game_menu)
-        self.buttonOpts.clicked.connect(self.opts_menu)
-        self.buttonExit.clicked.connect(self.close)
-        self.show()
-
-    def game_menu(self):
-        w_g.show()
-        self.hide()
-
-    def opts_menu(self):
-        w_o.show()
-        self.hide()
-
-
-def back_to_main():
-    w.show()
-
-
-if __name__ == '__main__':
-    import sys
-
-    app = QtWidgets.QApplication([])
-    w = WindowMain()
-    w_g = WindowGameMode()
-    # w_g.start_chess_game()
-    w_o = WindowOptsMenu()
-    sys.exit(app.exec_())
