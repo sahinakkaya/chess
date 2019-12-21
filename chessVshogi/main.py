@@ -67,6 +67,10 @@ def in_game_wrapper(ui_class, board_size):
         def cool_down(self, color):
             time_edit = getattr(self, f"time{color}")
             time_edit.setTime(time_edit.time().addSecs(-1))
+            self.setWindowTitle(self.labelTurn.text() +
+                                " Remaining Time:" +
+                                time_edit.text()+
+                                "- chessVshogi")
 
         def draw_board(self):
             for i in range(11, 100):
@@ -137,6 +141,8 @@ def in_game_wrapper(ui_class, board_size):
                     self.toggle_highlight_tile(piece_tile)
                 if self.check_king_threat():
                     print("Illegal move.")
+                    self.terminate_game(result="lost", player=self.state.turn)
+                    return
                 self.change_turn()
                 if self.check_king_threat():
                     print("Threat!")
@@ -250,13 +256,33 @@ def in_game_wrapper(ui_class, board_size):
             for piece in self.state.pieces_on_board:
                 if piece.side != self.state.turn[0]:
                     if king_pos in piece.get_possible_moves(piece.x, piece.y, False):
-                        self.state.danger[self.state.turn] = True
-                        self.toggle_highlight_tile(self.get_tile_at(king_pos[0], king_pos[1]), style="threat")
+                        if not self.state.danger[self.state.turn]:
+                            self.state.danger[self.state.turn] = True
+                            self.toggle_highlight_tile(self.get_tile_at(king_pos[0], king_pos[1]), style="threat")
                         return True
             if self.state.danger[self.state.turn]:
                 self.state.danger[self.state.turn] = False
                 self.toggle_highlight_tile(self.get_tile_at(king_pos[0], king_pos[1]), style="threat")
             return False
+
+        def terminate_game(self, result, player):
+            self.state.wt.stop()
+            self.state.bt.stop()
+            # self.labelTurn.setText("Illegal Move.\n{} has {}".format(player, result))
+            g_over = QtWidgets.QMessageBox()
+            g_over.setIcon(QtWidgets.QMessageBox.Information)
+            g_over.setWindowTitle('Game Over')
+            g_over.setText("Illegal Move.\n{} has {}".format(player, result))
+            g_over.setStandardButtons(QtWidgets.QMessageBox.Ok)
+            g_over.exec()
+            for i in range(11, 100):
+                try:
+                    tile = getattr(self, "Tile_{}".format(i))
+                    tile.removeEventFilter(self)
+                except AttributeError:
+                    pass
+
+            self.setDisabled(True)
 
     return WindowInGame
 
