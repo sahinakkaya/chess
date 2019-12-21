@@ -45,6 +45,7 @@ def in_game_wrapper(ui_class, board_size):
             self.state = GameState(board_size)
             self.timeWhite.setTime(QtCore.QTime(0, 10))
             self.timeBlack.setTime(QtCore.QTime(0, 10))
+            self.buttonResign.clicked.connect(lambda: self.terminate_game("lost", self.state.turn, "Resigned"))
             self.state.wt.timeout.connect(lambda: self.cool_down("White"))
             self.state.bt.timeout.connect(lambda: self.cool_down("Black"))
             for i in range(11, 100):
@@ -141,7 +142,7 @@ def in_game_wrapper(ui_class, board_size):
                     self.toggle_highlight_tile(piece_tile)
                 if self.check_king_threat():
                     print("Illegal move.")
-                    self.terminate_game(result="lost", player=self.state.turn)
+                    self.terminate_game(result="lost", player=self.state.turn, case="Illegal move.")
                     return
                 self.change_turn()
                 if self.check_king_threat():
@@ -265,14 +266,14 @@ def in_game_wrapper(ui_class, board_size):
                 self.toggle_highlight_tile(self.get_tile_at(king_pos[0], king_pos[1]), style="threat")
             return False
 
-        def terminate_game(self, result, player):
+        def terminate_game(self, result, player, case):
             self.state.wt.stop()
             self.state.bt.stop()
             # self.labelTurn.setText("Illegal Move.\n{} has {}".format(player, result))
             g_over = QtWidgets.QMessageBox()
             g_over.setIcon(QtWidgets.QMessageBox.Information)
             g_over.setWindowTitle('Game Over')
-            g_over.setText("Illegal Move.\n{} has {}".format(player, result))
+            g_over.setText(case+"\n{} has {}".format(player, result))
             g_over.setStandardButtons(QtWidgets.QMessageBox.Ok)
             g_over.exec()
             for i in range(11, 100):
