@@ -63,6 +63,7 @@ def in_game_wrapper(ui_class, board_size):
         def cool_down(self, color):
             time_edit = getattr(self, f"time{color}")
             time_edit.setTime(time_edit.time().addSecs(-1))
+            self.check_king_threat()
 
         def draw_board(self):
             for i in range(11, 100):
@@ -214,6 +215,13 @@ def in_game_wrapper(ui_class, board_size):
                         piece.side == self.state.turn[0]:
                     return piece.x, piece.y
 
+        def check_king_threat(self):
+            king_pos = self.get_king_position()
+            for piece in self.state.pieces_on_board:
+                if piece.side != self.state.turn[0]:
+                    if king_pos in piece.get_possible_moves(piece.x, piece.y, False):
+                        print("Threat!")
+
     return WindowInGame
 
 
@@ -236,8 +244,6 @@ class WindowGameMode(QtWidgets.QWidget, Ui_Gamemode_Menu):
         self.buttonChess.clicked.connect(self.start_chess_game)
         self.buttonShogi.clicked.connect(self.start_shogi_game)
         self.buttonHybrid.clicked.connect(self.start_hybrid_game)
-        # FIXME: Is this really needed?
-        self.closeEvent = self.closeEvent
 
     def start_chess_game(self):
         self.w_w = in_game_wrapper(Ui_IngameChess, 8)()
