@@ -258,6 +258,8 @@ def in_game_wrapper(ui_class, board_size):
             g_over.setStandardButtons(QtWidgets.QMessageBox.Ok)
             g_over.exec()
             self.tiles = []
+            main_window = self.parentWidget().parentWidget().parentWidget()
+            main_window.setWindowTitle("chessVshogi")
             self.setDisabled(True)
 
     return InGameWindow

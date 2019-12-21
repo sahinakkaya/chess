@@ -28,14 +28,17 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.buttonOpts.clicked.connect(
             lambda: self.stacked_widget.setCurrentIndex(2))
         self.buttonExit.clicked.connect(self.close)
+        self.setWindowTitle("chessVshogi")
         self.show()
 
     def closeEvent(self, event):
         current_index = self.stacked_widget.currentIndex()
         if current_index != 0:
             if current_index == 3:
+                del self.stacked_widget.currentWidget().state
                 self.stacked_widget.removeWidget(self.stacked_widget.currentWidget())
             self.stacked_widget.setCurrentIndex(0)
+            self.setWindowTitle("chessVshogi")
             event.ignore()
         else:
             event.accept()
