@@ -17,6 +17,7 @@ class GameModeWindow(QWidget, Ui_Gamemode_Menu):
         self.buttonChess.clicked.connect(self.load_game)
         self.buttonShogi.clicked.connect(self.load_game)
         self.buttonHybrid.clicked.connect(self.load_game)
+        self.buttonVersus.clicked.connect(self.opts_vsmode)
 
     def load_game(self):
         button_name = self.sender().objectName()[6:]
@@ -37,8 +38,11 @@ class GameModeWindow(QWidget, Ui_Gamemode_Menu):
         window_in_game.draw_board()
         stacked_widget = self.parentWidget()
         stacked_widget.addWidget(window_in_game)
-        stacked_widget.setCurrentIndex(3)
+        stacked_widget.setCurrentIndex(4)
 
+    def opts_vsmode(self):
+        stacked_widget = self.parentWidget()
+        stacked_widget.setCurrentIndex(3)
 
 if __name__ == '__main__':
     import sys

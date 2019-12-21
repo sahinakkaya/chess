@@ -32,3 +32,25 @@ shogi_default = [
     ["S_WN", "S_WR", "S_WP", "", "", "", "S_BP", "S_BB", "S_BN"],
     ["S_WL", "", "S_WP", "", "", "", "S_BP", "", "S_BL"]
 ]
+
+shogi_8x8_default_white = [
+    ["S_WL", "", "S_WP", "", "", "", "C_BP", "C_BR"],
+    ["S_WN", "S_WB", "S_WP", "", "", "", "C_BP", "C_BN"],
+    ["S_WS", "", "S_WP", "", "", "", "C_BP", "C_BB"],
+    ["S_WG", "", "S_WP", "", "", "", "C_BP", "C_BQ"],
+    ["S_WK", "", "S_WP", "", "", "", "C_BP", "C_BK"],
+    ["S_WG", "S_WS", "S_WP", "", "", "", "C_BP", "C_BB"],
+    ["S_WN", "S_WR", "S_WP", "", "", "", "C_BP", "C_BN"],
+    ["S_WL", "", "S_WP", "", "", "", "C_BP", "C_BR"]
+]
+
+shogi_8x8_mirror_white = [
+    ["S_WR", "S_WP", "", "", "", "", "C_BP", "C_BR"],
+    ["S_WN", "S_WP", "", "", "", "", "C_BP", "C_BN"],
+    ["S_WB", "S_WP", "", "", "", "", "C_BP", "C_BB"],
+    ["S_WG", "S_WP", "", "", "", "", "C_BP", "C_BQ"],
+    ["S_WK", "S_WP", "", "", "", "", "C_BP", "C_BK"],
+    ["S_WB", "S_WP", "", "", "", "", "C_BP", "C_BB"],
+    ["S_WN", "S_WP", "", "", "", "", "C_BP", "C_BN"],
+    ["S_WR", "S_WP", "", "", "", "", "C_BP", "C_BR"]
+]
