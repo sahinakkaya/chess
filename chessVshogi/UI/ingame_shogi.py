@@ -2,13 +2,11 @@
 
 # Form implementation generated from reading ui file 'ingame_shogi.ui'
 #
-# Created by: PyQt5 UI code generator 5.13.2
+# Created by: PyQt5 UI code generator 5.10.1
 #
 # WARNING! All changes made in this file will be lost!
 
-
 from PyQt5 import QtCore, QtGui, QtWidgets
-
 
 class Ui_IngameShogi(object):
     def setupUi(self, IngameShogi):
@@ -677,4 +675,5 @@ class Ui_IngameShogi(object):
         self.buttonResign.setText(_translate("IngameShogi", "Resign"))
         self.label_3.setText(_translate("IngameShogi", "White Time"))
         self.timeWhite.setDisplayFormat(_translate("IngameShogi", "mm:ss"))
+
 import rsrc_rc

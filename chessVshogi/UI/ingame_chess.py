@@ -2,13 +2,11 @@
 
 # Form implementation generated from reading ui file 'ingame_chess.ui'
 #
-# Created by: PyQt5 UI code generator 5.13.2
+# Created by: PyQt5 UI code generator 5.10.1
 #
 # WARNING! All changes made in this file will be lost!
 
-
 from PyQt5 import QtCore, QtGui, QtWidgets
-
 
 class Ui_IngameChess(object):
     def setupUi(self, IngameChess):
@@ -545,4 +543,5 @@ class Ui_IngameChess(object):
         self.buttonResign.setText(_translate("IngameChess", "Resign"))
         self.label_3.setText(_translate("IngameChess", "White Time"))
         self.timeWhite.setDisplayFormat(_translate("IngameChess", "mm:ss"))
+
 import rsrc_rc

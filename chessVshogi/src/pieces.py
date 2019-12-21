@@ -1,4 +1,4 @@
-from chessVshogi.directions import Direction, SetOfVectors, Vector2D
+from chessVshogi.src.directions import Direction, SetOfVectors, Vector2D
 from PyQt5.QtCore import QObject, pyqtSignal
 
 
