@@ -256,6 +256,7 @@ def in_game_wrapper(ui_class, board_size):
             g_over.setText(case + "\n{} has {}".format(player, result))
             g_over.setStandardButtons(QtWidgets.QMessageBox.Ok)
             g_over.exec()
+            self.tiles = []
             self.setDisabled(True)
 
     return InGameWindow
