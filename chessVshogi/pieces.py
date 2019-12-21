@@ -82,6 +82,7 @@ class Piece(QObject):
         if from_position == (self.x, self.y):
             self.x, self.y = to_position
         elif to_position == (self.x, self.y):
+            self.board.state.pieces_on_board.remove(self)
             self.board.mouse_clicked.disconnect(self.get_possible_moves)
             self.deleteLater()
 

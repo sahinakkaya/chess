@@ -19,7 +19,10 @@ class GameState:
         self.turn = "White"
         self.action = "Wait"  # Wait - Hold
         self.latest_click = None
-        self.king_threat = False
+        self.danger = {
+            "White": False,
+            "Black": False
+        }
         self.wt = QtCore.QTimer()
         self.wt.setInterval(1000)
         self.bt = QtCore.QTimer()
@@ -129,6 +132,9 @@ def in_game_wrapper(ui_class, board_size):
                 self.piece_moved.emit(self.latest_click, (posx, posy),
                                       moved_piece)
                 self.draw_board()
+                if moved_piece == "K" and self.state.danger[self.state.turn]:
+                    self.toggle_highlight_tile(piece_tile, "threat")
+                    self.toggle_highlight_tile(piece_tile)
                 if self.check_king_threat():
                     print("Illegal move.")
                 self.change_turn()
@@ -172,17 +178,21 @@ def in_game_wrapper(ui_class, board_size):
                 "background-color: rgb(255, 255, 255);": "background-color: rgb(42, 192, 92);",
                 "background-color: rgb(42, 192, 92);": "background-color: rgb(255, 255, 255);",
                 "background-color: rgb(127, 127, 127);": "background-color: rgb(21, 96, 46);",
-                "background-color: rgb(21, 96, 46);": "background-color: rgb(127, 127, 127);"
+                "background-color: rgb(21, 96, 46);": "background-color: rgb(127, 127, 127);",
+                "background-color: rgb(96, 24, 12);": "background-color: rgb(96, 24, 12);",
+                "background-color: rgb(192, 48, 24);": "background-color: rgb(192, 48, 24);"
             }
             threat_remapper = {
                 "border-image: url(:/BG/resources/Wooden_noborder.jpg);": "border-image: url("
                                                                           ":/BG/resources/Wooden_selected.jpg);",
                 "border-image: url(:/BG/resources/Wooden_selected.jpg);": "border-image: url("
                                                                           ":/BG/resources/Wooden_noborder.jpg);",
-                "background-color: rgb(255, 255, 255);": "background-color: rgb(192, 42, 92);",
-                "background-color: rgb(192, 42, 92);": "background-color: rgb(255, 255, 255);",
-                "background-color: rgb(127, 127, 127);": "background-color: rgb(96, 21, 46);",
-                "background-color: rgb(96, 21, 46);": "background-color: rgb(127, 127, 127);"
+                "background-color: rgb(255, 255, 255);": "background-color: rgb(192, 48, 24);",
+                "background-color: rgb(192, 48, 24);": "background-color: rgb(255, 255, 255);",
+                "background-color: rgb(127, 127, 127);": "background-color: rgb(96, 24, 12);",
+                "background-color: rgb(96, 24, 12);": "background-color: rgb(127, 127, 127);",
+                "background-color: rgb(42, 192, 92);": "background-color: rgb(42, 192, 92);",
+                "background-color: rgb(21, 96, 46);": "background-color: rgb(21, 96, 46);"
             }
             if style == "move":
                 tile.setStyleSheet(stylesheet_remapper[tile.styleSheet()])
@@ -236,11 +246,11 @@ def in_game_wrapper(ui_class, board_size):
             for piece in self.state.pieces_on_board:
                 if piece.side != self.state.turn[0]:
                     if king_pos in piece.get_possible_moves(piece.x, piece.y, False):
-                        self.state.king_threat = True
+                        self.state.danger[self.state.turn] = True
                         self.toggle_highlight_tile(self.get_tile_at(king_pos[0], king_pos[1]), style="threat")
                         return True
-            if self.state.king_threat:
-                self.state.king_threat = False
+            if self.state.danger[self.state.turn]:
+                self.state.danger[self.state.turn] = False
                 self.toggle_highlight_tile(self.get_tile_at(king_pos[0], king_pos[1]), style="threat")
             return False
 
