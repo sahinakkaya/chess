@@ -175,6 +175,8 @@ def in_game_wrapper(ui_class, board_size):
                                                                           ":/BG/resources/Wooden_selected.jpg);",
                 "border-image: url(:/BG/resources/Wooden_selected.jpg);": "border-image: url("
                                                                           ":/BG/resources/Wooden_noborder.jpg);",
+                "border-image: url(:/BG/resources/Wooden_threat.jpg);": "border-image: url("
+                                                                        ":/BG/resources/Wooden_threat.jpg);",
                 "background-color: rgb(255, 255, 255);": "background-color: rgb(42, 192, 92);",
                 "background-color: rgb(42, 192, 92);": "background-color: rgb(255, 255, 255);",
                 "background-color: rgb(127, 127, 127);": "background-color: rgb(21, 96, 46);",
@@ -184,9 +186,11 @@ def in_game_wrapper(ui_class, board_size):
             }
             threat_remapper = {
                 "border-image: url(:/BG/resources/Wooden_noborder.jpg);": "border-image: url("
-                                                                          ":/BG/resources/Wooden_selected.jpg);",
-                "border-image: url(:/BG/resources/Wooden_selected.jpg);": "border-image: url("
+                                                                          ":/BG/resources/Wooden_threat.jpg);",
+                "border-image: url(:/BG/resources/Wooden_threat.jpg);": "border-image: url("
                                                                           ":/BG/resources/Wooden_noborder.jpg);",
+                "border-image: url(:/BG/resources/Wooden_selected.jpg);": "border-image: url("
+                                                                          ":/BG/resources/Wooden_selected.jpg);",
                 "background-color: rgb(255, 255, 255);": "background-color: rgb(192, 48, 24);",
                 "background-color: rgb(192, 48, 24);": "background-color: rgb(255, 255, 255);",
                 "background-color: rgb(127, 127, 127);": "background-color: rgb(96, 24, 12);",

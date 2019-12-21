@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="BG">
+    <file>resources/Wooden_threat.jpg</file>
     <file>resources/Wooden_noborder.jpg</file>
     <file>resources/Wooden_selected.jpg</file>
   </qresource>
