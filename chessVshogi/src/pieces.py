@@ -153,6 +153,7 @@ class Pawn(ChessPiece):
         self.name_ = self.name_[:3] + self.sender().objectName()[0] + self.name_[4:]
         self.resource = mapper[self.name_]["resource"]
         print(self.sender().parent())
+        self.sender().parent().close()
         self.sender().parent().deleteLater()
 
 

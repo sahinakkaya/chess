@@ -48,13 +48,14 @@ def in_game_wrapper(board_layout, piece_layout):
             event.accept()
 
         def cool_down(self, color):
-            time_edit = getattr(self, f"time{color}")
-            time_edit.setTime(time_edit.time().addSecs(-1))
-            main_window = self.parentWidget().parentWidget().parentWidget()
-            main_window.setWindowTitle(self.labelTurn.text() +
-                                       " Remaining Time:" +
-                                       time_edit.text() +
-                                       "- chessVshogi")
+            if self.isEnabled():
+                time_edit = getattr(self, f"time{color}")
+                time_edit.setTime(time_edit.time().addSecs(-1))
+                main_window = self.parentWidget().parentWidget().parentWidget()
+                main_window.setWindowTitle(self.labelTurn.text() +
+                                           " Remaining Time:" +
+                                           time_edit.text() +
+                                           "- chessVshogi")
 
         def eventFilter(self, source, event):
             if event.type() == QEvent.MouseButtonPress and source in self.tiles:
@@ -168,12 +169,17 @@ def in_game_wrapper(board_layout, piece_layout):
                 def __init__(self, parent=None):
                     super().__init__(parent)
                     self.setupUi(self)
+                    self.windowptr = None
+
+                def closeEvent(self, event):
+                    self.windowptr.setEnabled(True)
+                    event.accept()
 
             self.popup = PromoWindow()
+            self.popup.windowptr = self
             self.popup.show()
             self.setDisabled(True)
-            self.state.timer_black.stop()
-            self.state.timer_white.stop()
+
             # change_turn gerekli saati tekrar başlatacak, no problem
             
             self.popup.Knight.clicked.connect(piece.transform)
