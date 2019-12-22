@@ -151,7 +151,13 @@ class Pawn(ChessPiece):
 
     def transform(self):
         from chessVshogi.src.ui_mapper import mapper
-        self.name_ = self.name_[:3] + self.sender().objectName()[0] + self.name_[4:]
+        name_mapping = {
+            "Knight": "N",
+            "Queen": "Q",
+            "Rook": "R",
+            "Bishop": "B"
+        }
+        self.name_ = self.name_[:3] + name_mapping[self.sender().objectName()] + self.name_[4:]
         self.resource = mapper[self.name_]["resource"]
         promoted_self = eval(self.sender().objectName())
         self.PRIMARY_MOVE = promoted_self.PRIMARY_MOVE

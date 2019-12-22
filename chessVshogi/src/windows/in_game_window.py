@@ -173,6 +173,7 @@ def in_game_wrapper(board_layout, piece_layout):
 
                 def closeEvent(self, event):
                     self.windowptr.setEnabled(True)
+                    self.windowptr.check_king_threat()
                     event.accept()
 
             self.popup = PromoWindow()
