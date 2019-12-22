@@ -119,7 +119,7 @@ class ShogiPiece(Piece):
 
 class Pawn(ChessPiece):
     moved_double_square = pyqtSignal(int, int, int, int)
-    promotion_trigger = pyqtSignal(str)
+    promotion_trigger = pyqtSignal(QObject)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -145,8 +145,15 @@ class Pawn(ChessPiece):
 
     def promote_trigger(self):
         print("Promoting Pawn")
-        self.promotion_trigger.emit(self.side)
+        self.promotion_trigger.emit(self)
         pass
+
+    def transform(self):
+        from chessVshogi.src.ui_mapper import mapper
+        self.name_ = self.name_[:3] + self.sender().objectName()[0] + self.name_[4:]
+        self.resource = mapper[self.name_]["resource"]
+        print(self.sender().parent())
+        self.sender().parent().deleteLater()
 
 
 class Knight(ChessPiece):

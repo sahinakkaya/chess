@@ -44,7 +44,7 @@ def in_game_wrapper(board_layout, piece_layout):
                 self.tiles.append(tile)
 
         def showEvent(self, event):
-            # self.state.timer_white.start()
+            self.state.timer_white.start()
             event.accept()
 
         def cool_down(self, color):
@@ -161,12 +161,12 @@ def in_game_wrapper(board_layout, piece_layout):
             else:
                 self.latest_shadow_b = shadow_x, shadow_y
 
-        def handle_pawn_promotion(self, side):
+        def handle_pawn_promotion(self, piece):
             from chessVshogi.UI.PawnPromoOpts import Ui_Frame
 
             class PromoWindow(QtWidgets.QWidget, Ui_Frame):
-                def __init__(self):
-                    super().__init__()
+                def __init__(self, parent=None):
+                    super().__init__(parent)
                     self.setupUi(self)
 
             self.popup = PromoWindow()
@@ -176,16 +176,11 @@ def in_game_wrapper(board_layout, piece_layout):
             self.state.timer_white.stop()
             # change_turn gerekli saati tekrar başlatacak, no problem
             
-            # self.popup.Knight.clicked.connect()
-            # self.popup.Bishop.clicked.connect()
-            # self.popup.Queen.clicked.connect()
-            # self.popup.Rook.clicked.connect()
+            self.popup.Knight.clicked.connect(piece.transform)
+            self.popup.Bishop.clicked.connect(piece.transform)
+            self.popup.Queen.clicked.connect(piece.transform)
+            self.popup.Rook.clicked.connect(piece.transform)
 
-            if side == "W":
-                pass
-            else:
-                pass
-            pass
 
         @staticmethod
         def toggle_highlight_tile(tile, style="move"):
