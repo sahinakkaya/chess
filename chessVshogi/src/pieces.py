@@ -115,7 +115,8 @@ class Pawn(ChessPiece):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.PRIMARY_MOVE = [SetOfVectors(Direction.FORWARD), 2]
-        self.CAPTURE_MOVE = [].append([Direction.HORIZONTAL & Direction.FORWARD, 1])
+        self.CAPTURE_MOVE = []
+        self.CAPTURE_MOVE.append([Direction.HORIZONTAL & Direction.FORWARD, 1])
         self.shadow = None
         self.moved_double_square.connect(self.board.handle_double_square_move)
 
