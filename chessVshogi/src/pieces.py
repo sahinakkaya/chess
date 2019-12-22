@@ -13,12 +13,13 @@ class Piece(QObject):
 
     def __init__(self, board, x, y, promotable=False,
                  has_promoted=False,
-                 is_dead=False):
+                 is_dead=False,
+                 side="W"):
         super(Piece, self).__init__()
         self.board = board
         self.x = x
         self.y = y
-        self.side = "W"  # as in White
+        self.side = side
         self.promoting_rank = None
         self.is_moved = False
         self.promotable = promotable
@@ -81,6 +82,11 @@ class Piece(QObject):
     def update_position(self, from_position, to_position, moved_piece):
         if from_position == (self.x, self.y):
             self.x, self.y = to_position
+            if self.promotable:
+                if self.side == "W" and self.y >= self.promoting_rank:
+                    print("Promotion Trigger_white")
+                if self.side == "B" and self.y <= self.promoting_rank:
+                    print("Promotion Trigger_black")
         elif to_position == (self.x, self.y):
             self.board.state.pieces_on_board.remove(self)
             self.board.mouse_clicked.disconnect(self.get_possible_moves)
@@ -116,6 +122,7 @@ class Pawn(ChessPiece):
         self.PRIMARY_MOVE = [SetOfVectors(Direction.FORWARD), 2]
         self.CAPTURE_MOVE = [[Direction.HORIZONTAL & Direction.FORWARD, 1]]
         self.shadow = None
+        self.promotable = True
         self.moved_double_square.connect(self.board.handle_double_square_move)
 
     def update_position(self, from_position, to_position, moved_piece):
@@ -186,6 +193,7 @@ class S_Rook(ShogiPiece):  # can be renamed to "Hisha"
 
     def __init__(self, *args, **kwargs):
         self.CAPTURE_MOVE = [self.PRIMARY_MOVE]
+        self.promotable = True
         super().__init__(*args, **kwargs)
 
 
@@ -194,6 +202,7 @@ class S_Bishop(ShogiPiece):  # can be renamed to "Kaku"
 
     def __init__(self, *args, **kwargs):
         self.CAPTURE_MOVE = [self.PRIMARY_MOVE]
+        self.promotable = True
         super().__init__(*args, **kwargs)
 
 
@@ -202,6 +211,7 @@ class Lance(ShogiPiece):  # can be renamed to "Kyo"
 
     def __init__(self, *args, **kwargs):
         self.CAPTURE_MOVE = [self.PRIMARY_MOVE]
+        self.promotable = True
         super().__init__(*args, **kwargs)
 
 
@@ -210,6 +220,7 @@ class S_Knight(ShogiPiece):  # can be renamed to "Kei" or "Forward Knight"
 
     def __init__(self, *args, **kwargs):
         self.CAPTURE_MOVE = [self.PRIMARY_MOVE]
+        self.promotable = True
         super().__init__(*args, **kwargs)
 
 
@@ -218,6 +229,7 @@ class S_Pawn(ShogiPiece):  # can be renamed to "Fu"
 
     def __init__(self, *args, **kwargs):
         self.CAPTURE_MOVE = [self.PRIMARY_MOVE]
+        self.promotable = True
         super().__init__(*args, **kwargs)
 
 
@@ -227,6 +239,7 @@ class Silver(ShogiPiece):  # can be renamed to "Gin"
 
     def __init__(self, *args, **kwargs):
         self.CAPTURE_MOVE = [self.PRIMARY_MOVE]
+        self.promotable = True
         super().__init__(*args, **kwargs)
 
 

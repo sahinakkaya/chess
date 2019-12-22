@@ -219,8 +219,8 @@ def in_game_wrapper(ui_class, board_size):
                 for j in range(self.state.board_size):
                     try:
                         piece = mapper[layout[j][i]]["piece"](board=self,
-                                                              x=j + 1, y=i + 1)
-                        piece.side = layout[j][i][2]
+                                                              x=j + 1, y=i + 1,
+                                                              side=layout[j][i][2])
                         self.state.pieces_on_board.append(piece)
                     except KeyError:
                         pass
