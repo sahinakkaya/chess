@@ -102,13 +102,16 @@ class ShogiPiece(Piece):
             self.promoting_rank = 3
 
     def promote_trigger(self):
+        from chessVshogi.src.ui_mapper import mapper
         print("Promotion_trigger_shogi_side:", self.side)
         promoted_self = eval("Promoted" + self.name())
         self.PRIMARY_MOVE = promoted_self.PRIMARY_MOVE
         self.SECONDARY_MOVE = promoted_self.SECONDARY_MOVE
         self.CAPTURE_MOVE = promoted_self.CAPTURE_MOVE
-        board_tile = self.board.get_tile_at(self.x, self.y)
-        board_tile.setProperty("Piece", board_tile.property("Piece") + "P")
+        piece = self.board.get_cell(self.x, self.y).piece
+        # CAN BE MOVED SOMEWHERE ELSE TO AVOID IMPORT
+        piece.name_ += "P"
+        piece.resource = mapper[piece.name_]["resource"]
         self.board.draw_board()
         self.promotable = False
         pass
