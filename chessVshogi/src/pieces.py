@@ -8,18 +8,19 @@ class Piece(QObject):
     """
     PRIMARY_MOVE = [SetOfVectors(), 1]
     SECONDARY_MOVE = None
-    CAPTURE_MOVE = None
+    CAPTURE_MOVE = []
     possible_moves_found = pyqtSignal(SetOfVectors)
 
     def __init__(self, board, x, y, promotable=False,
                  has_promoted=False,
                  is_dead=False):
         super(Piece, self).__init__()
-        self.CAPTURE_MOVE = self.PRIMARY_MOVE
+        self.CAPTURE_MOVE.append(self.PRIMARY_MOVE)
         self.board = board
         self.x = x
         self.y = y
         self.side = "W"  # as in White
+        self.promoting_rank = None
         self.is_moved = False
         self.promotable = promotable
         self.has_promoted = has_promoted
@@ -32,7 +33,7 @@ class Piece(QObject):
     def name(cls):
         return cls.__name__
 
-    def get_possible_moves(self, x, y, fromclickevent = True):
+    def get_possible_moves(self, x, y, fromclickevent=True):
         """
         Return possible moves for the piece
         # TODO: Update this docstring
@@ -46,9 +47,9 @@ class Piece(QObject):
             if self.SECONDARY_MOVE:
                 possible_moves.add(
                     self.get_moves_for_movement(*self.SECONDARY_MOVE))
-            if self.CAPTURE_MOVE:
+            for cap_move in self.CAPTURE_MOVE:
                 board_size = self.board.state.board_size
-                movement, range_ = self.CAPTURE_MOVE
+                movement, range_ = cap_move
                 for direction in movement:
                     if self.side == "B":  # as in Black
                         direction = reversed(direction)
@@ -86,15 +87,26 @@ class Piece(QObject):
             self.board.mouse_clicked.disconnect(self.get_possible_moves)
             self.deleteLater()
 
+    def promote(self):
+        pass
+
 
 class ChessPiece(Piece):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        if self.side == "W":
+            self.promoting_rank = self.board.state.board_size
+        else:
+            self.promoting_rank = 1
 
 
 class ShogiPiece(Piece):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        if self.side == "W":
+            self.promoting_rank = self.board.state.board_size - 2
+        else:
+            self.promoting_rank = 3
 
 
 class Pawn(ChessPiece):
@@ -103,7 +115,7 @@ class Pawn(ChessPiece):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.PRIMARY_MOVE = [SetOfVectors(Direction.FORWARD), 2]
-        self.CAPTURE_MOVE = [Direction.HORIZONTAL & Direction.FORWARD, 1]
+        self.CAPTURE_MOVE = [].append([Direction.HORIZONTAL & Direction.FORWARD, 1])
         self.shadow = None
         self.moved_double_square.connect(self.board.handle_double_square_move)
 
@@ -215,64 +227,54 @@ class Gold(ShogiPiece):  # can be renamed to "Kin"
         super().__init__(*args, **kwargs)
 
 
-class Promoted_Pawn:  # can be renamed to "Tokin"
+class PromotedPawn(ShogiPiece):  # can be renamed to "Tokin"
     PRIMARY_MOVE = Gold.PRIMARY_MOVE
-    MOVEMENT_RANGE = 1
+    promotable = False
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
 
-class Promoted_Lance:  # can be renamed to "Narikyo"
+class PromotedLance(ShogiPiece):  # can be renamed to "Narikyo"
     PRIMARY_MOVE = Gold.PRIMARY_MOVE
-    MOVEMENT_RANGE = 1
+    promotable = False
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
 
-class Promoted_Knight:  # can be renamed to "NariKei"
+class PromotedKnight(ShogiPiece):  # can be renamed to "NariKei"
     PRIMARY_MOVE = Gold.PRIMARY_MOVE
-    MOVEMENT_RANGE = 1
+    promotable = False
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
 
-class Promoted_Silver:  # can be renamed to "Narigin"
+class PromotedSilver(ShogiPiece):  # can be renamed to "Narigin"
     PRIMARY_MOVE = Gold.PRIMARY_MOVE
-    MOVEMENT_RANGE = 1
+    promotable = False
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
 
 # TODO: Need to define special cases where one direction of movement is limited in range
-# class Promoted_Rook:  # can be renamed to "Ryu" or "Dragon"
-#     MOVEMENT = Rook.MOVEMENT
-#     MOVEMENT_RANGE = -1
-#
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
-#
-#
-# class Promoted_Bishop:  # can be renamed to "Uma" or "Horse"
-#     MOVEMENT = Bishop.MOVEMENT
-#     MOVEMENT_RANGE = -1
-#
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
+class PromotedRook(ShogiPiece):  # can be renamed to "Ryu" or "Dragon"
+    PRIMARY_MOVE = [Direction.STRAIGHT, 8]
+    SECONDARY_MOVE = [Direction.DIAGONAL, 1]
+    promotable = False
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.CAPTURE_MOVE.append(self.SECONDARY_MOVE)
 
 
-if __name__ == '__main__':
-    pieces = [Pawn, Knight, Bishop, Rook, Queen, King,
-              S_Pawn, Lance, S_Knight, Silver, Gold]
-    for piece in pieces:
-        print(piece.name(), end="\n\t")
-        print(*piece.MOVEMENT, sep="\n\t", end="\n\t")
-        print("Range: ", piece.MOVEMENT_RANGE)
+class PromotedBishop(ShogiPiece):  # can be renamed to "Uma" or "Horse"
+    PRIMARY_MOVE = [Direction.DIAGONAL, 8]
+    SECONDARY_MOVE = [Direction.STRAIGHT, 1]
+    promotable = False
 
-    print("*" * 50)
-    rook = Rook(x=5, y=5)
-    for vector in rook.get_possible_moves(board_size=8):
-        print(vector)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.CAPTURE_MOVE.append(self.SECONDARY_MOVE)
