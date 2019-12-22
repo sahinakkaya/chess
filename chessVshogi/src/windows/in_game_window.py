@@ -171,6 +171,27 @@ def in_game_wrapper(board_layout, piece_layout):
                     self.setupUi(self)
                     self.windowptr = None
 
+                def show_black(self):
+                    import PyQt5.QtGui as QtGui
+                    knighticon = QtGui.QIcon()
+                    knighticon.addPixmap(QtGui.QPixmap(":/Chess/resources/chess_48/Chess_ndt48.png"),
+                                         QtGui.QIcon.Normal,
+                                         QtGui.QIcon.Off)
+                    bishopicon = QtGui.QIcon()
+                    bishopicon.addPixmap(QtGui.QPixmap(":/Chess/resources/chess_48/Chess_bdt48.png"),
+                                         QtGui.QIcon.Normal,
+                                         QtGui.QIcon.Off)
+                    queenicon = QtGui.QIcon()
+                    queenicon.addPixmap(QtGui.QPixmap(":/Chess/resources/chess_48/Chess_qdt48.png"), QtGui.QIcon.Normal,
+                                        QtGui.QIcon.Off)
+                    rookicon = QtGui.QIcon()
+                    rookicon.addPixmap(QtGui.QPixmap(":/Chess/resources/chess_48/Chess_rdt48.png"), QtGui.QIcon.Normal,
+                                       QtGui.QIcon.Off)
+                    self.Knight.setIcon(knighticon)
+                    self.Bishop.setIcon(bishopicon)
+                    self.Queen.setIcon(queenicon)
+                    self.Rook.setIcon(rookicon)
+
                 def closeEvent(self, event):
                     self.windowptr.setEnabled(True)
                     self.windowptr.check_king_threat()
@@ -178,16 +199,14 @@ def in_game_wrapper(board_layout, piece_layout):
 
             self.popup = PromoWindow()
             self.popup.windowptr = self
+            if piece.side == "B":
+                self.popup.show_black()
             self.popup.show()
             self.setDisabled(True)
-
-            # change_turn gerekli saati tekrar başlatacak, no problem
-            
             self.popup.Knight.clicked.connect(piece.transform)
             self.popup.Bishop.clicked.connect(piece.transform)
             self.popup.Queen.clicked.connect(piece.transform)
             self.popup.Rook.clicked.connect(piece.transform)
-
 
         @staticmethod
         def toggle_highlight_tile(tile, style="move"):
