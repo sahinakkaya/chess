@@ -45,8 +45,8 @@ class Piece(QObject):
                                                          range_)
 
             if self.SECONDARY_MOVE:
-                possible_moves.add(
-                    self.get_moves_for_movement(*self.SECONDARY_MOVE))
+                sec_movement, sec_range = self.SECONDARY_MOVE
+                possible_moves = possible_moves | self.get_moves_for_movement(sec_movement, sec_range)
             for cap_move in self.CAPTURE_MOVE:
                 board_size = self.board.state.board_size
                 movement, range_ = cap_move
@@ -113,6 +113,14 @@ class ShogiPiece(Piece):
 
     def promote_trigger(self):
         print("Promotion_trigger_shogi_side:", self.side)
+        promoted_self = eval("Promoted"+self.name())
+        self.PRIMARY_MOVE = promoted_self.PRIMARY_MOVE
+        self.SECONDARY_MOVE = promoted_self.SECONDARY_MOVE
+        self.CAPTURE_MOVE = promoted_self.CAPTURE_MOVE
+        board_tile = self.board.get_tile_at(self.x, self.y)
+        board_tile.setProperty("Piece", board_tile.property("Piece")+"P")
+        self.board.draw_board()
+        self.promotable = False
         pass
 
 
@@ -152,93 +160,93 @@ class Pawn(ChessPiece):
 class Knight(ChessPiece):
     PRIMARY_MOVE = [SetOfVectors((2, 1), (1, 2)).flip(
         axes="h", in_place=True).flip(axes="v", in_place=True), 1]
+    CAPTURE_MOVE = [PRIMARY_MOVE]
 
     def __init__(self, *args, **kwargs):
-        self.CAPTURE_MOVE = [self.PRIMARY_MOVE]
         super().__init__(*args, **kwargs)
 
 
 class Rook(ChessPiece):
     PRIMARY_MOVE = [Direction.STRAIGHT, 8]
+    CAPTURE_MOVE = [PRIMARY_MOVE]
 
     def __init__(self, *args, **kwargs):
-        self.CAPTURE_MOVE = [self.PRIMARY_MOVE]
         super().__init__(*args, **kwargs)
 
 
 class Bishop(ChessPiece):
     PRIMARY_MOVE = [Direction.DIAGONAL, 8]
+    CAPTURE_MOVE = [PRIMARY_MOVE]
 
     def __init__(self, *args, **kwargs):
-        self.CAPTURE_MOVE = [self.PRIMARY_MOVE]
         super().__init__(*args, **kwargs)
 
 
 class Queen(ChessPiece):
     PRIMARY_MOVE = [Direction.STRAIGHT | Direction.DIAGONAL, 8]
+    CAPTURE_MOVE = [PRIMARY_MOVE]
 
     def __init__(self, *args, **kwargs):
-        self.CAPTURE_MOVE = [self.PRIMARY_MOVE]
         super().__init__(*args, **kwargs)
 
 
 class King(ChessPiece):
     PRIMARY_MOVE = [Direction.STRAIGHT | Direction.DIAGONAL, 1]
+    CAPTURE_MOVE = [PRIMARY_MOVE]
 
     def __init__(self, *args, **kwargs):
-        self.CAPTURE_MOVE = [self.PRIMARY_MOVE]
         super().__init__(*args, **kwargs)
 
 
 class S_King(ShogiPiece):  # can be renamed to "Gyoku"
     PRIMARY_MOVE = [Direction.STRAIGHT | Direction.DIAGONAL, 1]
+    CAPTURE_MOVE = [PRIMARY_MOVE]
 
     def __init__(self, *args, **kwargs):
-        self.CAPTURE_MOVE = [self.PRIMARY_MOVE]
         super().__init__(*args, **kwargs)
 
 
-class S_Rook(ShogiPiece):  # can be renamed to "Hisha"
+class SRook(ShogiPiece):  # can be renamed to "Hisha"
     PRIMARY_MOVE = [Direction.STRAIGHT, 8]
+    CAPTURE_MOVE = [PRIMARY_MOVE]
 
     def __init__(self, *args, **kwargs):
-        self.CAPTURE_MOVE = [self.PRIMARY_MOVE]
         super().__init__(*args, **kwargs)
         self.promotable = True
 
 
-class S_Bishop(ShogiPiece):  # can be renamed to "Kaku"
+class SBishop(ShogiPiece):  # can be renamed to "Kaku"
     PRIMARY_MOVE = [Direction.DIAGONAL, 8]
+    CAPTURE_MOVE = [PRIMARY_MOVE]
 
     def __init__(self, *args, **kwargs):
-        self.CAPTURE_MOVE = [self.PRIMARY_MOVE]
         super().__init__(*args, **kwargs)
         self.promotable = True
 
 
 class Lance(ShogiPiece):  # can be renamed to "Kyo"
     PRIMARY_MOVE = [SetOfVectors(Direction.FORWARD), 8]
+    CAPTURE_MOVE = [PRIMARY_MOVE]
 
     def __init__(self, *args, **kwargs):
-        self.CAPTURE_MOVE = [self.PRIMARY_MOVE]
         super().__init__(*args, **kwargs)
         self.promotable = True
 
 
-class S_Knight(ShogiPiece):  # can be renamed to "Kei" or "Forward Knight"
+class SKnight(ShogiPiece):  # can be renamed to "Kei" or "Forward Knight"
     PRIMARY_MOVE = [SetOfVectors((1, 2), ).flip(axes="h", in_place=True), 1]
+    CAPTURE_MOVE = [PRIMARY_MOVE]
 
     def __init__(self, *args, **kwargs):
-        self.CAPTURE_MOVE = [self.PRIMARY_MOVE]
         super().__init__(*args, **kwargs)
         self.promotable = True
 
 
-class S_Pawn(ShogiPiece):  # can be renamed to "Fu"
+class SPawn(ShogiPiece):  # can be renamed to "Fu"
     PRIMARY_MOVE = [SetOfVectors(Direction.FORWARD), 1]
+    CAPTURE_MOVE = [PRIMARY_MOVE]
 
     def __init__(self, *args, **kwargs):
-        self.CAPTURE_MOVE = [self.PRIMARY_MOVE]
         super().__init__(*args, **kwargs)
         self.promotable = True
 
@@ -246,9 +254,9 @@ class S_Pawn(ShogiPiece):  # can be renamed to "Fu"
 class Silver(ShogiPiece):  # can be renamed to "Gin"
     PRIMARY_MOVE = [
         Direction.FORWARD | Direction.LDIAGONAL | Direction.RDIAGONAL, 1]
+    CAPTURE_MOVE = [PRIMARY_MOVE]
 
     def __init__(self, *args, **kwargs):
-        self.CAPTURE_MOVE = [self.PRIMARY_MOVE]
         super().__init__(*args, **kwargs)
         self.promotable = True
 
@@ -256,60 +264,59 @@ class Silver(ShogiPiece):  # can be renamed to "Gin"
 class Gold(ShogiPiece):  # can be renamed to "Kin"
     PRIMARY_MOVE = [Direction.HORIZONTAL | Direction.VERTICAL | (
             Direction.HORIZONTAL & Direction.FORWARD), 1]
+    CAPTURE_MOVE = [PRIMARY_MOVE]
 
     def __init__(self, *args, **kwargs):
-        self.CAPTURE_MOVE = [self.PRIMARY_MOVE]
         super().__init__(*args, **kwargs)
 
 
-class PromotedPawn(ShogiPiece):  # can be renamed to "Tokin"
+class PromotedSPawn(ShogiPiece):  # can be renamed to "Tokin"
     PRIMARY_MOVE = Gold.PRIMARY_MOVE
+    CAPTURE_MOVE = [PRIMARY_MOVE]
 
     def __init__(self, *args, **kwargs):
-        self.CAPTURE_MOVE = [self.PRIMARY_MOVE]
         super().__init__(*args, **kwargs)
 
 
 class PromotedLance(ShogiPiece):  # can be renamed to "Narikyo"
     PRIMARY_MOVE = Gold.PRIMARY_MOVE
+    CAPTURE_MOVE = [PRIMARY_MOVE]
 
     def __init__(self, *args, **kwargs):
-        self.CAPTURE_MOVE = [self.PRIMARY_MOVE]
         super().__init__(*args, **kwargs)
 
 
-class PromotedKnight(ShogiPiece):  # can be renamed to "NariKei"
+class PromotedSKnight(ShogiPiece):  # can be renamed to "NariKei"
     PRIMARY_MOVE = Gold.PRIMARY_MOVE
+    CAPTURE_MOVE = [PRIMARY_MOVE]
 
     def __init__(self, *args, **kwargs):
-        self.CAPTURE_MOVE = [self.PRIMARY_MOVE]
         super().__init__(*args, **kwargs)
 
 
 class PromotedSilver(ShogiPiece):  # can be renamed to "Narigin"
     PRIMARY_MOVE = Gold.PRIMARY_MOVE
+    CAPTURE_MOVE = [PRIMARY_MOVE]
 
     def __init__(self, *args, **kwargs):
-        self.CAPTURE_MOVE = [self.PRIMARY_MOVE]
         super().__init__(*args, **kwargs)
 
 
-# TODO: Need to define special cases where one direction of movement is limited in range
-class PromotedRook(ShogiPiece):  # can be renamed to "Ryu" or "Dragon"
+class PromotedSRook(ShogiPiece):  # can be renamed to "Ryu" or "Dragon"
     PRIMARY_MOVE = [Direction.STRAIGHT, 8]
     SECONDARY_MOVE = [Direction.DIAGONAL, 1]
+    CAPTURE_MOVE = [PRIMARY_MOVE,
+                    SECONDARY_MOVE]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.CAPTURE_MOVE = [self.PRIMARY_MOVE,
-                             self.SECONDARY_MOVE]
 
 
-class PromotedBishop(ShogiPiece):  # can be renamed to "Uma" or "Horse"
+class PromotedSBishop(ShogiPiece):  # can be renamed to "Uma" or "Horse"
     PRIMARY_MOVE = [Direction.DIAGONAL, 8]
     SECONDARY_MOVE = [Direction.STRAIGHT, 1]
+    CAPTURE_MOVE = [PRIMARY_MOVE,
+                    SECONDARY_MOVE]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.CAPTURE_MOVE = [self.PRIMARY_MOVE,
-                             self.SECONDARY_MOVE]
