@@ -161,10 +161,7 @@ class Pawn(ChessPiece):
 
     def promote_trigger(self):
         print("Promoting Pawn")
-        if self.side == "W":
-            pass
-        else:
-            pass
+        self.promotion_trigger.emit(self.side)
         pass
 
 

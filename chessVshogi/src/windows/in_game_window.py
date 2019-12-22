@@ -154,6 +154,25 @@ def in_game_wrapper(ui_class, board_size):
             tile.setProperty("Piece", "shadow")
 
         def handle_pawn_promotion(self, side):
+            from chessVshogi.UI.PawnPromoOpts import Ui_Frame
+
+            class PromoWindow(QtWidgets.QWidget, Ui_Frame):
+                def __init__(self):
+                    super().__init__()
+                    self.setupUi(self)
+
+            #  oyunu durdur bi şekilde?
+            self.popup = PromoWindow()
+            self.popup.show()
+            # self.popup.Knight.clicked.connect()
+            # self.popup.Bishop.clicked.connect()
+            # self.popup.Queen.clicked.connect()
+            # self.popup.Rook.clicked.connect()
+
+            if side == "W":
+                pass
+            else:
+                pass
             pass
 
         @staticmethod
