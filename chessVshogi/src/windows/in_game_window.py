@@ -153,6 +153,9 @@ def in_game_wrapper(ui_class, board_size):
             tile = self.get_tile_at(*self.latest_shadow)
             tile.setProperty("Piece", "shadow")
 
+        def handle_pawn_promotion(self, side):
+            pass
+
         @staticmethod
         def toggle_highlight_tile(tile, style="move"):
             stylesheet_remapper = {

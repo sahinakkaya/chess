@@ -86,6 +86,11 @@ class Piece(QObject):
                 if (self.side == "W" and self.y >= self.promoting_rank) or \
                         (self.side == "B" and self.y <= self.promoting_rank):
                     self.promote_trigger()
+                else:  # this segment will be required later.
+                    prev_y = from_position[1]
+                    if (self.side == "W" and prev_y >= self.promoting_rank) or \
+                            (self.side == "B" and prev_y <= self.promoting_rank):
+                        self.promote_trigger()
         elif to_position == (self.x, self.y):
             self.board.state.pieces_on_board.remove(self)
             self.board.mouse_clicked.disconnect(self.get_possible_moves)
@@ -126,6 +131,7 @@ class ShogiPiece(Piece):
 
 class Pawn(ChessPiece):
     moved_double_square = pyqtSignal(int, int, int, int)
+    promotion_trigger = pyqtSignal(str)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -138,6 +144,7 @@ class Pawn(ChessPiece):
         else:
             self.promoting_rank = 1
         self.moved_double_square.connect(self.board.handle_double_square_move)
+        self.promotion_trigger.connect(self.board.handle_pawn_promotion)
 
     def update_position(self, from_position, to_position, moved_piece):
         self.shadow = None
@@ -154,6 +161,10 @@ class Pawn(ChessPiece):
 
     def promote_trigger(self):
         print("Promoting Pawn")
+        if self.side == "W":
+            pass
+        else:
+            pass
         pass
 
 
