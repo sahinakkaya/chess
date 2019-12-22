@@ -27,15 +27,8 @@ class GameModeWindow(QWidget, Ui_Gamemode_Menu):
             board_layout = globals()["Ui_IngameShogi"]
         piece_layout = getattr(layouts,
                                f"{button_name.lower()}_default")
-        if button_name == "Chess":
-            board_size = 8
-        else:
-            board_size = 9
 
-        window_in_game = in_game_wrapper(board_layout, board_size)()
-        window_in_game.load_layout(piece_layout)
-        window_in_game.load_pieces(piece_layout)
-        window_in_game.draw_board()
+        window_in_game = in_game_wrapper(board_layout, piece_layout)()
         stacked_widget = self.parentWidget()
         stacked_widget.addWidget(window_in_game)
         stacked_widget.setCurrentIndex(4)
@@ -43,6 +36,7 @@ class GameModeWindow(QWidget, Ui_Gamemode_Menu):
     def opts_vsmode(self):
         stacked_widget = self.parentWidget()
         stacked_widget.setCurrentIndex(3)
+
 
 if __name__ == '__main__':
     import sys

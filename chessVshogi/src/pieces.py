@@ -9,7 +9,6 @@ class Piece(QObject):
     PRIMARY_MOVE = None
     SECONDARY_MOVE = None
     CAPTURE_MOVE = None
-    possible_moves_found = pyqtSignal(SetOfVectors)
 
     def __init__(self, board, x, y, promotable=False,
                  has_promoted=False,
@@ -25,45 +24,41 @@ class Piece(QObject):
         self.promotable = promotable
         self.has_promoted = has_promoted
         self.is_dead = is_dead
-        board.mouse_clicked.connect(self.get_possible_moves)
-        board.piece_moved.connect(self.update_position)
-        self.possible_moves_found.connect(board.set_possible_moves)
+        self.name_ = ""
 
     @classmethod
     def name(cls):
         return cls.__name__
 
-    def get_possible_moves(self, x, y, fromclickevent=True):
+    def get_possible_moves(self):
         """
         Return possible moves for the piece
         # TODO: Update this docstring
         :return: a set of Vector2D objects that a piece can go
         """
-        if self.x == x and self.y == y:
-            primary_movement, range_ = self.PRIMARY_MOVE
-            possible_moves = self.get_moves_for_movement(primary_movement,
-                                                         range_)
+        primary_movement, range_ = self.PRIMARY_MOVE
+        possible_moves = self.get_moves_for_movement(primary_movement,
+                                                     range_)
 
-            if self.SECONDARY_MOVE:
-                sec_movement, sec_range = self.SECONDARY_MOVE
-                possible_moves = possible_moves | self.get_moves_for_movement(sec_movement, sec_range)
-            for cap_move in self.CAPTURE_MOVE:
-                board_size = self.board.state.board_size
-                movement, range_ = cap_move
-                for direction in movement:
-                    if self.side == "B":  # as in Black
-                        direction = reversed(direction)
-                    for i in range(1, range_ + 1):
-                        move = (direction * i) + Vector2D(self.x, self.y)
-                        if (1, 1) <= move <= (board_size, board_size):
-                            if self.board.is_empty(move.x, move.y):
-                                continue
-                            possible_moves.add(move)
-                            break
-            if fromclickevent:
-                self.possible_moves_found.emit(possible_moves)
-            else:
-                return possible_moves
+        if self.SECONDARY_MOVE:
+            sec_movement, sec_range = self.SECONDARY_MOVE
+            possible_moves = possible_moves | self.get_moves_for_movement(
+                sec_movement, sec_range)
+        for cap_move in self.CAPTURE_MOVE:
+            board_size = self.board.state.board_size
+            movement, range_ = cap_move
+            for direction in movement:
+                if self.side == "B":  # as in Black
+                    direction = reversed(direction)
+                for i in range(1, range_ + 1):
+                    move = (direction * i) + Vector2D(self.x, self.y)
+                    if (1, 1) <= move <= (board_size, board_size):
+                        if self.board.is_empty(move.x, move.y,
+                                               include_shadows=True):
+                            continue
+                        possible_moves.add(move)
+                        break
+        return possible_moves
 
     def get_moves_for_movement(self, movement, range_):
         possible_moves = SetOfVectors()
@@ -79,22 +74,12 @@ class Piece(QObject):
                     possible_moves.add(move)
         return possible_moves
 
-    def update_position(self, from_position, to_position, moved_piece):
-        if from_position == (self.x, self.y):
-            self.x, self.y = to_position
-            if self.promotable:
-                if (self.side == "W" and self.y >= self.promoting_rank) or \
-                        (self.side == "B" and self.y <= self.promoting_rank):
-                    self.promote_trigger()
-                else:  # this segment will be required later.
-                    prev_y = from_position[1]
-                    if (self.side == "W" and prev_y >= self.promoting_rank) or \
-                            (self.side == "B" and prev_y <= self.promoting_rank):
-                        self.promote_trigger()
-        elif to_position == (self.x, self.y):
-            self.board.state.pieces_on_board.remove(self)
-            self.board.mouse_clicked.disconnect(self.get_possible_moves)
-            self.deleteLater()
+    def set_position(self, new_x, new_y):
+        self.x = new_x
+        self.y = new_y
+
+    def __repr__(self):
+        return self.name_
 
     def promote_trigger(self):
         pass
@@ -112,18 +97,18 @@ class ShogiPiece(Piece):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if self.side == "W":
-            self.promoting_rank = self.board.state.board_size - 2
+            self.promoting_rank = self.board.board_size - 2
         else:
             self.promoting_rank = 3
 
     def promote_trigger(self):
         print("Promotion_trigger_shogi_side:", self.side)
-        promoted_self = eval("Promoted"+self.name())
+        promoted_self = eval("Promoted" + self.name())
         self.PRIMARY_MOVE = promoted_self.PRIMARY_MOVE
         self.SECONDARY_MOVE = promoted_self.SECONDARY_MOVE
         self.CAPTURE_MOVE = promoted_self.CAPTURE_MOVE
         board_tile = self.board.get_tile_at(self.x, self.y)
-        board_tile.setProperty("Piece", board_tile.property("Piece")+"P")
+        board_tile.setProperty("Piece", board_tile.property("Piece") + "P")
         self.board.draw_board()
         self.promotable = False
         pass
@@ -140,24 +125,20 @@ class Pawn(ChessPiece):
         self.shadow = None
         self.promotable = True
         if self.side == "W":
-            self.promoting_rank = self.board.state.board_size
+            self.promoting_rank = self.board.board_size
         else:
             self.promoting_rank = 1
         self.moved_double_square.connect(self.board.handle_double_square_move)
         self.promotion_trigger.connect(self.board.handle_pawn_promotion)
 
-    def update_position(self, from_position, to_position, moved_piece):
-        self.shadow = None
-        if from_position == (self.x, self.y):
-            self.PRIMARY_MOVE[1] = 1
-            difference = Vector2D(*to_position) - Vector2D(*from_position)
-            if difference.y in (2, -2):
-                summation = (Vector2D(*from_position) + Vector2D(*to_position))
-                self.shadow = summation // 2
-                self.moved_double_square.emit(*self.shadow, *to_position)
-        elif Vector2D(*to_position) == self.shadow and moved_piece == "P":
-            to_position = self.x, self.y
-        super().update_position(from_position, to_position, moved_piece)
+    def set_position(self, new_x, new_y):
+        self.PRIMARY_MOVE[1] = 1
+        difference = Vector2D(new_x, new_y) - Vector2D(self.x, self.y)
+        if difference.y in (2, -2):
+            summation = Vector2D(new_x, new_y) + Vector2D(self.x, self.y)
+            self.shadow = summation // 2
+            self.moved_double_square.emit(*self.shadow, new_x, new_y)
+        super().set_position(new_x, new_y)
 
     def promote_trigger(self):
         print("Promoting Pawn")

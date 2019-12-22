@@ -3,13 +3,11 @@ from PyQt5.QtCore import pyqtSignal, QTime, QEvent
 from PyQt5.QtGui import QPixmap
 
 from chessVshogi.src import directions
-from chessVshogi.UI.ui_mapper import mapper
 from chessVshogi.src.game_state import GameState
 
 
-def in_game_wrapper(ui_class, board_size):
-    class InGameWindow(QtWidgets.QWidget, ui_class):
-        mouse_clicked = pyqtSignal(int, int)
+def in_game_wrapper(board_layout, piece_layout):
+    class InGameWindow(QtWidgets.QWidget, board_layout):
         piece_moved = pyqtSignal(tuple, tuple, str)
 
         def __init__(self):
@@ -19,9 +17,12 @@ def in_game_wrapper(ui_class, board_size):
             self.create_tiles()
             self.possible_moves = None
             self.latest_click = None
-            self.latest_shadow = None
+            self.latest_shadow_b = None
+            self.latest_shadow_w = None
             self.possible_dead_pawn = None
-            self.state = GameState(board_size)
+            self.piece_layout = piece_layout
+            self.board_size = len(piece_layout)
+            self.state = GameState(piece_layout, self)
             self.timeWhite.setTime(QTime(0, 10))
             self.timeBlack.setTime(QTime(0, 10))
             self.state.timer_white.timeout.connect(
@@ -31,6 +32,7 @@ def in_game_wrapper(ui_class, board_size):
             self.buttonResign.clicked.connect(
                 lambda: self.terminate_game("lost", self.state.turn,
                                             "Resigned"))
+            self.draw_board()
 
         def create_tiles(self):
             for i in range(11, 100):
@@ -42,7 +44,7 @@ def in_game_wrapper(ui_class, board_size):
                 self.tiles.append(tile)
 
         def showEvent(self, event):
-            self.state.timer_white.start()
+            # self.state.timer_white.start()
             event.accept()
 
         def cool_down(self, color):
@@ -53,14 +55,6 @@ def in_game_wrapper(ui_class, board_size):
                                        " Remaining Time:" +
                                        time_edit.text() +
                                        "- chessVshogi")
-
-        def draw_board(self):
-            for tile in self.tiles:
-                if tile.property("Piece") not in ("", "shadow"):
-                    pixmap = mapper[tile.property("Piece")]["resource"]
-                    tile.setPixmap(QPixmap(pixmap))
-                else:
-                    tile.clear()
 
         def eventFilter(self, source, event):
             if event.type() == QEvent.MouseButtonPress and source in self.tiles:
@@ -85,35 +79,43 @@ def in_game_wrapper(ui_class, board_size):
             self.labelTurn.setText("Turn: {}".format(self.state.turn))
 
         def hold_piece(self, posx, posy):
-            if self.get_piece(posx, posy)[2] != self.state.turn[0]:
+            piece = self.get_piece(posx, posy)
+            if piece.side != self.state.turn[0]:
                 pass
             elif self.state.action == "Wait":
                 self.state.action = "Hold"
                 self.latest_click = (posx, posy)
-                self.mouse_clicked.emit(posx, posy)
+                possible_moves = piece.get_possible_moves()
+                self.set_possible_moves(possible_moves)
                 self.toggle_highlight_for_possible_moves()
+
+        def draw_board(self):
+            for row in self.state.board:
+                # print(row)
+                for cell in row:
+                    tile = self.get_tile_at(cell.x, cell.y)
+                    if cell.piece:
+                        pixmap = cell.piece.resource
+                        tile.setPixmap(QPixmap(pixmap))
+                    else:
+                        tile.clear()
+            # print()
 
         def relocate_piece(self, posx, posy):
             self.state.action = "Wait"
             piece_tile = self.get_last_clicked_tile()
-            destination_tile = self.get_tile_at(posx, posy)
-            clicked_piece = self.get_piece(posx, posy)
+            source_cell = self.get_cell(*self.latest_click)
+            destination_cell = self.get_cell(posx, posy)
+            clicked_piece = destination_cell.piece
             if self.latest_click == (posx, posy):
                 pass
             elif (posx, posy) in self.possible_moves:
-                destination_tile.setProperty("Piece",
-                                             piece_tile.property("Piece"))
-                piece_tile.setProperty("Piece", '')
-                moved_piece = destination_tile.property("Piece")[3]
-                if clicked_piece == "shadow":
-                    if moved_piece == "P":
-                        self.remove_dead_pawn()
-                else:
-                    self.clear_shadows()
-                self.latest_shadow = None
-                self.piece_moved.emit(self.latest_click, (posx, posy),
-                                      moved_piece)
+
+                destination_cell.set_piece(source_cell.piece)
+                source_cell.clear()
+                self.clear_shadows()
                 self.draw_board()
+                moved_piece = destination_cell.piece.name_[3]
                 if moved_piece == "K" and self.state.danger[self.state.turn]:
                     self.toggle_highlight_tile(piece_tile, "threat")
                     self.toggle_highlight_tile(piece_tile)
@@ -125,7 +127,7 @@ def in_game_wrapper(ui_class, board_size):
                 self.change_turn()
                 if self.check_king_threat():
                     print("Threat!")
-            elif clicked_piece and clicked_piece[2] == self.state.turn[0]:
+            elif clicked_piece and clicked_piece.side == self.state.turn[0]:
                 self.toggle_highlight_for_possible_moves()
                 self.hold_piece(posx, posy)
             else:
@@ -134,12 +136,14 @@ def in_game_wrapper(ui_class, board_size):
                 self.toggle_highlight_for_possible_moves()
 
         def clear_shadows(self):
-            if self.latest_shadow:
-                tile = self.get_tile_at(*self.latest_shadow)
-                tile.setProperty("Piece", "")
-
-        def remove_dead_pawn(self):
-            self.get_tile_at(*self.possible_dead_pawn).setProperty("Piece", "")
+            if self.state.turn == "White":
+                if self.latest_shadow_b:
+                    cell = self.get_cell(*self.latest_shadow_b)
+                    cell.shadow = None
+            else:
+                if self.latest_shadow_w:
+                    cell = self.get_cell(*self.latest_shadow_w)
+                    cell.shadow = None
 
         def toggle_highlight_for_possible_moves(self):
             for i in self.possible_moves:
@@ -148,10 +152,12 @@ def in_game_wrapper(ui_class, board_size):
 
         def handle_double_square_move(self, shadow_x, shadow_y,
                                       actual_x, actual_y):
-            self.latest_shadow = shadow_x, shadow_y
-            self.possible_dead_pawn = actual_x, actual_y
-            tile = self.get_tile_at(*self.latest_shadow)
-            tile.setProperty("Piece", "shadow")
+            self.get_cell(shadow_x, shadow_y).shadow = self.get_cell(actual_x,
+                                                                     actual_y)
+            if self.state.turn == "White":
+                self.latest_shadow_w = shadow_x, shadow_y
+            else:
+                self.latest_shadow_b = shadow_x, shadow_y
 
         def handle_pawn_promotion(self, side):
             from chessVshogi.UI.PawnPromoOpts import Ui_Frame
@@ -210,25 +216,28 @@ def in_game_wrapper(ui_class, board_size):
             elif style == "threat":
                 tile.setStyleSheet(threat_remapper[tile.styleSheet()])
 
-        def load_layout(self, layout):
-            for i, line in enumerate(layout):
-                for j, piece in enumerate(line):
-                    self.get_tile_at(i + 1, j + 1).setProperty("Piece", piece)
-
         def set_possible_moves(self, possible_moves):
             filtered_moves = directions.SetOfVectors()
             for x, y in possible_moves:
                 piece = self.get_piece(x, y)
-                if piece == "" or piece[2] != self.state.turn[0]:
+                if not piece or piece.side != self.state.turn[0]:
                     filtered_moves.add(directions.Vector2D(x, y))
             filtered_moves.add(directions.Vector2D(*self.latest_click))
             self.possible_moves = filtered_moves
 
-        def is_empty(self, x, y):
-            return self.get_piece(x, y) == ""
+        def is_empty(self, x, y, include_shadows=False):
+            piece_check = self.get_piece(x, y) is None
+            shadow_check = self.get_cell(x, y).shadow is None
+            if include_shadows:
+                return piece_check and shadow_check
+
+            return piece_check
 
         def get_piece(self, x, y):
-            return self.get_tile_at(x, y).property("Piece")
+            return self.get_cell(x, y).piece
+
+        def get_cell(self, x, y):
+            return self.state.board[y - 1][x - 1]
 
         def get_tile_at(self, x, y):
             return getattr(self, "Tile_{}{}".format(x, y))
@@ -236,34 +245,26 @@ def in_game_wrapper(ui_class, board_size):
         def get_last_clicked_tile(self):
             return self.get_tile_at(*self.latest_click)
 
-        def load_pieces(self, layout):
-            for i in range(self.state.board_size):
-                for j in range(self.state.board_size):
-                    try:
-                        piece = mapper[layout[j][i]]["piece"](board=self,
-                                                              x=j + 1, y=i + 1,
-                                                              side=layout[j][i][2])
-                        self.state.pieces_on_board.append(piece)
-                    except KeyError:
-                        pass
-
         def get_king_position(self):
-            for piece in self.state.pieces_on_board:
-                if piece.name() in ["King", "S_King"] and \
-                        piece.side == self.state.turn[0]:
-                    return piece.x, piece.y
+            for row in self.state.board:
+                for cell in row:
+                    piece = cell.piece
+                    if piece and piece.name() in ["King", "S_King"] and \
+                            piece.side == self.state.turn[0]:
+                        return piece.x, piece.y
 
         def check_king_threat(self):
             king_pos = self.get_king_position()
-            for piece in self.state.pieces_on_board:
-                if piece.side != self.state.turn[0]:
-                    if king_pos in piece.get_possible_moves(piece.x, piece.y,
-                                                            False):
-                        if not self.state.danger[self.state.turn]:
-                            self.state.danger[self.state.turn] = True
-                            self.toggle_highlight_tile(
-                                self.get_tile_at(*king_pos), style="threat")
-                        return True
+            for row in self.state.board:
+                for cell in row:
+                    piece = cell.piece
+                    if piece and piece.side != self.state.turn[0]:
+                        if king_pos in piece.get_possible_moves():
+                            if not self.state.danger[self.state.turn]:
+                                self.state.danger[self.state.turn] = True
+                                self.toggle_highlight_tile(
+                                    self.get_tile_at(*king_pos), style="threat")
+                            return True
             if self.state.danger[self.state.turn]:
                 self.state.danger[self.state.turn] = False
                 self.toggle_highlight_tile(self.get_tile_at(*king_pos),
@@ -285,3 +286,18 @@ def in_game_wrapper(ui_class, board_size):
             self.setDisabled(True)
 
     return InGameWindow
+
+
+if __name__ == '__main__':
+    from chessVshogi.src.layouts import chess_default, shogi_default
+    from chessVshogi.src.windows import in_game_window
+    from chessVshogi.UI.ingame_chess import Ui_IngameChess
+    from chessVshogi.UI.ingame_shogi import Ui_IngameShogi
+    import sys
+    from PyQt5.QtWidgets import QApplication
+
+    app = QApplication([])
+    w = in_game_window.in_game_wrapper(Ui_IngameChess, chess_default)()
+    w.draw_board()
+    w.show()
+    sys.exit(app.exec_())
