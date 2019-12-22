@@ -152,9 +152,14 @@ class Pawn(ChessPiece):
         from chessVshogi.src.ui_mapper import mapper
         self.name_ = self.name_[:3] + self.sender().objectName()[0] + self.name_[4:]
         self.resource = mapper[self.name_]["resource"]
-        print(self.sender().parent())
+        promoted_self = eval(self.sender().objectName())
+        self.PRIMARY_MOVE = promoted_self.PRIMARY_MOVE
+        self.SECONDARY_MOVE = promoted_self.SECONDARY_MOVE
+        self.CAPTURE_MOVE = promoted_self.CAPTURE_MOVE
+        self.promotable=False
         self.sender().parent().close()
         self.sender().parent().deleteLater()
+        self.board.draw_board()
 
 
 class Knight(ChessPiece):
