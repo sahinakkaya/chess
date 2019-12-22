@@ -135,12 +135,13 @@ class Pawn(ChessPiece):
         self.promotion_trigger.connect(self.board.handle_pawn_promotion)
 
     def set_position(self, new_x, new_y):
-        self.PRIMARY_MOVE[1] = 1
-        difference = Vector2D(new_x, new_y) - Vector2D(self.x, self.y)
-        if difference.y in (2, -2):
-            summation = Vector2D(new_x, new_y) + Vector2D(self.x, self.y)
-            self.shadow = summation // 2
-            self.moved_double_square.emit(*self.shadow, new_x, new_y)
+        if self.promotable:
+            self.PRIMARY_MOVE[1] = 1
+            difference = Vector2D(new_x, new_y) - Vector2D(self.x, self.y)
+            if difference.y in (2, -2):
+                summation = Vector2D(new_x, new_y) + Vector2D(self.x, self.y)
+                self.shadow = summation // 2
+                self.moved_double_square.emit(*self.shadow, new_x, new_y)
         super().set_position(new_x, new_y)
 
     def promote_trigger(self):
