@@ -198,6 +198,7 @@ class Ui_Custom_Game_1(object):
         self.horizontalLayout_2.addWidget(self.L_Chess)
         self.verticalLayout_5.addWidget(self.Lineup)
         self.GrpTimerOpts = QtWidgets.QGroupBox(self.GrpPlayerOpts)
+        self.GrpTimerOpts.setEnabled(False)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
