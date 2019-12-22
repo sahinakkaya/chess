@@ -23,7 +23,7 @@ class Cell:
 
     def set_piece(self, piece):
         if self.shadow is not None:
-            if piece.name() == "Pawn":
+            if piece.name() == "Pawn" and piece.promotable:
                 self.shadow.clear()
             self.shadow = None
 
