@@ -83,26 +83,24 @@ class Piece(QObject):
         if from_position == (self.x, self.y):
             self.x, self.y = to_position
             if self.promotable:
-                if self.side == "W" and self.y >= self.promoting_rank:
-                    print("Promotion Trigger_white")
-                if self.side == "B" and self.y <= self.promoting_rank:
-                    print("Promotion Trigger_black")
+                if (self.side == "W" and self.y >= self.promoting_rank) or \
+                        (self.side == "B" and self.y <= self.promoting_rank):
+                    self.promote_trigger()
         elif to_position == (self.x, self.y):
             self.board.state.pieces_on_board.remove(self)
             self.board.mouse_clicked.disconnect(self.get_possible_moves)
             self.deleteLater()
 
-    def promote(self):
+    def promote_trigger(self):
         pass
 
 
 class ChessPiece(Piece):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        if self.side == "W":
-            self.promoting_rank = self.board.state.board_size
-        else:
-            self.promoting_rank = 1
+
+    def promote_trigger(self):
+        pass
 
 
 class ShogiPiece(Piece):
@@ -112,6 +110,10 @@ class ShogiPiece(Piece):
             self.promoting_rank = self.board.state.board_size - 2
         else:
             self.promoting_rank = 3
+
+    def promote_trigger(self):
+        print("Promotion_trigger_shogi_side:", self.side)
+        pass
 
 
 class Pawn(ChessPiece):
@@ -123,6 +125,10 @@ class Pawn(ChessPiece):
         self.CAPTURE_MOVE = [[Direction.HORIZONTAL & Direction.FORWARD, 1]]
         self.shadow = None
         self.promotable = True
+        if self.side == "W":
+            self.promoting_rank = self.board.state.board_size
+        else:
+            self.promoting_rank = 1
         self.moved_double_square.connect(self.board.handle_double_square_move)
 
     def update_position(self, from_position, to_position, moved_piece):
@@ -137,6 +143,10 @@ class Pawn(ChessPiece):
         elif Vector2D(*to_position) == self.shadow and moved_piece == "P":
             to_position = self.x, self.y
         super().update_position(from_position, to_position, moved_piece)
+
+    def promote_trigger(self):
+        print("Promoting Pawn")
+        pass
 
 
 class Knight(ChessPiece):
@@ -193,8 +203,8 @@ class S_Rook(ShogiPiece):  # can be renamed to "Hisha"
 
     def __init__(self, *args, **kwargs):
         self.CAPTURE_MOVE = [self.PRIMARY_MOVE]
-        self.promotable = True
         super().__init__(*args, **kwargs)
+        self.promotable = True
 
 
 class S_Bishop(ShogiPiece):  # can be renamed to "Kaku"
@@ -202,8 +212,8 @@ class S_Bishop(ShogiPiece):  # can be renamed to "Kaku"
 
     def __init__(self, *args, **kwargs):
         self.CAPTURE_MOVE = [self.PRIMARY_MOVE]
-        self.promotable = True
         super().__init__(*args, **kwargs)
+        self.promotable = True
 
 
 class Lance(ShogiPiece):  # can be renamed to "Kyo"
@@ -211,8 +221,8 @@ class Lance(ShogiPiece):  # can be renamed to "Kyo"
 
     def __init__(self, *args, **kwargs):
         self.CAPTURE_MOVE = [self.PRIMARY_MOVE]
-        self.promotable = True
         super().__init__(*args, **kwargs)
+        self.promotable = True
 
 
 class S_Knight(ShogiPiece):  # can be renamed to "Kei" or "Forward Knight"
@@ -220,8 +230,8 @@ class S_Knight(ShogiPiece):  # can be renamed to "Kei" or "Forward Knight"
 
     def __init__(self, *args, **kwargs):
         self.CAPTURE_MOVE = [self.PRIMARY_MOVE]
-        self.promotable = True
         super().__init__(*args, **kwargs)
+        self.promotable = True
 
 
 class S_Pawn(ShogiPiece):  # can be renamed to "Fu"
@@ -229,8 +239,8 @@ class S_Pawn(ShogiPiece):  # can be renamed to "Fu"
 
     def __init__(self, *args, **kwargs):
         self.CAPTURE_MOVE = [self.PRIMARY_MOVE]
-        self.promotable = True
         super().__init__(*args, **kwargs)
+        self.promotable = True
 
 
 class Silver(ShogiPiece):  # can be renamed to "Gin"
@@ -239,8 +249,8 @@ class Silver(ShogiPiece):  # can be renamed to "Gin"
 
     def __init__(self, *args, **kwargs):
         self.CAPTURE_MOVE = [self.PRIMARY_MOVE]
-        self.promotable = True
         super().__init__(*args, **kwargs)
+        self.promotable = True
 
 
 class Gold(ShogiPiece):  # can be renamed to "Kin"
