@@ -58,7 +58,9 @@ def in_game_wrapper(board_layout, piece_layout):
 
         def eventFilter(self, source, event):
             if event.type() == QEvent.MouseButtonPress and source in self.tiles:
-                if event.button() == 1:
+                if not self.isEnabled():
+                    pass
+                elif event.button() == 1:
                     posx, posy = map(int, iter(source.objectName()[-2:]))
                     if self.state.action == "Hold":
                         self.relocate_piece(posx, posy)
@@ -167,9 +169,13 @@ def in_game_wrapper(board_layout, piece_layout):
                     super().__init__()
                     self.setupUi(self)
 
-            #  oyunu durdur bi şekilde?
             self.popup = PromoWindow()
             self.popup.show()
+            self.setDisabled(True)
+            self.state.timer_black.stop()
+            self.state.timer_white.stop()
+            # change_turn gerekli saati tekrar başlatacak, no problem
+            
             # self.popup.Knight.clicked.connect()
             # self.popup.Bishop.clicked.connect()
             # self.popup.Queen.clicked.connect()
