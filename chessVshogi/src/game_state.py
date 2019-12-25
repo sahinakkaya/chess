@@ -1,5 +1,5 @@
 from PyQt5 import QtCore
-from chessVshogi.src.ui_mapper import mapper
+
 from chessVshogi.src.cell import Cell
 
 
@@ -25,6 +25,8 @@ class GameState:
         self.create_board()
 
     def create_board(self):
+        import chessVshogi.src.ui_mapper as ui_mapper
+        mapper = ui_mapper.mapper()
         for i, line in enumerate(self.piece_layout):
             self.board.append([])
             for j, name in enumerate(line):

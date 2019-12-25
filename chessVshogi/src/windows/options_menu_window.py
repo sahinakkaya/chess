@@ -8,9 +8,9 @@ class OptionsMenuWindow(QWidget, Ui_Options_Menu):
         super().__init__(parent)
         self.setupUi(self)
         self.buttonReturn.clicked.connect(self.parent().close)
-        self.PG_ChessStyle.clicked.connect(lambda: self.set_piece_style(ui_mapper.hidetchi_prefix))
-        self.PG_ShogiStyle.clicked.connect(lambda: self.set_piece_style(ui_mapper.ichiji_prefix))
+        self.PG_ChessStyle.clicked.connect(lambda: set_piece_style(ui_mapper.hidetchi_prefix))
+        self.PG_ShogiStyle.clicked.connect(lambda: set_piece_style(ui_mapper.ichiji_prefix))
 
-    def set_piece_style(self, selection):
-        ui_mapper.prefix = selection
-        pass
+
+def set_piece_style(selection):
+    ui_mapper.prefix = selection
