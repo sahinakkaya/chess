@@ -60,7 +60,7 @@ class Ui_MainWindow(object):
         self.buttonStart.setObjectName("buttonStart")
         self.gridLayout.addWidget(self.buttonStart, 1, 2, 1, 1)
         self.buttonOpts = QtWidgets.QPushButton(self.centralwidget)
-        self.buttonOpts.setEnabled(False)
+        self.buttonOpts.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
