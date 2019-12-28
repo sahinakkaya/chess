@@ -94,14 +94,21 @@ class ChessPiece(Piece):
 
 
 class ShogiPiece(Piece):
+    promotion_trigger = pyqtSignal(QObject)
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if self.side == "W":
             self.promoting_rank = self.board.board_size - 2
         else:
             self.promoting_rank = 3
+        self.promotion_trigger.connect(self.board.handle_shogi_promotion)
 
     def promote_trigger(self):
+        print("Promoting" + self.name())
+        self.promotion_trigger.emit(self)
+
+    def transform(self):
         import chessVshogi.src.ui_mapper as ui_mapper
         mapper = ui_mapper.mapper()
         print("Promotion_trigger_shogi_side:", self.side)
@@ -115,7 +122,8 @@ class ShogiPiece(Piece):
         piece.resource = mapper[piece.name_]["resource"]
         self.board.draw_board()
         self.promotable = False
-        pass
+        self.sender().parent().close()
+        self.sender().parent().deleteLater()
 
 
 class Pawn(ChessPiece):
@@ -165,7 +173,7 @@ class Pawn(ChessPiece):
         self.PRIMARY_MOVE = promoted_self.PRIMARY_MOVE
         self.SECONDARY_MOVE = promoted_self.SECONDARY_MOVE
         self.CAPTURE_MOVE = promoted_self.CAPTURE_MOVE
-        self.promotable=False
+        self.promotable = False
         self.sender().parent().close()
         self.sender().parent().deleteLater()
         self.board.draw_board()
