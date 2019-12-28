@@ -102,7 +102,8 @@ class ShogiPiece(Piece):
             self.promoting_rank = 3
 
     def promote_trigger(self):
-        from chessVshogi.src.ui_mapper import mapper
+        import chessVshogi.src.ui_mapper as ui_mapper
+        mapper = ui_mapper.mapper()
         print("Promotion_trigger_shogi_side:", self.side)
         promoted_self = eval("Promoted" + self.name())
         self.PRIMARY_MOVE = promoted_self.PRIMARY_MOVE
@@ -150,7 +151,8 @@ class Pawn(ChessPiece):
         pass
 
     def transform(self):
-        from chessVshogi.src.ui_mapper import mapper
+        import chessVshogi.src.ui_mapper as ui_mapper
+        mapper = ui_mapper.mapper()
         name_mapping = {
             "Knight": "N",
             "Queen": "Q",
