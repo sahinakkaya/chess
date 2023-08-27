@@ -28,7 +28,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.buttonStart.clicked.connect(
             lambda: self.stacked_widget.setCurrentIndex(1))
         self.buttonExit.clicked.connect(self.close)
-        self.setWindowTitle("chessVshogi")
+        self.setWindowTitle("Chess")
         self.show()
 
     def closeEvent(self, event):

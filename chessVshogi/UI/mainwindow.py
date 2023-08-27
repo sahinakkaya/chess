@@ -83,6 +83,6 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.Title.setText(_translate("MainWindow", "ChessvShogi"))
+        self.Title.setText(_translate("MainWindow", "Chess"))
         self.buttonStart.setText(_translate("MainWindow", "Start"))
         self.buttonExit.setText(_translate("MainWindow", "Exit"))

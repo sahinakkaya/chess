@@ -55,7 +55,7 @@ def in_game_wrapper(board_layout, piece_layout):
                 main_window.setWindowTitle(self.labelTurn.text() +
                                            " Remaining Time:" +
                                            time_edit.text() +
-                                           "- chessVshogi")
+                                           "- Chess")
 
         def eventFilter(self, source, event):
             if event.type() == QEvent.Type.MouseButtonPress and source in self.tiles:
@@ -161,36 +161,6 @@ def in_game_wrapper(board_layout, piece_layout):
                 self.latest_shadow_w = shadow_x, shadow_y
             else:
                 self.latest_shadow_b = shadow_x, shadow_y
-
-        def handle_shogi_promotion(self, piece):
-            from chessVshogi.UI.Shogi_Promo import Ui_Frame
-
-            class PromoWindow(QtWidgets.QWidget, Ui_Frame):
-                def __init__(self, parent=None):
-                    super().__init__(parent)
-                    self.setupUi(self)
-                    self.windowptr = None
-                    import PyQt6.QtGui as QtGui
-                    import chessVshogi.src.ui_mapper as ui_mapper
-                    mapper = ui_mapper.mapper()
-                    normal_icon = QtGui.QIcon()
-                    promoted_icon = QtGui.QIcon()
-                    normal_icon.addPixmap(QtGui.QPixmap(mapper[piece.name_]["resource"]))
-                    promoted_icon.addPixmap(QtGui.QPixmap(mapper[piece.name_+"P"]["resource"]))
-                    self.Promotion.setIcon(promoted_icon)
-                    self.Unpromotion.setIcon(normal_icon)
-
-                def closeEvent(self, event):
-                    self.windowptr.setEnabled(True)
-                    self.windowptr.check_king_threat()
-                    event.accept()
-
-            self.popup = PromoWindow()
-            self.popup.windowptr = self
-            self.popup.show()
-            self.setDisabled(True)
-            self.popup.Promotion.clicked.connect(piece.transform)
-            self.popup.Unpromotion.clicked.connect(self.popup.close)
 
         def handle_pawn_promotion(self, piece):
             from chessVshogi.UI.PawnPromoOpts import Ui_Frame
@@ -339,17 +309,16 @@ def in_game_wrapper(board_layout, piece_layout):
             g_over.exec()
             self.tiles = []
             main_window = self.parentWidget().parentWidget().parentWidget()
-            main_window.setWindowTitle("chessVshogi")
+            main_window.setWindowTitle("Chess")
             self.setDisabled(True)
 
     return InGameWindow
 
 
 if __name__ == '__main__':
-    from chessVshogi.src.layouts import chess_default, shogi_default
+    from chessVshogi.src.layouts import chess_default
     from chessVshogi.src.windows import in_game_window
     from chessVshogi.UI.ingame_chess import Ui_IngameChess
-    from chessVshogi.UI.ingame_shogi import Ui_IngameShogi
     import sys
     from PyQt6.QtWidgets import QApplication
 
