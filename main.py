@@ -6,4 +6,4 @@ if __name__ == '__main__':
 
     app = QtWidgets.QApplication([])
     w = MainWindow()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())

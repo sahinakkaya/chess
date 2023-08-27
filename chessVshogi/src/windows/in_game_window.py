@@ -1,5 +1,5 @@
 from PyQt6 import QtWidgets
-from PyQt6.QtCore import pyqtSignal, QTime, QEvent
+from PyQt6.QtCore import pyqtSignal, QTime, QEvent, Qt
 from PyQt6.QtGui import QPixmap
 
 from chessVshogi.src import directions
@@ -58,10 +58,10 @@ def in_game_wrapper(board_layout, piece_layout):
                                            "- chessVshogi")
 
         def eventFilter(self, source, event):
-            if event.type() == QEvent.MouseButtonPress and source in self.tiles:
+            if event.type() == QEvent.Type.MouseButtonPress and source in self.tiles:
                 if not self.isEnabled():
                     pass
-                elif event.button() == 1:
+                elif event.button() == Qt.MouseButton.LeftButton:
                     posx, posy = map(int, iter(source.objectName()[-2:]))
                     if self.state.action == "Hold":
                         self.relocate_piece(posx, posy)
@@ -332,10 +332,10 @@ def in_game_wrapper(board_layout, piece_layout):
             self.state.timer_white.stop()
             self.state.timer_black.stop()
             g_over = QtWidgets.QMessageBox()
-            g_over.setIcon(QtWidgets.QMessageBox.Information)
+            g_over.setIcon(QtWidgets.QMessageBox.Icon.Information)
             g_over.setWindowTitle('Game Over')
             g_over.setText(case + "\n{} has {}".format(player, result))
-            g_over.setStandardButtons(QtWidgets.QMessageBox.Ok)
+            g_over.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
             g_over.exec()
             self.tiles = []
             main_window = self.parentWidget().parentWidget().parentWidget()
