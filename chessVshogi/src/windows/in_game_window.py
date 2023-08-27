@@ -79,7 +79,7 @@ def in_game_wrapper(board_layout, piece_layout):
                     posx, posy = map(int, iter(source.objectName()[-2:]))
                     if self.state.action == "Hold":
                         self.relocate_piece(posx, posy)
-                    elif source.pixmap() is not None:
+                    elif self.get_piece(posx, posy) is not None:
                         self.hold_piece(posx, posy)
 
             return super(InGameWindow, self).eventFilter(source, event)
