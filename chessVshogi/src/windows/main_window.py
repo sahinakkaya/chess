@@ -1,9 +1,10 @@
 from PyQt6 import QtWidgets
 from PyQt6.QtWidgets import QStackedWidget
+from chessVshogi.UI.ingame_chess import Ui_IngameChess
 
 from chessVshogi.UI.mainwindow import Ui_MainWindow
-from chessVshogi.src.windows.game_mode_window import GameModeWindow
-from chessVshogi.src.windows.versus_opts_window import VersusGameOptsWindow
+from chessVshogi.src import layouts
+from chessVshogi.src.windows.in_game_window import in_game_wrapper
 
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
@@ -12,11 +13,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.setupUi(self)
 
         self.stacked_widget = QStackedWidget()
-        game_mode_window = GameModeWindow(self)
-        versus_opts_window = VersusGameOptsWindow(self)
+        board_layout = Ui_IngameChess
+        piece_layout = getattr(layouts,
+                               "chess_default")
+        window_in_game = in_game_wrapper(board_layout, piece_layout)()
         self.stacked_widget.addWidget(self.centralwidget)
-        self.stacked_widget.addWidget(game_mode_window)
-        self.stacked_widget.addWidget(versus_opts_window)
+        self.stacked_widget.addWidget(window_in_game)
         self.stacked_widget.setCurrentIndex(0)
         layout = QtWidgets.QVBoxLayout()
         layout.addWidget(self.stacked_widget)
@@ -32,7 +34,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def closeEvent(self, event):
         current_index = self.stacked_widget.currentIndex()
         if current_index != 0:
-            if current_index == 4:
+            if current_index == 2:
                 del self.stacked_widget.currentWidget().state
                 self.stacked_widget.removeWidget(self.stacked_widget.currentWidget())
             self.stacked_widget.setCurrentIndex(0)
