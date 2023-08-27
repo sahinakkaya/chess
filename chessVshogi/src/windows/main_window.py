@@ -34,9 +34,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def closeEvent(self, event):
         current_index = self.stacked_widget.currentIndex()
         if current_index != 0:
-            if current_index == 2:
-                del self.stacked_widget.currentWidget().state
-                self.stacked_widget.removeWidget(self.stacked_widget.currentWidget())
+            if current_index == 1:
+                self.stacked_widget.currentWidget().restart_game()
             self.stacked_widget.setCurrentIndex(0)
             self.setWindowTitle("chessVshogi")
             event.ignore()

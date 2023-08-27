@@ -13,6 +13,13 @@ def in_game_wrapper(board_layout, piece_layout):
         def __init__(self):
             super().__init__()
             self.setupUi(self)
+            self.game_started = False
+            self.buttonResignRestart.clicked.connect(
+                self.resignOrRestart)
+
+        def restart_game(self):
+            self.game_started = False
+            self.buttonResignRestart.setText("Start")
             self.tiles = []
             self.create_tiles()
             self.possible_moves = None
@@ -29,10 +36,18 @@ def in_game_wrapper(board_layout, piece_layout):
                 lambda: self.cool_down("White"))
             self.state.timer_black.timeout.connect(
                 lambda: self.cool_down("Black"))
-            self.buttonResign.clicked.connect(
-                lambda: self.terminate_game("lost", self.state.turn,
-                                            "Resigned"))
             self.draw_board()
+
+        def resignOrRestart(self):
+            if self.game_started:
+                self.buttonResignRestart.setText("Restart")
+                self.terminate_game("lost", self.state.turn,
+                                            "Resigned")
+            else:
+                self.restart_game()
+                self.buttonResignRestart.setText("Resign")
+                self.start_game()
+
 
         def create_tiles(self):
             for i in range(11, 100):
@@ -44,7 +59,6 @@ def in_game_wrapper(board_layout, piece_layout):
                 self.tiles.append(tile)
 
         def showEvent(self, event):
-            self.state.timer_white.start()
             event.accept()
 
         def cool_down(self, color):
@@ -59,7 +73,7 @@ def in_game_wrapper(board_layout, piece_layout):
 
         def eventFilter(self, source, event):
             if event.type() == QEvent.Type.MouseButtonPress and source in self.tiles:
-                if not self.isEnabled():
+                if not self.game_started:
                     pass
                 elif event.button() == Qt.MouseButton.LeftButton:
                     posx, posy = map(int, iter(source.objectName()[-2:]))
@@ -298,6 +312,11 @@ def in_game_wrapper(board_layout, piece_layout):
                                            style="threat")
             return False
 
+        def start_game(self):
+            self.state.timer_white.start()
+            self.labelTurn.setText("Turn: {}".format(self.state.turn))
+            self.game_started = True
+
         def terminate_game(self, result, player, case):
             self.state.timer_white.stop()
             self.state.timer_black.stop()
@@ -310,7 +329,7 @@ def in_game_wrapper(board_layout, piece_layout):
             self.tiles = []
             main_window = self.parentWidget().parentWidget().parentWidget()
             main_window.setWindowTitle("Chess")
-            self.setDisabled(True)
+            self.game_started = False
 
     return InGameWindow
 
