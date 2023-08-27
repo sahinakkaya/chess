@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget
+from PyQt6.QtWidgets import QWidget
 from chessVshogi.UI.options_menu import Ui_Options_Menu
 import chessVshogi.src.ui_mapper as ui_mapper
 

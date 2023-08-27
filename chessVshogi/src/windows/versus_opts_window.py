@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget
+from PyQt6.QtWidgets import QWidget
 from chessVshogi.UI.custom_game_1 import Ui_Custom_Game_1
 from chessVshogi.src.windows.in_game_window import in_game_wrapper
 import chessVshogi.src.layouts as layouts

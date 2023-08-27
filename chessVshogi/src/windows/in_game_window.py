@@ -1,6 +1,6 @@
-from PyQt5 import QtWidgets
-from PyQt5.QtCore import pyqtSignal, QTime, QEvent
-from PyQt5.QtGui import QPixmap
+from PyQt6 import QtWidgets
+from PyQt6.QtCore import pyqtSignal, QTime, QEvent
+from PyQt6.QtGui import QPixmap
 
 from chessVshogi.src import directions
 from chessVshogi.src.game_state import GameState
@@ -170,7 +170,7 @@ def in_game_wrapper(board_layout, piece_layout):
                     super().__init__(parent)
                     self.setupUi(self)
                     self.windowptr = None
-                    import PyQt5.QtGui as QtGui
+                    import PyQt6.QtGui as QtGui
                     import chessVshogi.src.ui_mapper as ui_mapper
                     mapper = ui_mapper.mapper()
                     normal_icon = QtGui.QIcon()
@@ -202,7 +202,7 @@ def in_game_wrapper(board_layout, piece_layout):
                     self.windowptr = None
 
                 def show_black(self):
-                    import PyQt5.QtGui as QtGui
+                    import PyQt6.QtGui as QtGui
                     knighticon = QtGui.QIcon()
                     knighticon.addPixmap(QtGui.QPixmap(":/Chess/resources/chess_48/Chess_ndt48.png"),
                                          QtGui.QIcon.Normal,
@@ -351,7 +351,7 @@ if __name__ == '__main__':
     from chessVshogi.UI.ingame_chess import Ui_IngameChess
     from chessVshogi.UI.ingame_shogi import Ui_IngameShogi
     import sys
-    from PyQt5.QtWidgets import QApplication
+    from PyQt6.QtWidgets import QApplication
 
     app = QApplication([])
     w = in_game_window.in_game_wrapper(Ui_IngameChess, chess_default)()

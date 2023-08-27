@@ -1,4 +1,4 @@
-from PyQt5 import QtCore
+from PyQt6 import QtCore
 
 from chessVshogi.src.cell import Cell
 
@@ -47,7 +47,7 @@ if __name__ == '__main__':
     from chessVshogi.src.windows import in_game_window
     from chessVshogi.UI.ingame_chess import Ui_IngameChess
     import sys
-    from PyQt5.QtWidgets import QApplication
+    from PyQt6.QtWidgets import QApplication
 
     # app = QApplication([])
     # w = in_game_window.in_game_wrapper(Ui_IngameChess, 8)()

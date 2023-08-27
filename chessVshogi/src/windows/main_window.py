@@ -1,5 +1,5 @@
-from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QStackedWidget
+from PyQt6 import QtWidgets
+from PyQt6.QtWidgets import QStackedWidget
 
 from chessVshogi.UI.mainwindow import Ui_MainWindow
 from chessVshogi.src.windows.game_mode_window import GameModeWindow

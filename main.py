@@ -1,5 +1,5 @@
 from chessVshogi.src.windows.main_window import MainWindow
-from PyQt5 import QtWidgets
+from PyQt6 import QtWidgets
 
 if __name__ == '__main__':
     import sys
