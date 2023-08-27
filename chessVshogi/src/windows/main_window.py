@@ -3,7 +3,6 @@ from PyQt6.QtWidgets import QStackedWidget
 
 from chessVshogi.UI.mainwindow import Ui_MainWindow
 from chessVshogi.src.windows.game_mode_window import GameModeWindow
-from chessVshogi.src.windows.options_menu_window import OptionsMenuWindow
 from chessVshogi.src.windows.versus_opts_window import VersusGameOptsWindow
 
 
@@ -14,11 +13,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.stacked_widget = QStackedWidget()
         game_mode_window = GameModeWindow(self)
-        options_menu_window = OptionsMenuWindow(self)
         versus_opts_window = VersusGameOptsWindow(self)
         self.stacked_widget.addWidget(self.centralwidget)
         self.stacked_widget.addWidget(game_mode_window)
-        self.stacked_widget.addWidget(options_menu_window)
         self.stacked_widget.addWidget(versus_opts_window)
         self.stacked_widget.setCurrentIndex(0)
         layout = QtWidgets.QVBoxLayout()
@@ -28,8 +25,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.setCentralWidget(central_widget)
         self.buttonStart.clicked.connect(
             lambda: self.stacked_widget.setCurrentIndex(1))
-        self.buttonOpts.clicked.connect(
-            lambda: self.stacked_widget.setCurrentIndex(2))
         self.buttonExit.clicked.connect(self.close)
         self.setWindowTitle("chessVshogi")
         self.show()

@@ -31,11 +31,11 @@ class GameModeWindow(QWidget, Ui_Gamemode_Menu):
         window_in_game = in_game_wrapper(board_layout, piece_layout)()
         stacked_widget = self.parentWidget()
         stacked_widget.addWidget(window_in_game)
-        stacked_widget.setCurrentIndex(4)
+        stacked_widget.setCurrentIndex(3)
 
     def opts_vsmode(self):
         stacked_widget = self.parentWidget()
-        stacked_widget.setCurrentIndex(3)
+        stacked_widget.setCurrentIndex(2)
 
 
 if __name__ == '__main__':
