@@ -290,7 +290,7 @@ def in_game_wrapper(board_layout, piece_layout):
             for row in self.state.board:
                 for cell in row:
                     piece = cell.piece
-                    if piece and piece.name() in ["King", "S_King"] and \
+                    if piece and piece.name() == "King" and \
                             piece.side == self.state.turn[0]:
                         return piece.x, piece.y
 
