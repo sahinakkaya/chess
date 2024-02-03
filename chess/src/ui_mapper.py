@@ -1,4 +1,4 @@
-import chessVshogi.src.pieces as pieces
+import chess.src.pieces as pieces
 
 ichiji_prefix = ":/Ichiji/resources/Ichiji/"
 hidetchi_prefix = ":/Hidetchi/resources/hidetchi/"

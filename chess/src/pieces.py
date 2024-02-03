@@ -1,4 +1,4 @@
-from chessVshogi.src.directions import Direction, SetOfVectors, Vector2D
+from chess.src.directions import Direction, SetOfVectors, Vector2D
 from PyQt6.QtCore import QObject, pyqtSignal
 
 
@@ -125,7 +125,7 @@ class Pawn(ChessPiece):
         pass
 
     def transform(self):
-        import chessVshogi.src.ui_mapper as ui_mapper
+        import chess.src.ui_mapper as ui_mapper
         mapper = ui_mapper.mapper()
         name_mapping = {
             "Knight": "N",

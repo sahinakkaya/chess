@@ -1,6 +1,6 @@
 from PyQt6 import QtCore
 
-from chessVshogi.src.cell import Cell
+from chess.src.cell import Cell
 
 
 class GameState:
@@ -25,7 +25,7 @@ class GameState:
         self.create_board()
 
     def create_board(self):
-        import chessVshogi.src.ui_mapper as ui_mapper
+        import chess.src.ui_mapper as ui_mapper
         mapper = ui_mapper.mapper()
         for i, line in enumerate(self.piece_layout):
             self.board.append([])
@@ -43,9 +43,9 @@ class GameState:
 
 
 if __name__ == '__main__':
-    from chessVshogi.src.layouts import chess_default, shogi_default
-    from chessVshogi.src.windows import in_game_window
-    from chessVshogi.UI.ingame_chess import Ui_IngameChess
+    from chess.src.layouts import chess_default
+    from chess.src.windows import in_game_window
+    from chess.UI.ingame_chess import Ui_IngameChess
     import sys
     from PyQt6.QtWidgets import QApplication
 

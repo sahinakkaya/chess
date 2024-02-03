@@ -2,8 +2,8 @@ from PyQt6 import QtWidgets
 from PyQt6.QtCore import pyqtSignal, QTime, QEvent, Qt
 from PyQt6.QtGui import QPixmap
 
-from chessVshogi.src import directions
-from chessVshogi.src.game_state import GameState
+from chess.src import directions
+from chess.src.game_state import GameState
 
 
 def in_game_wrapper(board_layout, piece_layout):
@@ -177,7 +177,7 @@ def in_game_wrapper(board_layout, piece_layout):
                 self.latest_shadow_b = shadow_x, shadow_y
 
         def handle_pawn_promotion(self, piece):
-            from chessVshogi.UI.PawnPromoOpts import Ui_Frame
+            from chess.UI.PawnPromoOpts import Ui_Frame
 
             class PromoWindow(QtWidgets.QWidget, Ui_Frame):
                 def __init__(self, parent=None):
@@ -335,9 +335,9 @@ def in_game_wrapper(board_layout, piece_layout):
 
 
 if __name__ == '__main__':
-    from chessVshogi.src.layouts import chess_default
-    from chessVshogi.src.windows import in_game_window
-    from chessVshogi.UI.ingame_chess import Ui_IngameChess
+    from chess.src.layouts import chess_default
+    from chess.src.windows import in_game_window
+    from chess.UI.ingame_chess import Ui_IngameChess
     import sys
     from PyQt6.QtWidgets import QApplication
 

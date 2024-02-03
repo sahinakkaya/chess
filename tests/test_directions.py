@@ -1,5 +1,5 @@
 import unittest
-from chessVshogi.directions import Direction, Vector2D, SetOfVectors
+from chess.directions import Direction, Vector2D, SetOfVectors
 
 
 class DirectionTestCase(unittest.TestCase):

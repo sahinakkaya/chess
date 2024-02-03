@@ -1,10 +1,10 @@
 from PyQt6 import QtWidgets
 from PyQt6.QtWidgets import QStackedWidget
-from chessVshogi.UI.ingame_chess import Ui_IngameChess
+from chess.UI.ingame_chess import Ui_IngameChess
 
-from chessVshogi.UI.mainwindow import Ui_MainWindow
-from chessVshogi.src import layouts
-from chessVshogi.src.windows.in_game_window import in_game_wrapper
+from chess.UI.mainwindow import Ui_MainWindow
+from chess.src import layouts
+from chess.src.windows.in_game_window import in_game_wrapper
 
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
@@ -37,7 +37,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             if current_index == 1:
                 self.stacked_widget.currentWidget().restart_game()
             self.stacked_widget.setCurrentIndex(0)
-            self.setWindowTitle("chessVshogi")
+            self.setWindowTitle("Chess")
             event.ignore()
         else:
             event.accept()
